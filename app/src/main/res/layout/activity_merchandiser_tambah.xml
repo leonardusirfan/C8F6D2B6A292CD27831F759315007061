@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MerchandiserAct.MerchandiserTambah"
+    android:padding="@dimen/dp20"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp5"
+        android:text="Nama Pembeli"
+        style="@style/TextView.MerchandiserTambah"/>
+
+    <EditText
+        android:id="@+id/txt_nama"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/GreenViewTheme"
+        style="@style/EditText.MerchandiserTambah"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp5"
+        android:text="@string/alamat"
+        style="@style/TextView.MerchandiserTambah"/>
+
+    <EditText
+        android:id="@+id/txt_alamat"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/GreenViewTheme"
+        style="@style/EditText.MerchandiserTambah"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp5"
+        android:text="Nomor Telepon"
+        style="@style/TextView.MerchandiserTambah"/>
+
+    <EditText
+        android:id="@+id/txt_no_telepon"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/GreenViewTheme"
+        style="@style/EditText.MerchandiserTambah"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp5"
+        android:text="Keterangan"
+        style="@style/TextView.MerchandiserTambah"/>
+
+    <EditText
+        android:id="@+id/txt_keterangan"
+        android:inputType="textMultiLine"
+        android:minLines="2"
+        android:maxLines="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/GreenViewTheme"
+        style="@style/EditText.MerchandiserTambah"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/dp10">
+
+        <ImageView
+            android:id="@+id/img_merchandiser"
+            android:contentDescription="@string/outlet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/overlay_merchandiser"
+            android:contentDescription="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ddffffff"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"/>
+
+        <ProgressBar
+            android:id="@+id/bar_merchandiser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/img_upload_merchandiser"
+            android:layout_width="@dimen/upload_icon_size"
+            android:layout_height="@dimen/upload_icon_size"
+            android:contentDescription="@string/upload_ktp"
+            android:src="@drawable/camera"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp15"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_simpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp30"
+        android:layout_marginBottom="@dimen/dp20"
+        android:text="Simpan"
+        android:background="@color/green"
+        android:textColor="#fff"/>
+
+</LinearLayout>

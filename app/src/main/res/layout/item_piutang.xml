@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/item_piutang"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/dp10"
+    android:paddingEnd="@dimen/dp10"
+    android:paddingTop="@dimen/dp20"
+    android:paddingBottom="@dimen/dp20"
+    android:layout_marginTop="@dimen/dp10"
+    android:background="@color/white"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/txt_nama"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:padding="@dimen/dp5"
+        android:layout_marginStart="@dimen/dp5"
+        android:layout_marginEnd="@dimen/dp5"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_jumlah"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:padding="@dimen/dp5"
+        android:layout_marginStart="@dimen/dp5"
+        android:layout_marginEnd="@dimen/dp5"
+        android:gravity="end" />
+
+</LinearLayout>

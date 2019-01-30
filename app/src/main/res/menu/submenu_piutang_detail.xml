@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_semua"
+        app:showAsAction="always|collapseActionView"
+        android:title="Semua"/>
+
+    <item
+        android:id="@+id/action_tempo"
+        app:showAsAction="always|collapseActionView"
+        android:title="Jatuh Tempo"/>
+
+</menu>

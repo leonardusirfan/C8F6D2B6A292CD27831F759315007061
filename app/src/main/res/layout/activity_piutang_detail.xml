@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_parent"
+    android:gravity="bottom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:umanoDragView="@+id/dragView"
+    app:umanoOverlay="true"
+    app:umanoPanelHeight="0dp"
+    app:umanoParallaxOffset="100dp"
+    app:umanoShadowHeight="4dp"
+    app:umanoScrollableView="@id/layout_piutang_detail"
+    tools:context=".PiutangAct.PiutangDetail">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coordinator"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/toolbar"
+            app:layout_constraintBottom_toTopOf="@+id/layout_lunasi"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:elevation="0dp">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbarFadeDuration="1000"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:scrimAnimationDuration="1000">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/layout_customer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/dp15">
+
+                            <ImageView
+                                android:id="@+id/img_customer"
+                                android:layout_width="@dimen/small_icon_size"
+                                android:layout_height="@dimen/small_icon_size"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_margin="@dimen/dp10"
+                                android:contentDescription="@string/customer"
+                                android:src="@drawable/icon_customer" />
+
+                            <TextView
+                                android:id="@+id/lbl_nama"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@id/img_customer"
+                                android:layout_toEndOf="@id/img_customer"
+                                android:text="@string/detail_nama_customer"
+                                android:textSize="@dimen/sp16" />
+
+                            <TextView
+                                android:id="@+id/txt_nama"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/lbl_nama"
+                                android:layout_toEndOf="@id/img_customer"
+                                android:textSize="@dimen/sp18"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/img_alamat"
+                                android:layout_width="@dimen/small_icon_size"
+                                android:layout_height="@dimen/small_icon_size"
+                                android:layout_below="@id/txt_nama"
+                                android:layout_margin="@dimen/dp10"
+                                android:contentDescription="@string/alamat"
+                                android:src="@drawable/icon_lokasi" />
+
+                            <TextView
+                                android:id="@+id/lbl_alamat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/txt_nama"
+                                android:layout_alignTop="@id/img_alamat"
+                                android:layout_toEndOf="@id/img_alamat"
+                                android:text="@string/detail_alamat"
+                                android:textSize="@dimen/sp16" />
+
+                            <TextView
+                                android:id="@+id/txt_alamat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/lbl_alamat"
+                                android:layout_toEndOf="@id/img_alamat"
+                                android:textSize="@dimen/sp18"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/img_piutang"
+                                android:layout_width="@dimen/small_icon_size"
+                                android:layout_height="@dimen/small_icon_size"
+                                android:layout_below="@id/txt_alamat"
+                                android:layout_margin="@dimen/dp10"
+                                android:contentDescription="@string/piutang"
+                                android:src="@drawable/icon_piutang" />
+
+                            <TextView
+                                android:id="@+id/lbl_piutang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/txt_nama"
+                                android:layout_alignTop="@id/img_piutang"
+                                android:layout_toEndOf="@id/img_piutang"
+                                android:text="@string/piutang_total_piutang"
+                                android:textSize="@dimen/sp16" />
+
+                            <TextView
+                                android:id="@+id/txt_piutang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/lbl_piutang"
+                                android:layout_toEndOf="@id/img_piutang"
+                                android:textSize="@dimen/sp18"
+                                android:textStyle="bold" />
+
+                           <!-- <ImageView
+                                android:id="@+id/img_lunasi"
+                                android:layout_width="@dimen/medium_icon_size"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="@dimen/dp30"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignTop="@id/txt_piutang"
+                                android:layout_alignBottom="@id/txt_piutang"
+                                android:layout_marginStart="@dimen/dp10"
+                                android:src="@drawable/lunasi_piutang"/>-->
+
+                        </RelativeLayout>
+
+                        <include
+                            layout="@layout/layout_tipe_penjualan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/layout_customer" />
+
+                    </RelativeLayout>
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_piutang"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/dp20"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_lunasi"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/img_lunasi"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@color/green"
+                android:gravity="center"
+                android:text="Lunasi"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp14" />
+
+            <TextView
+                android:id="@+id/txt_jumlah"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:background="@color/dark_gray"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="Jumlah : Rp 150.000"
+                android:textColor="@color/red"
+                android:textSize="@dimen/sp14" />
+
+            <Button
+                android:id="@+id/btn_lunasi"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:background="@color/green"
+                android:gravity="center"
+                android:text="Lunasi"
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp14" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/dragView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/piutang_detail_dragview_height">
+
+            <include layout="@layout/view_divider"
+                android:layout_height="@dimen/dp2"
+                android:layout_width="80dp"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+
+        <include
+            android:id="@+id/layout_piutang_detail"
+            layout="@layout/popup_piutang_detail"/>
+
+    </LinearLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

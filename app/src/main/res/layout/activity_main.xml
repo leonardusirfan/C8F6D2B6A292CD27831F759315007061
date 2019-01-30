@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ss.com.bannerslider.Slider
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:slider_hideIndicators="true">
+
+        </ss.com.bannerslider.Slider>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:contentDescription="@null"
+            android:layout_height="@dimen/main_gradient_height"
+            android:background="@drawable/style_rectangle_gradient_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:contentDescription="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/main_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <RelativeLayout
+            android:id="@+id/layout_akun"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_layout_icon_height"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/persegi_panjang"
+            android:paddingStart="@dimen/dp30"
+            android:paddingEnd="@dimen/dp30"
+            android:paddingTop="@dimen/dp10"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+            <TextView
+                android:id="@+id/txt_nama"
+                android:layout_toStartOf="@id/img_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp5"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_width="@dimen/big_icon_size"
+                android:layout_height="@dimen/medium_icon_size"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/edit_akun"/>
+
+            <TextView
+                android:id="@+id/txt_nip"
+                android:layout_below="@id/txt_nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp20"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/txt_regional"
+                android:layout_below="@id/txt_nip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp12" />
+
+            <!--<ImageView
+                android:layout_width="@dimen/upload_icon_size"
+                android:layout_height="@dimen/upload_icon_size"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/edit_akun" />-->
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/guideline2"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp15"
+            android:paddingStart="@dimen/dp10"
+            android:paddingEnd="@dimen/dp10"
+            app:columnCount="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_akun">
+
+            <LinearLayout
+                android:id="@+id/img_data_customer"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/main_customer" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="@string/main_daftar_customer"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_penjualan_so"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/main_so" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="@string/main_penjualan_so"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_penjualan_canvas"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/main_canvas" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="@string/main_penjualan_canvas"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_daftar_so"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/main_list_so" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="Daftar SO"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_data_riwayat_customer"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/main_riwayat" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="@string/main_riwayat_penjualan"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_piutang"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/main_piutang" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="@string/main_piutang"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_merchandiser"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/main_merchandizer" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="Merchandiser"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_stok_canvas"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/stok_canvas" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="Stok Canvas"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_setoran_sales"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/setoran_sales" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="Setoran Sales"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_approval_pelanggan"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                android:visibility="gone">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/approval_pelanggan" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="Approval Pelanggan"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/img_approval_so"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_icon_height"
+                android:background="@drawable/kotak"
+                android:orientation="vertical"
+                android:padding="@dimen/dp15"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                android:visibility="gone">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/approval_so" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/dp2"
+                    android:text="Approval SO"
+                    android:textSize="@dimen/sp10" />
+
+            </LinearLayout>
+        </android.support.v7.widget.GridLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.23" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.33" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

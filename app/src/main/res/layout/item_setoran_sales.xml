@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp15"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/dp15">
+
+    <TextView
+        android:id="@+id/txt_tanggal"
+        android:layout_width="wrap_content"
+        android:text="2019-08-12"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp12"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_customer"
+        android:layout_below="@id/txt_tanggal"
+        android:layout_width="match_parent"
+        android:text="Agro Mina Tani"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp18" />
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="3"
+        app:rowCount="2"
+        android:layout_below="@id/txt_customer"
+        android:layout_marginTop="@dimen/dp2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_rowWeight="1"
+            app:layout_columnWeight="1"
+            android:layout_marginEnd="@dimen/dp10"
+            android:text="No Nota"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_rowWeight="1"
+            app:layout_columnWeight="1"
+            android:text="Jumlah"
+            android:layout_marginEnd="@dimen/dp10"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_rowWeight="1"
+            app:layout_columnWeight="1"
+            android:text="Pembayaran"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/txt_nota"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_rowWeight="1"
+            app:layout_columnWeight="1"
+            android:text="JS001-002"
+            android:layout_marginEnd="@dimen/dp10"
+            android:textColor="#000"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/txt_jumlah"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_rowWeight="1"
+            app:layout_columnWeight="1"
+            android:text="Rp 100.000"
+            android:layout_marginEnd="@dimen/dp10"
+            android:textColor="#000"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/txt_pembayaran"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_rowWeight="1"
+            app:layout_columnWeight="1"
+            android:text="Tunai"
+            android:textColor="#000"
+            android:textSize="@dimen/sp14" />
+    </android.support.v7.widget.GridLayout>
+</RelativeLayout>

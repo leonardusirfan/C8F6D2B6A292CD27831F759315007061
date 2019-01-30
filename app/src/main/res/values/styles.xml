@@ -1,0 +1,109 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Color for circle in progress bar -->
+        <item name="colorControlActivated">@color/white</item>
+        <item name="popupMenuStyle">@style/AppPopupMenu</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorControlActivated">@color/green</item>
+    </style>
+
+    <!--<style name="CustomToolbar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>-->
+
+    <style name="AppPopupMenu" parent="Base.Widget.AppCompat.Light.PopupMenu">
+        <item name="android:popupCharacters">@color/red</item>
+        <item name="android:popupBackground">@color/white</item>
+    </style>
+
+    <style name="AppTheme.SplashScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <!-- reference our hint & error styles -->
+<!--        <item name="hintTextAppearance">@style/HintText</item>
+        <item name="errorTextAppearance">@style/ErrorText</item>
+        <item name="android:textColor">@color/user_input_color</item>
+        <item name="android:textColorHint">@color/unfocused_color</item>-->
+        <item name="colorControlNormal">@color/green</item>
+        <item name="colorControlActivated">@color/green</item>
+        <item name="colorControlHighlight">@color/green</item>
+    </style>
+
+    <style name="TextView">
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textColor">#747474</item>
+        <item name="android:textSize">@dimen/sp14</item>
+    </style>
+
+    <style name="EditText.CustomerTambah" parent="AppTheme">
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textColor">#747474</item>
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:layout_marginStart">@dimen/dp20</item>
+        <item name="android:layout_marginEnd">@dimen/dp20</item>
+    </style>
+
+    <style name="EditText.MerchandiserTambah" parent="AppTheme">
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textColor">#747474</item>
+        <item name="android:textSize">@dimen/sp14</item>
+    </style>
+
+    <style name="TextView.MerchandiserTambah">
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textColor">#747474</item>
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.CustomerTambah">
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textColor">#747474</item>
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">@dimen/dp20</item>
+        <item name="android:layout_marginEnd">@dimen/dp20</item>
+    </style>
+
+    <!--<style name="EditText.CustomerDetail" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlActivated">@color/dark_grey</item>
+        <item name="android:textColor">@color/very_dark_grey</item>
+        <item name="android:textColorHint">@color/very_dark_grey</item>
+    </style>-->
+    <style name="GreenViewTheme" parent="Base.Theme.AppCompat.Light">
+        <item name="colorAccent">@color/green</item>
+        <item name="android:textColorSecondary">@color/very_dark_gray</item>
+    </style>
+
+    <style name="GrayViewTheme" parent="Base.Theme.AppCompat.Light">
+        <item name="colorAccent">@color/light_black</item>
+        <item name="android:textColorSecondary">@color/very_dark_gray</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/anim_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_slide_out</item>
+    </style>
+</resources>

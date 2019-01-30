@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MerchandiserAct.Merchandiser">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_merchandiser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <rjsv.floatingmenu.floatingmenubutton.FloatingMenuButton
+        android:id="@+id/fab_tambah"
+        android:layout_width="@dimen/floating_size"
+        android:layout_height="@dimen/floating_size"
+        android:background="@drawable/tambah"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

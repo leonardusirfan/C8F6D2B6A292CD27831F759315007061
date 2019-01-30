@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_parent"
+    android:gravity="bottom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:umanoDragView="@+id/dragView"
+    app:umanoOverlay="true"
+    app:umanoPanelHeight="0dp"
+    app:umanoParallaxOffset="100dp"
+    app:umanoShadowHeight="4dp"
+    app:umanoScrollableView="@id/layout_piutang_detail"
+    tools:context=".SetoranSalesAct.SetoranSales">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_setoran"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/txt_total"/>
+
+        <TextView
+            android:id="@+id/txt_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/dp10"
+            android:gravity="end"
+            android:background="@color/gray"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp16"/>
+
+    </RelativeLayout>
+
+    <include layout="@layout/popup_setoran_sales"/>
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

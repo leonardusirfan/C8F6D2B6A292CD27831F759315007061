@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="id.net.gmedia.pal">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ApprovalSoAct.ApprovalSo"></activity>
+        <activity android:name=".ApprovalPelangganAct.ApprovalPelanggan" />
+        <activity android:name=".SetoranSalesAct.SetoranSales" />
+        <activity android:name=".StokCanvasAct.StokCanvas" />
+        <activity android:name=".DaftarSoAct.DaftarSOEdit" />
+        <activity
+            android:name=".MerchandiserAct.Merchandiser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MerchandiserAct.MerchandiserTambah"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MerchandiserAct.MerchandiserCustomer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DaftarSoAct.DaftarSODetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DaftarSoAct.DaftarSO"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CustomerAct.Customer"
+            android:screenOrientation="portrait" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".CustomerAct.CustomerDetail"
+            android:label="@string/title_activity_customer_tambah"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PenjualanAct.Penjualan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PiutangAct.Piutang"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RiwayatAct.Riwayat"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PiutangAct.PiutangDetail"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".PiutangAct.PiutangDetailNota"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PenjualanAct.PenjualanBarang"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PenjualanAct.PenjualanDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PenjualanAct.PenjualanNota"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RiwayatAct.RiwayatDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PetaOutlet"
+            android:label="@string/title_activity_peta_outlet"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+    </application>
+
+</manifest>

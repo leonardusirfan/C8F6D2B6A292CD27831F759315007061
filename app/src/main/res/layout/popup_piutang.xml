@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    app:cardCornerRadius="@dimen/dp10">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/vertical1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/vertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Masukkan Nominal Pembayaran"
+            android:textSize="@dimen/sp22"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/layout_password_lama"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layout_password_lama"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_fullrounded_white_rectangle"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+            app:layout_constraintEnd_toStartOf="@+id/vertical2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/vertical1"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <EditText
+                android:id="@+id/txt_nominal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:theme="@style/GrayViewTheme"
+                android:inputType="number"
+                android:padding="@dimen/dp10"
+                android:textSize="@dimen/sp16" />
+
+            <!--<ImageView
+                android:id="@+id/img_password_lama"
+                android:layout_width="@dimen/login_icon_size"
+                android:layout_height="@dimen/login_icon_size"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:contentDescription="@string/password"
+                android:src="@drawable/lunasi_piutang" />-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vertical2"
+            app:layout_constraintTop_toBottomOf="@+id/layout_password_lama">
+
+            <TextView
+                android:id="@+id/btn_batal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp10"
+                android:text="Batal"
+                android:textColor="#B6B6B6"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btn_bayar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp10"
+                android:text="Bayar"
+                android:textColor="@color/green"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.card.MaterialCardView>

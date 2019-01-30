@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DaftarSoAct.DaftarSO">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:background="@android:color/transparent">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarFadeDuration="1000"
+                app:scrimAnimationDuration="1000"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp15">
+
+                    <TextView
+                        android:id="@+id/lbl_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textSize="@dimen/sp14"/>
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/spn_status"
+                        android:layout_below="@id/lbl_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp10"/>
+
+                    <LinearLayout
+                        android:id="@+id/layout_tanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/spn_status"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_marginBottom="@dimen/dp5">
+
+                        <TextView
+                            android:id="@+id/txt_tgl_mulai"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:textSize="@dimen/sp14"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dp10" />
+
+                        <ImageView
+                            android:id="@+id/img_tgl_mulai"
+                            android:layout_width="@dimen/medium_icon_size"
+                            android:layout_height="@dimen/medium_icon_size"
+                            android:padding="@dimen/dp2"
+                            android:src="@drawable/calendar"/>
+
+                        <include layout="@layout/view_divider"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.2"
+                            android:layout_marginStart="@dimen/dp10"
+                            android:layout_height="@dimen/dp2"/>
+
+                        <TextView
+                            android:id="@+id/txt_tgl_selesai"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.4"
+                            android:textSize="@dimen/sp14"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dp10"/>
+
+                        <ImageView
+                            android:id="@+id/img_tgl_selesai"
+                            android:layout_width="@dimen/medium_icon_size"
+                            android:layout_height="@dimen/medium_icon_size"
+                            android:src="@drawable/calendar"
+                            android:padding="@dimen/dp2"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_proses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/big_icon_size"
+                        android:text="Proses"
+                        android:layout_below="@id/layout_tanggal"
+                        android:layout_alignParentEnd="true"
+                        android:background="@color/green"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="@dimen/dp10"/>
+
+                </RelativeLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_so"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_penjualan"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/dp15"
+            android:clipToPadding="false"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.constraint.ConstraintLayout>

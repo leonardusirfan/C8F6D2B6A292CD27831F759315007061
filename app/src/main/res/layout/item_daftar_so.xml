@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    android:id="@+id/layout_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp15"
+    android:layout_marginEnd="@dimen/dp15"
+    android:layout_marginTop="@dimen/dp15">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="@dimen/default_icon_size"
+            android:layout_height="@dimen/default_icon_size"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/dp10"
+            android:src="@drawable/edit_akun"
+            android:visibility="gone"
+            android:layout_alignBottom="@id/layout_detail"/>
+
+        <LinearLayout
+            android:id="@+id/layout_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/orange">
+
+                <TextView
+                    android:id="@+id/txt_tanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp5"
+                    android:paddingTop="@dimen/dp5"
+                    android:paddingEnd="@dimen/dp15"
+                    android:gravity="end"
+                    android:textSize="@dimen/sp14"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:columnCount="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_nama_piutang">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp10"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_nama_customer"
+                        android:textSize="@dimen/sp12"/>
+
+                    <TextView
+                        android:id="@+id/txt_nama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp14"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp10"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_nomor_nota"
+                        android:textSize="@dimen/sp12"/>
+
+                    <TextView
+                        android:id="@+id/txt_nota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp14"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp10"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_total_penjualan"
+                        android:textSize="@dimen/sp12"/>
+
+                    <TextView
+                        android:id="@+id/txt_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp14"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp10"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textSize="@dimen/sp12"/>
+
+                    <TextView
+                        android:id="@+id/txt_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp14"/>
+                </LinearLayout>
+            </android.support.v7.widget.GridLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.design.card.MaterialCardView>

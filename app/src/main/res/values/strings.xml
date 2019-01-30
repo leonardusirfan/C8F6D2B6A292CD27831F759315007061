@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">PAL</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="customer">Customer</string>
+    <string name="piutang">Piutang</string>
+    <string name="alamat">Alamat</string>
+    <string name="next">Next</string>
+    <string name="title_activity_customer_tambah">Map</string>
+
+    <string name="detail_nama_customer">Nama Customer</string>
+    <string name="detail_nama_barang">Nama Barang</string>
+    <string name="detail_harga_satuan">Harga Satuan</string>
+    <string name="detail_jumlah">Jumlah</string>
+    <string name="detail_alamat">Alamat</string>
+    <string name="detail_total_harga">Total Harga</string>
+    <string name="detail_total_penjualan">Total Penjualan</string>
+    <string name="detail_nomor_nota">Nomor Nota</string>
+    <string name="item_tanggal">Tanggal</string>
+    <string name="item_tanggal_tempo">Tanggal Tempo</string>
+
+    <string name="penjualan_tambah_barang">Tambah Barang</string>
+    <string name="penjualan_check_out">Check Out</string>
+
+    <string name="piutang_total_piutang">Total Piutang</string>
+
+    <string name="outlet">Outlet</string>
+    <string name="upload_outlet">Upload Outlet</string>
+    <string name="ktp">Ktp</string>
+    <string name="upload_ktp">Upload Ktp</string>
+
+    <string name="error_json">Terjadi kesalahan saat memuat data</string>
+
+    <string name="customer_detail_map">Tahan untuk memindahkan lokasi pada map</string>
+    <string name="customer_detail_nama">Nama</string>
+    <string name="customer_detail_nama_pemilik">Nama Pemilik</string>
+    <string name="customer_detail_alamat">Alamat</string>
+    <string name="customer_detail_no_ktp">Nomor KTP</string>
+    <string name="customer_detail_area">Area</string>
+    <string name="customer_detail_npwp">NPWP</string>
+    <string name="customer_detail_no_hp">Nomor HP</string>
+    <string name="customer_detail_kota">Kota</string>
+    <string name="customer_detail_provinsi">Provinsi</string>
+    <string name="customer_detail_negara">Negara</string>
+    <string name="customer_detail_simpan">Simpan Data Customer</string>
+
+    <string name="main_daftar_customer">Daftar Customer</string>
+    <string name="main_penjualan_so">Penjualan SO</string>
+    <string name="main_penjualan_canvas">Penjualan Canvas</string>
+    <string name="main_riwayat_penjualan">Riwayat Penjualan</string>
+    <string name="main_piutang">Piutang</string>
+
+    <string name="penjualan_detail_nama_pelanggan">Nama Pelanggan</string>
+    <string name="penjualan_detail_nama_barang">Nama Barang</string>
+    <string name="penjualan_detail_jumlah">Jumlah</string>
+    <string name="penjualan_detail_satuan">Satuan</string>
+    <string name="penjualan_detail_total_harga">Total Harga</string>
+    <string name="penjualan_detail_beli">Beli</string>
+    <string name="penjualan_detail_jarak">"( Jarak dengan outlet : - Km )"</string>
+    <string name="penjualan_detail_harga_satuan">Harga Satuan</string>
+
+    <string name="login_lupa_password">"Lupa password? "</string>
+    <string name="login_klik_disini">"Klik disini"</string>
+
+    <string name="loading_memuat_data">"Memuat Data"</string>
+    <string name="loading_tunggu_sebentar">"Tunggu sebentar.."</string>
+
+    <string name="detail_penjualan_so">Penjualan SO</string>
+    <string name="detail_penjualan_canvas">Penjualan Canvas</string>
+    <string name="title_activity_peta_outlet">Map</string>
+
+    <string-array name="array_pembayaran">
+        <item>semua</item>
+        <item>tunai</item>
+        <item>transfer</item>
+        <item>giro</item>
+    </string-array>
+
+</resources>
