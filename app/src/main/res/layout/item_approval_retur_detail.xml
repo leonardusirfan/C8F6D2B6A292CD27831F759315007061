@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_retur"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:src="@color/gray"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
+            android:paddingStart="@dimen/dp20">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kode Barang"
+                android:textSize="@dimen/sp12"/>
+
+            <TextView
+                android:id="@+id/txt_kode_barang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="KHZ0001"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp14"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Barang"
+                android:textSize="@dimen/sp12"/>
+
+            <TextView
+                android:id="@+id/txt_nama_barang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pupuk NPC "
+                android:textStyle="bold"
+                android:textSize="@dimen/sp14"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah"
+                android:textSize="@dimen/sp12"/>
+
+            <TextView
+                android:id="@+id/txt_jumlah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="20 Pcs"
+                android:textSize="@dimen/sp14"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alasan"
+                android:textSize="@dimen/sp12"/>
+
+            <TextView
+                android:id="@+id/txt_alasan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Belum bayar hutang"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp14"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/light_gray"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"/>
+
+</LinearLayout>

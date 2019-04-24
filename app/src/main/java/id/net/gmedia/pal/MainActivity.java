@@ -4,11 +4,13 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.constraint.Guideline;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,35 +20,43 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.leonardus.irfan.ApiVolleyManager;
+import com.leonardus.irfan.AppLoading;
+import com.leonardus.irfan.AppRequestCallback;
+import com.leonardus.irfan.Converter;
+import com.leonardus.irfan.DialogFactory;
+import com.leonardus.irfan.JSONBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import id.net.gmedia.pal.ApprovalPelangganAct.ApprovalPelanggan;
-import id.net.gmedia.pal.ApprovalSoAct.ApprovalSo;
-import id.net.gmedia.pal.CustomerAct.Customer;
-import id.net.gmedia.pal.DaftarSoAct.DaftarSO;
-import id.net.gmedia.pal.MerchandiserAct.Merchandiser;
-import id.net.gmedia.pal.PenjualanAct.Penjualan;
-import id.net.gmedia.pal.PiutangAct.Piutang;
-import id.net.gmedia.pal.RiwayatAct.Riwayat;
-import id.net.gmedia.pal.SetoranSalesAct.SetoranSales;
-import id.net.gmedia.pal.StokCanvasAct.StokCanvas;
-import id.net.gmedia.pal.Util.ApiVolleyManager;
-import id.net.gmedia.pal.Util.AppLoading;
-import id.net.gmedia.pal.Util.AppRequestCallback;
+import id.net.gmedia.pal.Activity.Approval.Approval;
+import id.net.gmedia.pal.Activity.BlacklistCustomer;
+import id.net.gmedia.pal.Activity.Customer;
+import id.net.gmedia.pal.Activity.DaftarSO.DaftarSO;
+import id.net.gmedia.pal.Activity.Merchandiser;
+import id.net.gmedia.pal.Activity.SuratJalan;
+import id.net.gmedia.pal.Activity.PenjualanSoCanvas.Penjualan;
+import id.net.gmedia.pal.Activity.Piutang.Piutang;
+import id.net.gmedia.pal.Activity.ReturBarang;
+import id.net.gmedia.pal.Activity.Riwayat;
+import id.net.gmedia.pal.Activity.SetoranSales;
+import id.net.gmedia.pal.Activity.StokCanvas;
+import id.net.gmedia.pal.Adapter.MainSliderAdapter;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
-import id.net.gmedia.pal.Util.Converter;
-import id.net.gmedia.pal.Util.DialogFactory;
-import id.net.gmedia.pal.Util.JSONBuilder;
 import ss.com.bannerslider.Slider;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Variabel flag edit password
     private boolean pass_lama = true, pass_baru = true, re_pass_baru = true;
+
+    //Variabel slider
     private List<String> listImage = new ArrayList<>();
     private Slider slider;
 
+    //Variabel flag double click exit
     private boolean exit = false;
 
     @Override
@@ -54,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Inisialisasi UI
         TextView txt_nama, txt_nip, txt_regional;
         txt_nama = findViewById(R.id.txt_nama);
         txt_nip = findViewById(R.id.txt_nip);
@@ -61,17 +72,20 @@ public class MainActivity extends AppCompatActivity {
         slider = findViewById(R.id.slider);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
+        //Inisialisasi data user
         txt_nama.setText(AppSharedPreferences.getNama(this));
         String temp = "NIP : " + AppSharedPreferences.getId(this);
         txt_nip.setText(temp);
         temp = "Regional : " + AppSharedPreferences.getNamaRegional(this);
         txt_regional.setText(temp);
 
+        //Inisialisasi toolbar
         setSupportActionBar(toolbar);
         if(getSupportActionBar() != null){
             getSupportActionBar().setTitle("");
         }
 
+        //Edit password
         findViewById(R.id.img_edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Menu button click
         findViewById(R.id.img_data_customer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,21 +240,76 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(AppSharedPreferences.getJabatan(this).equals("Manager")){
-            LinearLayout img_approval_pelanggan = findViewById(R.id.img_approval_pelanggan);
-            LinearLayout img_approval_so = findViewById(R.id.img_approval_so);
-            img_approval_pelanggan.setVisibility(View.VISIBLE);
-            img_approval_so.setVisibility(View.VISIBLE);
-            img_approval_pelanggan.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_blacklist_customer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BlacklistCustomer.class));
+            }
+        });
+
+        findViewById(R.id.img_retur_barang).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ReturBarang.class));
+            }
+        });
+
+        findViewById(R.id.img_giro).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Customer.class);
+                i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_GIRO);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.img_mutasi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SuratJalan.class));
+            }
+        });
+
+        findViewById(R.id.img_dispensasi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Customer.class);
+                i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_DISPENSASI);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.img_pengajuan_penambahan_plafon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Customer.class);
+                i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_PENAMBAHAN_PLAFON);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.img_daftar_pelunasan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Customer.class);
+                i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_DAFTAR_PELUNASAN);
+                startActivity(i);
+            }
+        });
+
+        //Inisialisasi menu berdasarkan jabatan user
+        if(AppSharedPreferences.getJabatan(this).equals("Manager") ||
+                AppSharedPreferences.getJabatan(this).equals("Direktur") ||
+                AppSharedPreferences.getPosisi(this).equals("Accounting")){
+            ((Guideline)findViewById(R.id.guideline2)).setGuidelinePercent(0.15f);
+
+            //Inisialisasi menu approval
+            LinearLayout img_approval = findViewById(R.id.img_approval);
+            img_approval.setVisibility(View.VISIBLE);
+            img_approval.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, ApprovalPelanggan.class));
-                }
-            });
-            img_approval_so.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, ApprovalSo.class));
+                    startActivity(new Intent(MainActivity.this, Approval.class));
                 }
             });
         }
@@ -248,10 +318,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSlider(){
-        listImage.add(Converter.getURLForResource(R.drawable.header1));
-        listImage.add(Converter.getURLForResource(R.drawable.header2));
-        listImage.add(Converter.getURLForResource(R.drawable.header3));
-        listImage.add(Converter.getURLForResource(R.drawable.header4));
+        //Inisialisasi slider
+        listImage.add(Converter.getURLForResource(R.class.getPackage().getName(), R.drawable.header1));
+        listImage.add(Converter.getURLForResource(R.class.getPackage().getName(), R.drawable.header2));
+        listImage.add(Converter.getURLForResource(R.class.getPackage().getName(), R.drawable.header3));
+        listImage.add(Converter.getURLForResource(R.class.getPackage().getName(), R.drawable.header4));
 
         slider.setAdapter(new MainSliderAdapter(this, listImage));
         slider.setAnimateIndicators(true);
@@ -259,6 +330,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resetPassword(final Dialog dialog, String pass_lama, String pass_baru, String re_pass_baru){
+        //Kirim password baru ke Web Service
         AppLoading.getInstance().showLoading(this, R.layout.popup_progress_bar);
 
         JSONBuilder body = new JSONBuilder();
@@ -268,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
 
         ApiVolleyManager.getInstance().addRequest(this, Constant.URL_GANTI_PASSWORD,
                 ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                body.create(), new AppRequestCallback(new AppRequestCallback.AdvancedRequestListener() {
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -300,6 +372,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_logout:
+                //logout user
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Logout");
                 builder.setMessage("Apakah anda yakin ingin keluar?");
@@ -342,5 +415,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }, 2000);
         }
+    }
+
+    private void updateFcm(){
+        JSONBuilder body = new JSONBuilder();
+        body.add("fcm_id", AppSharedPreferences.getFcmId(this));
+
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_UPDATE_FCM, ApiVolleyManager.METHOD_POST,
+                Constant.getTokenHeader(AppSharedPreferences.getId(this)), body.create(), new ApiVolleyManager.RequestCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Log.v(Constant.TAG, "Update FCM berhasil");
+                    }
+
+                    @Override
+
+                    public void onError(String result) {
+                        Log.v(Constant.TAG, "Update FCM gagal");
+                    }
+                });
+    }
+
+    @Override
+    protected void onResume() {
+        updateFcm();
+        super.onResume();
     }
 }

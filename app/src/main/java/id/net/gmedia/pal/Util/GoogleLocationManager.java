@@ -67,6 +67,7 @@ public class GoogleLocationManager {
                         @Override
                         public void onLocationResult(LocationResult locationResult) {
                             super.onLocationResult(locationResult);
+                            System.out.println("LOCATION RESULT " + locationResult);
                             Location location = locationResult.getLastLocation();
                             listener.onChange(location);
                         }

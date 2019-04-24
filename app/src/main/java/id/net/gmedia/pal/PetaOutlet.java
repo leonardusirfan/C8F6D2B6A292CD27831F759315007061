@@ -21,7 +21,6 @@ import com.google.gson.Gson;
 
 import id.net.gmedia.pal.Util.Constant;
 import id.net.gmedia.pal.Util.GoogleLocationManager;
-import id.net.gmedia.pal.Util.Haversine;
 
 public class PetaOutlet extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -39,6 +38,11 @@ public class PetaOutlet extends AppCompatActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peta_outlet);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle("Peta Outlet");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         Gson gson = new Gson();
         lokasi_outlet = gson.fromJson(getIntent().getStringExtra(Constant.EXTRA_LOKASI_OUTLET), LatLng.class);
@@ -121,5 +125,9 @@ public class PetaOutlet extends AppCompatActivity implements OnMapReadyCallback 
         }
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

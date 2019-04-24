@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ReturBarangDetail">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:background="@android:color/transparent">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarFadeDuration="1000"
+                app:scrimAnimationDuration="1000"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/layout_customer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp15">
+
+                        <ImageView
+                            android:id="@+id/img_customer"
+                            android:contentDescription="@string/customer"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_margin="@dimen/dp10"
+                            android:layout_width="@dimen/small_icon_size"
+                            android:layout_height="@dimen/small_icon_size"
+                            android:src="@drawable/icon_customer"/>
+
+                        <TextView
+                            android:id="@+id/lbl_nama"
+                            android:layout_toEndOf="@id/img_customer"
+                            android:layout_alignTop="@id/img_customer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detail_nama_customer"
+                            android:textSize="@dimen/sp16" />
+
+                        <TextView
+                            android:id="@+id/txt_nama"
+                            android:layout_toEndOf="@id/img_customer"
+                            android:layout_below="@id/lbl_nama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/sp18"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:id="@+id/img_piutang"
+                            android:contentDescription="@string/piutang"
+                            android:layout_below="@id/txt_nama"
+                            android:layout_margin="@dimen/dp10"
+                            android:layout_width="@dimen/small_icon_size"
+                            android:layout_height="@dimen/small_icon_size"
+                            android:src="@drawable/icon_piutang"/>
+
+                        <TextView
+                            android:id="@+id/lbl_piutang"
+                            android:layout_alignTop="@id/img_piutang"
+                            android:layout_toEndOf="@id/img_piutang"
+                            android:layout_below="@id/txt_nama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detail_total_penjualan"
+                            android:textSize="@dimen/sp16" />
+
+                        <TextView
+                            android:id="@+id/txt_piutang"
+                            android:layout_toEndOf="@id/img_piutang"
+                            android:layout_below="@id/lbl_piutang"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/sp18"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/img_nota"
+                            android:contentDescription="@string/piutang"
+                            android:layout_below="@id/txt_piutang"
+                            android:layout_margin="@dimen/dp10"
+                            android:layout_width="@dimen/small_icon_size"
+                            android:layout_height="@dimen/small_icon_size"
+                            android:src="@drawable/no_nota"/>
+
+                        <TextView
+                            android:id="@+id/lbl_nota"
+                            android:layout_alignTop="@id/img_nota"
+                            android:layout_toEndOf="@id/img_nota"
+                            android:layout_below="@id/txt_nama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detail_nomor_nota"
+                            android:textSize="@dimen/sp16" />
+
+                        <TextView
+                            android:id="@+id/txt_nota"
+                            android:layout_toEndOf="@id/img_nota"
+                            android:layout_below="@id/lbl_nota"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/sp18"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <include layout="@layout/layout_tipe_penjualan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/layout_customer"/>
+                </RelativeLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_riwayat"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_penjualan"
+            android:paddingBottom="@dimen/dp15"
+            android:background="@color/white"
+            android:clipToPadding="false"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <Button
+        android:id="@+id/btn_retur"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_bottom_height"
+        android:layout_weight="0.4"
+        android:background="@color/green"
+        android:gravity="center"
+        android:text="Retur Barang"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp14"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

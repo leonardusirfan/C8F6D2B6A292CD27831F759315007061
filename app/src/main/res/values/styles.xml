@@ -9,7 +9,7 @@
 
         <!-- Color for circle in progress bar -->
         <item name="colorControlActivated">@color/white</item>
-        <item name="popupMenuStyle">@style/AppPopupMenu</item>
+        <item name="popupMenuStyle">@style/AppPopupMenu.Green</item>
     </style>
 
     <!-- Base application theme. -->
@@ -20,6 +20,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="colorControlActivated">@color/green</item>
+        <item name="popupMenuStyle">@style/AppPopupMenu</item>
     </style>
 
     <!--<style name="CustomToolbar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -33,6 +34,10 @@
     <style name="AppPopupMenu" parent="Base.Widget.AppCompat.Light.PopupMenu">
         <item name="android:popupCharacters">@color/red</item>
         <item name="android:popupBackground">@color/white</item>
+    </style>
+
+    <style name="AppPopupMenu.Green" parent="Base.Widget.AppCompat.Light.PopupMenu">
+        <item name="colorControlActivated">@color/green</item>
     </style>
 
     <style name="AppTheme.SplashScreen" parent="Theme.AppCompat.NoActionBar">
@@ -94,16 +99,12 @@
     </style>-->
     <style name="GreenViewTheme" parent="Base.Theme.AppCompat.Light">
         <item name="colorAccent">@color/green</item>
-        <item name="android:textColorSecondary">@color/very_dark_gray</item>
+        <item name="android:textColorSecondary">@color/dark_gray</item>
     </style>
 
     <style name="GrayViewTheme" parent="Base.Theme.AppCompat.Light">
-        <item name="colorAccent">@color/light_black</item>
-        <item name="android:textColorSecondary">@color/very_dark_gray</item>
+        <item name="colorAccent">@color/very_dark_gray</item>
+        <item name="android:textColorSecondary">@color/dark_gray</item>
     </style>
 
-    <style name="DialogAnimation">
-        <item name="android:windowEnterAnimation">@anim/anim_slide_in</item>
-        <item name="android:windowExitAnimation">@anim/anim_slide_out</item>
-    </style>
 </resources>

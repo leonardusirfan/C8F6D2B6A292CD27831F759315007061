@@ -5,7 +5,7 @@
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PenjualanAct.PenjualanDetail">
+    tools:context=".Activity.PenjualanSoCanvas.PenjualanDetail">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -117,11 +117,25 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/sp16" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/penjualan_detail_satuan"
+                android:padding="@dimen/dp5"
+                android:textSize="@dimen/sp14"
+                android:layout_marginTop="@dimen/dp10"/>
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spn_satuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp14"
+                android:padding="@dimen/dp10" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dp10"
-                android:paddingBottom="@dimen/dp10">
+                android:paddingTop="@dimen/dp10">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
@@ -138,21 +152,55 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/sp16"/>
 
-                </android.support.design.widget.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/txt_stok"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textSize="@dimen/sp16"
-                    android:textStyle="bold"
-                    android:visibility="gone"/>
-
-            </LinearLayout>
+            </android.support.design.widget.TextInputLayout>
 
             <TextView
+                android:id="@+id/txt_stok"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_potong_stok_canvas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp10"
+            android:paddingBottom="@dimen/dp10"
+            android:visibility="gone">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:theme="@style/TextInputLayoutAppearance">
+
+                <EditText
+                    android:id="@+id/txt_jumlah_canvas"
+                    android:hint="Potong stok Canvas"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp16"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txt_stok_canvas"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+            <!--<TextView
                 android:id="@+id/lbl_tempo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,22 +229,7 @@
                     android:layout_height="wrap_content"
                     android:src="@android:drawable/ic_menu_my_calendar"/>
 
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/penjualan_detail_satuan"
-                android:padding="@dimen/dp5"
-                android:textSize="@dimen/sp14" />
-
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spn_satuan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/sp14"
-                android:layout_marginBottom="@dimen/dp10"
-                android:padding="@dimen/dp10" />
+            </LinearLayout>-->
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

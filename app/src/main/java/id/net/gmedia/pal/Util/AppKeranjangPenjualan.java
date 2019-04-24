@@ -17,6 +17,19 @@ public class AppKeranjangPenjualan {
     private AppKeranjangPenjualan() {
     }
 
+    public int getTotalBarangDiskon(int edited){
+        int sum = 0;
+        for(int i = 0; i < listBarang.size(); i++){
+            if(i != edited){
+                BarangModel b = listBarang.get(i);
+                if(b.getDiskon() > 0){
+                    sum += b.getJumlah();
+                }
+            }
+        }
+        return sum;
+    }
+
     public void pakai_budget(double nilai){
         budget_terpakai += nilai;
     }

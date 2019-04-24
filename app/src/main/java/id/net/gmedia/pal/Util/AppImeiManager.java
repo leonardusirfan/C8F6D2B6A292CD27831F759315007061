@@ -26,9 +26,11 @@ public class AppImeiManager {
                 PackageManager.PERMISSION_GRANTED) {
             TelephonyManager manager = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
             if(Build.VERSION.SDK_INT >= 26){
+                //System.out.println("IMEI " + manager.getImei());
                 listener.onGet(manager.getImei());
             }
             else{
+                //System.out.println("IMEI " + manager.getDeviceId());
                 listener.onGet(manager.getDeviceId());
             }
         }

@@ -1,39 +1,33 @@
 package id.net.gmedia.pal.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NotaModel {
     private String id;
-    private CustomerModel customer;
-
-    private int type = 0;
+    private String nama = "";
     private String tanggal = "";
     private double total = 0;
+    private String keterangan = "";
 
-    private String status;
-
-    public NotaModel(String id, CustomerModel customer, int type){
+    public NotaModel(String id){
         this.id = id;
-        this.customer = customer;
-        this.type = type;
     }
 
-    public NotaModel(String id, CustomerModel customer, int type, String tanggal, double total){
+    public NotaModel(String id, String nama, String tanggal, double total){
         this.id = id;
-        this.customer = customer;
-        this.type = type;
+        this.nama = nama;
         this.tanggal = tanggal;
         this.total = total;
     }
 
-    public NotaModel(String id, CustomerModel customer, int type, String tanggal, double total, String status){
+    public NotaModel(String id, String nama, String tanggal, double total, String keterangan){
         this.id = id;
-        this.customer = customer;
-        this.type = type;
+        this.nama = nama;
         this.tanggal = tanggal;
         this.total = total;
-        this.status = status;
+        this.keterangan = keterangan;
+    }
+
+    public String getNama() {
+        return nama;
     }
 
     public String getTanggal() {
@@ -44,19 +38,11 @@ public class NotaModel {
         return id;
     }
 
-    public CustomerModel getCustomer() {
-        return customer;
-    }
-
     public double getTotal() {
         return total;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public String getStatus() {
-        return status;
+    public String getKeterangan() {
+        return keterangan;
     }
 }

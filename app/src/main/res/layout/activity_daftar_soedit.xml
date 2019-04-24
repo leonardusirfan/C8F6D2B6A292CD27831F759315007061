@@ -5,7 +5,7 @@
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DaftarSoAct.DaftarSOEdit">
+    tools:context=".Activity.DaftarSO.DaftarSOEdit">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -143,7 +143,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/lbl_tempo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tanggal Tempo"
@@ -152,7 +151,6 @@
                 android:visibility="gone"/>
 
             <LinearLayout
-                android:id="@+id/layout_tempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone">
@@ -166,7 +164,6 @@
                     android:textSize="@dimen/sp16"/>
 
                 <ImageView
-                    android:id="@+id/img_kalender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@android:drawable/ic_menu_my_calendar"/>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Approval.Approval">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/dp20">
+
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/btn_customer"
+            android:visibility="gone"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="@dimen/approval_button_height"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/medium_light_green"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/dp10"
+                    android:src="@drawable/approval_pelanggan"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Customer"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/btn_so"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="@dimen/approval_button_height"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/medium_light_green"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/dp10"
+                    android:src="@drawable/approval_so"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Sales Order (SO)"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/btn_po"
+            android:visibility="gone"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="@dimen/approval_button_height"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/medium_light_green"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/dp10"
+                    android:src="@drawable/approval_po"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Purchase Order (PO)"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/btn_retur"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="@dimen/approval_button_height"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/medium_light_green"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/dp10"
+                    android:src="@drawable/approval_retur"/>
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Retur Barang"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/btn_dispensasi"
+            android:visibility="gone"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="@dimen/approval_button_height"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/medium_light_green"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/dp10"
+                    android:src="@drawable/approval_dispensasi"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Dispensasi Piutang"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/btn_login"
+            android:visibility="gone"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="@dimen/approval_button_height"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/medium_light_green"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/dp10"
+                    android:src="@drawable/approval_login"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Login Pengganti"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/btn_plafon"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="@dimen/approval_button_height"
+            app:cardCornerRadius="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/medium_light_green"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:scaleType="fitCenter"
+                    android:layout_margin="@dimen/dp10"
+                    android:src="@drawable/approval_plafon"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Penambahan Plafon"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:textSize="@dimen/sp16"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </android.support.design.card.MaterialCardView>
+    </LinearLayout>
+
+</ScrollView>

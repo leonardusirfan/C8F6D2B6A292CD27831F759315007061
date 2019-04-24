@@ -13,7 +13,7 @@
     app:umanoParallaxOffset="100dp"
     app:umanoShadowHeight="4dp"
     app:umanoScrollableView="@id/layout_piutang_detail"
-    tools:context=".PiutangAct.PiutangDetail">
+    tools:context=".Activity.Piutang.PiutangDetail">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -136,7 +136,7 @@
                                 android:textStyle="bold" />
 
                            <!-- <ImageView
-                                android:id="@+id/img_lunasi"
+                                android:id="@+id/btn_start_lunasi"
                                 android:layout_width="@dimen/medium_icon_size"
                                 android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/dp30"
@@ -167,7 +167,7 @@
                 android:background="@color/white"
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/dp20"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -176,13 +176,13 @@
         <LinearLayout
             android:id="@+id/layout_lunasi"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/button_bottom_height"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/img_lunasi"
+                android:id="@+id/btn_start_lunasi"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -198,7 +198,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.6"
-                android:background="@color/dark_gray"
+                android:background="@color/gray"
                 android:gravity="center"
                 android:visibility="gone"
                 android:text="Jumlah : Rp 150.000"
@@ -242,7 +242,7 @@
 
         <include
             android:id="@+id/layout_piutang_detail"
-            layout="@layout/popup_piutang_detail"/>
+            layout="@layout/slidepanel_piutang_detail"/>
 
     </LinearLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

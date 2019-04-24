@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dp10"
+    android:layout_marginStart="@dimen/dp10"
+    android:layout_marginBottom="@dimen/dp10"
+    android:background="@drawable/layout_giro"
+    android:padding="@dimen/dp15">
+
+    <TextView
+        android:id="@+id/lbl_no_giro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nomer Giro"
+        android:textColor="#000"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_nomor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12345678DS"
+        android:textColor="#000"
+        android:textSize="@dimen/sp18"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@id/lbl_no_giro" />
+
+    <TextView
+        android:id="@+id/lbl_nm_bank"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:text="Nama Bank"
+        android:textColor="#000"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@id/txt_nomor" />
+
+    <TextView
+        android:id="@+id/txt_nama"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp10"
+        android:text="BCA - Bank Central Asia"
+        android:textColor="#000"
+        android:textSize="@dimen/sp18"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@id/lbl_nm_bank" />
+
+    <TextView
+        android:id="@+id/lbl_nominal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:text="Nominal"
+        android:textColor="#000"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@id/txt_nama" />
+
+    <TextView
+        android:id="@+id/txt_nominal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
+        android:text="Rp 200.000"
+        android:textColor="#000"
+        android:textSize="@dimen/sp18"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@id/lbl_nominal" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Terbit"
+        android:textColor="#000"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lbl_nm_bank"
+        app:layout_constraintTop_toTopOf="@+id/lbl_nm_bank" />
+
+    <TextView
+        android:id="@+id/txt_tgl_terbit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="14 Januari 2019"
+        android:textColor="#000"
+        android:textSize="@dimen/sp18"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Expired"
+        android:textColor="#000"
+        android:textSize="@dimen/sp14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lbl_nominal"
+        app:layout_constraintTop_toTopOf="@+id/lbl_nominal" />
+
+    <TextView
+        android:id="@+id/txt_tgl_kadaluarsa"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="19 Januari 2019"
+        android:textColor="@color/light_red"
+        android:textSize="@dimen/sp18"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+</android.support.constraint.ConstraintLayout>

@@ -12,6 +12,8 @@ public class AppSharedPreferences {
     private static final String NAMA_REGIONAL_PREF = "nama_regional";
     private static final String USERNAME_PREF = "nama";
     private static final String JABATAN_PREF = "jabatan";
+    private static final String POSISI_PREF = "posisi";
+    private static final String FCM_PREF = "fcm_id";
 
     private static SharedPreferences getPreferences(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context);
@@ -46,7 +48,21 @@ public class AppSharedPreferences {
         return getPreferences(context).getString(JABATAN_PREF, "");
     }
 
-    public static void Login(Context context, String id, String nama, String gudang, String regional, String nama_regional, String jabatan){
+    public static String getPosisi(Context context) {
+        return getPreferences(context).getString(POSISI_PREF, "");
+    }
+
+    public static String getFcmId(Context context) {
+        return getPreferences(context).getString(FCM_PREF, "");
+    }
+
+    public static void setFcmId(Context context, String fcm){
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putString(FCM_PREF, fcm);
+        editor.apply();
+    }
+
+    public static void Login(Context context, String id, String nama, String gudang, String regional, String nama_regional, String jabatan, String posisi){
         SharedPreferences.Editor editor = getPreferences(context).edit();
         editor.putBoolean(LOGIN_PREF, true);
         editor.putString(ID_PREF, id);
@@ -55,6 +71,7 @@ public class AppSharedPreferences {
         editor.putString(REGIONAL_PREF, regional);
         editor.putString(NAMA_REGIONAL_PREF, nama_regional);
         editor.putString(JABATAN_PREF, jabatan);
+        editor.putString(POSISI_PREF, posisi);
         editor.apply();
     }
 
@@ -67,6 +84,7 @@ public class AppSharedPreferences {
         editor.putString(REGIONAL_PREF, "");
         editor.putString(NAMA_REGIONAL_PREF, "");
         editor.putString(JABATAN_PREF, "");
+        editor.putString(POSISI_PREF, "");
         editor.apply();
     }
 }

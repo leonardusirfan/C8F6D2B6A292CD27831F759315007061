@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PiutangAct.Piutang">
+    tools:context=".Activity.Piutang.Piutang">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_piutang"
-        android:background="@color/gray"
+        android:background="@color/light_gray"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -27,7 +27,7 @@
         android:paddingEnd="@dimen/dp10"
         android:paddingTop="@dimen/dp20"
         android:paddingBottom="@dimen/dp20"
-        android:background="@color/gray"
+        android:background="@color/light_gray"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView

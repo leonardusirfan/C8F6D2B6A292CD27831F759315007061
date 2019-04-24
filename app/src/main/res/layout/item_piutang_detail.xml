@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp15">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -19,42 +19,24 @@
             android:background="@color/yellow"
             android:padding="@dimen/dp10"
             android:textSize="@dimen/sp14"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold" />
 
-        <CheckBox
-            android:id="@+id/cb_piutang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp10"
-            android:visibility="gone"
-            android:theme="@style/GreenViewTheme"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/gridLayout"
-            app:layout_constraintTop_toBottomOf="@+id/txt_nama_piutang" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <android.support.v7.widget.GridLayout
-            android:id="@+id/gridLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_nama_piutang"
-            android:layout_toStartOf="@id/cb_piutang"
-            app:columnCount="2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cb_piutang"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_nama_piutang">
+            <ImageView
+                android:layout_width="@dimen/default_icon_size"
+                android:layout_height="@dimen/default_icon_size"
+                android:layout_margin="@dimen/dp10"
+                android:src="@drawable/blacklist_tagihan"/>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/dp10"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -75,13 +57,59 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/dp10"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/item_tanggal"
+                    android:text="Terbayar"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/txt_terbayar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp14"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/cb_piutang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:theme="@style/GreenViewTheme" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/default_icon_size"
+                android:layout_height="@dimen/default_icon_size"
+                android:layout_margin="@dimen/dp10"
+                android:src="@drawable/calender"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp10"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal"
                     android:textSize="@dimen/sp12" />
 
                 <TextView
@@ -97,13 +125,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/dp10"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/item_tanggal_tempo"
+                    android:text="Tanggal Tempo"
                     android:textSize="@dimen/sp12" />
 
                 <TextView
@@ -119,9 +146,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/dp10"
-                android:visibility="gone"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
+                android:layout_weight="0.7">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -136,8 +161,8 @@
                     android:textSize="@dimen/sp14"
                     android:textStyle="bold" />
             </LinearLayout>
-        </android.support.v7.widget.GridLayout>
+        </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
 </android.support.design.card.MaterialCardView>

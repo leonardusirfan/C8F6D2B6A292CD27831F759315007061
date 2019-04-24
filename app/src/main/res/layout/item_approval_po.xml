@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    android:id="@+id/layout_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginStart="@dimen/dp15"
+    android:layout_marginEnd="@dimen/dp15"
+    android:layout_marginTop="@dimen/dp10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_tanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp14"
+            android:padding="@dimen/dp10"
+            android:background="@color/green"
+            android:gravity="end"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:baselineAligned="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp15"
+            android:paddingEnd="@dimen/dp15"
+            android:paddingTop="@dimen/dp10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:text="No. Nota"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/txt_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="@dimen/sp14"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginEnd="@dimen/dp10"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:text="Tanggal Tempo"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/txt_tanggal_tempo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:text="Kode Supplier"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/txt_kode_supplier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:textSize="@dimen/sp14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:text="Total"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/txt_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:text="PPN"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/txt_ppn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:text="Biaya Lain"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/txt_biaya_lain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp10"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:textSize="@dimen/sp14" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_approval"
+                android:layout_width="@dimen/default_icon_size"
+                android:layout_height="@dimen/default_icon_size"
+                android:padding="@dimen/dp2"
+                android:layout_marginEnd="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp5"
+                android:src="@drawable/ic_setting" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_rowWeight="1"
+            app:layout_columnWeight="1"
+            android:text="Keterangan"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginEnd="@dimen/dp15"
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/txt_keterangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp20"
+            app:layout_rowWeight="1"
+            app:layout_columnWeight="1"
+            android:textColor="#000"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+
+</android.support.design.card.MaterialCardView>
+

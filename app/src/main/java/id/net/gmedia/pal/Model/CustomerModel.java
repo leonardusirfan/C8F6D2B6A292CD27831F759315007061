@@ -1,9 +1,5 @@
 package id.net.gmedia.pal.Model;
 
-import java.io.StringBufferInputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 public class CustomerModel {
     private String id;
     private String nama;
@@ -24,8 +20,6 @@ public class CustomerModel {
 
     private double total_piutang;
 
-    private List<PiutangModel> listPiutang = new ArrayList<>();
-
     public CustomerModel(String id, String nama){
         this.id = id;
         this.nama = nama;
@@ -37,6 +31,20 @@ public class CustomerModel {
         this.alamat = alamat;
         this.kota = kota;
         this.status = status;
+    }
+
+    public CustomerModel(String id, String nama, String alamat, String kota, double total_piutang){
+        this.id = id;
+        this.nama = nama;
+        this.alamat = alamat;
+        this.kota = kota;
+        this.total_piutang = total_piutang;
+    }
+
+    public CustomerModel(String id, String nama, String alamat){
+        this.id = id;
+        this.nama = nama;
+        this.alamat = alamat;
     }
 
     public CustomerModel(String id, String nama, double total_piutang){

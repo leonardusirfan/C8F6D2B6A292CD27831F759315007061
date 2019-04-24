@@ -50,4 +50,16 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/dp5"
         android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/txt_batch"
+        android:layout_toStartOf="@id/img_next"
+        android:layout_below="@id/txt_harga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp10"
+        android:textSize="@dimen/sp14"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:layout_marginEnd="@dimen/dp20"/>
 </RelativeLayout>

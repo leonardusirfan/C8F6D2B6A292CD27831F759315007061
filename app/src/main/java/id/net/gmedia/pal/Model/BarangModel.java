@@ -8,10 +8,16 @@ public class BarangModel {
     private String nama;
     private double harga = 0;
 
+    private String no_batch = "A112014";
+
     private String kode = "";
     private int jumlah = 0;
     private double diskon = 0;
+    private int jumlah_potong = 0;
+    private String tipe = "";
+
     private List<SatuanModel> listSatuan = new ArrayList<>();
+    private List<SatuanModel> listSatuanCanvas = new ArrayList<>();
 
     private double subtotal = 0;
     private String satuan = "";
@@ -25,6 +31,15 @@ public class BarangModel {
         this.id = id;
         this.nama = nama;
         this.harga = harga;
+    }
+
+
+    public BarangModel(String id, String nama, double harga, String tipe, String no_batch){
+        this.id = id;
+        this.nama = nama;
+        this.harga = harga;
+        this.tipe = tipe;
+        this.no_batch = no_batch;
     }
 
     public BarangModel(String id, String nama, double harga, int jumlah, String satuan, double diskon, double subtotal){
@@ -65,6 +80,10 @@ public class BarangModel {
         this.harga = harga;
         this.stok = stok;
     }*/
+
+    public String getNo_batch() {
+        return no_batch;
+    }
 
     public String getId() {
         return id;
@@ -107,6 +126,23 @@ public class BarangModel {
         }
     }
 
+    public String getStokString(){
+        if(listSatuan.size() >= 1){
+            return listSatuan.get(0).getJumlah() + " " + listSatuan.get(0).getSatuan();
+        }
+        else{
+            return "";
+        }
+    }
+
+    public int getJumlah_potong() {
+        return jumlah_potong;
+    }
+
+    public void setJumlah_potong(int jumlah_potong) {
+        this.jumlah_potong = jumlah_potong;
+    }
+
     /*public double getTotal(){
         return jumlah * harga - diskon;
     }*/
@@ -129,5 +165,17 @@ public class BarangModel {
 
     public List<SatuanModel> getListSatuan() {
         return listSatuan;
+    }
+
+    public void setListSatuanCanvas(List<SatuanModel> listSatuanCanvas){
+        this.listSatuanCanvas = listSatuanCanvas;
+    }
+
+    public List<SatuanModel> getListSatuanCanvas() {
+        return listSatuanCanvas;
+    }
+
+    public String getTipe() {
+        return tipe;
     }
 }

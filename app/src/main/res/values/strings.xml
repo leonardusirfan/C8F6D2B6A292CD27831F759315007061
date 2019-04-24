@@ -10,15 +10,10 @@
     <string name="title_activity_customer_tambah">Map</string>
 
     <string name="detail_nama_customer">Nama Customer</string>
-    <string name="detail_nama_barang">Nama Barang</string>
-    <string name="detail_harga_satuan">Harga Satuan</string>
-    <string name="detail_jumlah">Jumlah</string>
     <string name="detail_alamat">Alamat</string>
     <string name="detail_total_harga">Total Harga</string>
     <string name="detail_total_penjualan">Total Penjualan</string>
-    <string name="detail_nomor_nota">Nomor Nota</string>
-    <string name="item_tanggal">Tanggal</string>
-    <string name="item_tanggal_tempo">Tanggal Tempo</string>
+    <string name="detail_nomor_nota">Nota SO</string>
 
     <string name="penjualan_tambah_barang">Tambah Barang</string>
     <string name="penjualan_check_out">Check Out</string>
@@ -44,6 +39,8 @@
     <string name="customer_detail_provinsi">Provinsi</string>
     <string name="customer_detail_negara">Negara</string>
     <string name="customer_detail_simpan">Simpan Data Customer</string>
+    <string name="customer_detail_pilih_kota">Pilih kota</string>
+    <string name="customer_detail_pilih_provinsi">Pilih provinsi</string>
 
     <string name="main_daftar_customer">Daftar Customer</string>
     <string name="main_penjualan_so">Penjualan SO</string>
@@ -70,11 +67,29 @@
     <string name="detail_penjualan_canvas">Penjualan Canvas</string>
     <string name="title_activity_peta_outlet">Map</string>
 
+    <string name="approval_customer">"Setujui Customer ini?"</string>
+    <string name="approval_retur_setuju">"Setujui Retur ini?"</string>
+    <string name="approval_retur_tolak">"Tolak Retur ini?"</string>
+    <string name="approval_so">"Setujui Penjualan SO ini?"</string>
+    <string name="indonesia">"Indonesia"</string>
+
     <string-array name="array_pembayaran">
         <item>semua</item>
         <item>tunai</item>
         <item>transfer</item>
         <item>giro</item>
+    </string-array>
+
+    <string-array name="array_cara_bayar">
+        <item>pilih salah satu..</item>
+        <item>tunai</item>
+        <item>transfer</item>
+        <item>giro</item>
+    </string-array>
+
+    <string-array name="array_barang_retur">
+        <item>Barang Baik</item>
+        <item>Barang Buruk</item>
     </string-array>
 
 </resources>

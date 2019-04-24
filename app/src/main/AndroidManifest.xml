@@ -12,34 +12,81 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ApprovalSoAct.ApprovalSo"></activity>
-        <activity android:name=".ApprovalPelangganAct.ApprovalPelanggan" />
-        <activity android:name=".SetoranSalesAct.SetoranSales" />
-        <activity android:name=".StokCanvasAct.StokCanvas" />
-        <activity android:name=".DaftarSoAct.DaftarSOEdit" />
+        <activity android:name=".Activity.DaftarPelunasanDetail"></activity>
+        <activity android:name=".Activity.DaftarPelunasan" />
+        <activity android:name=".Activity.Approval.ApprovalDispensasiPiutang" />
+        <activity android:name=".Activity.SuratJalanDetail" />
+        <activity android:name=".Activity.Approval.ApprovalPenambahanPlafonDetail" />
+        <activity android:name=".Activity.Approval.ApprovalPenambahanPlafon" />
+        <activity android:name=".Activity.PengajuanPlafon" />
+        <activity android:name=".Activity.Approval.ApprovalLoginPengganti" />
+        <activity android:name=".Activity.DispensasiPiutang" />
+        <activity android:name=".Activity.SuratJalan" />
+        <activity android:name=".Activity.Approval.Approval" />
+        <activity android:name=".Activity.ListGiroDetail" />
         <activity
-            android:name=".MerchandiserAct.Merchandiser"
+            android:name=".Activity.Approval.ApprovalPOEdit"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MerchandiserAct.MerchandiserTambah"
+            android:name=".Activity.Approval.ApprovalPODetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MerchandiserAct.MerchandiserCustomer"
+            android:name=".Activity.Approval.ApprovalPO"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DaftarSoAct.DaftarSODetail"
+            android:name=".Activity.Approval.ApprovalReturDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DaftarSoAct.DaftarSO"
+            android:name=".Activity.Approval.ApprovalRetur"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ReturBarangDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ReturBarang"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.BlacklistCustomer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Approval.ApprovalSo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Approval.ApprovalPelanggan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SetoranSales"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.StokCanvas"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.DaftarSO.DaftarSOEdit"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.Merchandiser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.MerchandiserTambah"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.DaftarSO.DaftarSODetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.DaftarSO.DaftarSO"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -61,7 +108,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CustomerAct.Customer"
+            android:name=".Activity.Customer"
             android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -76,38 +123,38 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".CustomerAct.CustomerDetail"
+            android:name=".Activity.CustomerDetail"
             android:label="@string/title_activity_customer_tambah"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PenjualanAct.Penjualan"
+            android:name=".Activity.PenjualanSoCanvas.Penjualan"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PiutangAct.Piutang"
+            android:name=".Activity.Piutang.Piutang"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RiwayatAct.Riwayat"
+            android:name=".Activity.Riwayat"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PiutangAct.PiutangDetail"
+            android:name=".Activity.Piutang.PiutangDetail"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".PiutangAct.PiutangDetailNota"
+            android:name=".Activity.Piutang.PiutangDetailNota"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PenjualanAct.PenjualanBarang"
+            android:name=".Activity.PenjualanSoCanvas.PenjualanBarang"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PenjualanAct.PenjualanDetail"
+            android:name=".Activity.PenjualanSoCanvas.PenjualanDetail"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PenjualanAct.PenjualanNota"
+            android:name=".Activity.PenjualanSoCanvas.PenjualanNota"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RiwayatAct.RiwayatDetail"
+            android:name=".Activity.RiwayatDetail"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PetaOutlet"
@@ -117,6 +164,24 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
+
+        <service
+            android:name=".AppFirebaseMessagingService"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
     </application>
 
 </manifest>

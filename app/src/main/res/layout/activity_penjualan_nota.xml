@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PenjualanAct.PenjualanNota">
+    tools:context=".Activity.PenjualanSoCanvas.PenjualanNota">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator"
@@ -61,55 +61,10 @@
                         android:textSize="@dimen/sp18"
                         android:textStyle="bold"/>
 
-                    <RelativeLayout
-                        android:id="@+id/layout_tempo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/txt_nama">
-
-                        <ImageView
-                            android:id="@+id/img_tempo"
-                            android:contentDescription="@string/customer"
-                            android:layout_alignParentStart="true"
-                            android:layout_margin="@dimen/dp10"
-                            android:layout_width="@dimen/small_icon_size"
-                            android:layout_height="@dimen/small_icon_size"
-                            android:src="@drawable/no_nota"/>
-
-                        <TextView
-                            android:id="@+id/lbl_tempo"
-                            android:layout_toEndOf="@id/img_tempo"
-                            android:layout_alignTop="@id/img_tempo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Tanggal Tempo"
-                            android:textSize="@dimen/sp16" />
-
-                        <TextView
-                            android:id="@+id/txt_tempo"
-                            android:layout_toEndOf="@id/img_tempo"
-                            android:layout_below="@id/lbl_tempo"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/sp18"
-                            android:textStyle="bold"/>
-
-                        <ImageView
-                            android:id="@+id/img_kalender"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_toEndOf="@id/txt_tempo"
-                            android:layout_alignTop="@id/txt_tempo"
-                            android:layout_alignBottom="@id/txt_tempo"
-                            android:layout_marginStart="@dimen/dp10"
-                            android:src="@android:drawable/ic_menu_my_calendar"/>
-
-                    </RelativeLayout>
-
                     <ImageView
                         android:id="@+id/img_alamat"
                         android:contentDescription="@string/alamat"
-                        android:layout_below="@id/layout_tempo"
+                        android:layout_below="@id/txt_nama"
                         android:layout_margin="@dimen/dp10"
                         android:layout_width="@dimen/small_icon_size"
                         android:layout_height="@dimen/small_icon_size"
@@ -143,6 +98,82 @@
                         android:textSize="@dimen/sp18"
                         android:textStyle="bold" />
 
+                    <ImageView
+                        android:id="@+id/img_bayar"
+                        android:contentDescription="@string/alamat"
+                        android:layout_below="@id/txt_jarak"
+                        android:layout_margin="@dimen/dp10"
+                        android:layout_width="@dimen/small_icon_size"
+                        android:layout_height="@dimen/small_icon_size"
+                        android:src="@drawable/blacklist_tagihan"/>
+
+                    <TextView
+                        android:id="@+id/lbl_bayar"
+                        android:layout_alignTop="@id/img_bayar"
+                        android:layout_toEndOf="@id/img_bayar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cara Bayar"
+                        android:textSize="@dimen/sp16" />
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/spn_bayar"
+                        android:layout_toEndOf="@id/img_bayar"
+                        android:layout_below="@id/lbl_bayar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp18"
+                        android:textStyle="bold"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:padding="@dimen/dp5"
+                        android:entries="@array/array_cara_bayar"/>
+
+                    <RelativeLayout
+                        android:id="@+id/layout_tempo"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/spn_bayar">
+
+                        <ImageView
+                            android:id="@+id/img_tempo"
+                            android:contentDescription="@string/customer"
+                            android:layout_alignParentStart="true"
+                            android:layout_margin="@dimen/dp10"
+                            android:layout_width="@dimen/small_icon_size"
+                            android:layout_height="@dimen/small_icon_size"
+                            android:src="@drawable/no_nota"/>
+
+                        <TextView
+                            android:id="@+id/lbl_tempo"
+                            android:layout_toEndOf="@id/img_tempo"
+                            android:layout_alignTop="@id/img_tempo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tanggal Tempo"
+                            android:textSize="@dimen/sp16" />
+
+                        <TextView
+                            android:id="@+id/txt_tempo"
+                            android:layout_toEndOf="@id/img_tempo"
+                            android:layout_below="@id/lbl_tempo"
+                            android:layout_width="@dimen/tempo_text_width"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/sp18"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:id="@+id/img_kalender"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginStart="@dimen/dp10"
+                            android:layout_toEndOf="@id/txt_tempo"
+                            android:layout_below="@id/lbl_tempo"
+                            android:layout_alignBottom="@id/txt_tempo"
+                            android:src="@drawable/calendar"/>
+
+                    </RelativeLayout>
+
                 </RelativeLayout>
 
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -164,7 +195,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp10"
-        android:background="@color/very_dark_gray"
+        android:background="@color/dark_gray"
         android:layout_above="@id/layout_button">
 
         <TextView

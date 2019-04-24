@@ -15,7 +15,6 @@
         android:title="Canvas"/>
 
     <item
-        android:id="@+id/action_semua"
         android:icon="@drawable/ic_filter"
         app:showAsAction="always|collapseActionView"
         android:title="Semua"/>

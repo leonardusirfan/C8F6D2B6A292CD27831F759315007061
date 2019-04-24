@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/coordinator"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StokCanvasAct.StokCanvas">
+    tools:context=".Activity.StokCanvas">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:background="@android:color/transparent">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarFadeDuration="1000"
+            app:scrimAnimationDuration="1000"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <RelativeLayout
+                android:id="@+id/layout_sales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp15"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/lbl_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pilih Sales"
+                    android:textSize="@dimen/sp14"/>
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spn_sales"
+                    android:layout_below="@id/lbl_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp10"/>
+
+                <!--<Button
+                    android:id="@+id/btn_proses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/big_icon_size"
+                    android:text="Proses"
+                    android:layout_below="@id/spn_sales"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/green"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="@dimen/dp10"/>-->
+
+            </RelativeLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_barang"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_penjualan"
+        android:paddingBottom="@dimen/dp15"
+        android:clipToPadding="false"/>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

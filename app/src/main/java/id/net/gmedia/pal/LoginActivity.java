@@ -10,6 +10,14 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.leonardus.irfan.ApiVolleyManager;
+import com.leonardus.irfan.AppRequestCallback;
+import com.leonardus.irfan.JSONBuilder;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,19 +25,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.net.gmedia.pal.Util.ApiVolleyManager;
 import id.net.gmedia.pal.Util.AppImeiManager;
-import id.net.gmedia.pal.Util.AppRequestCallback;
+
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
-import id.net.gmedia.pal.Util.JSONBuilder;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //Variabel UI
     private EditText txt_username, txt_password;
     private ProgressBar bar;
+
+    //Variabel manager IMEI
     private AppImeiManager manager;
+
+    //Variabel penampung IMEI dan FCM
     private String imei = "";
+    private String fcm_id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,10 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Gagal membaca informasi IMEI", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                /*else if(fcm_id.equals("")){
+                    Toast.makeText(LoginActivity.this, "Gagal mendapat id notifikasi", Toast.LENGTH_SHORT).show();
+                    return;
+                }*/
 
                 bar.setVisibility(View.VISIBLE);
                 String username = txt_username.getText().toString();
@@ -60,10 +76,12 @@ public class LoginActivity extends AppCompatActivity {
                 body.add("username", username);
                 body.add("password", password);
                 body.add("imei", new JSONArray(listImei));
+                body.add("fcm_id", fcm_id);
+                //System.out.println(body.create());
 
                 ApiVolleyManager.getInstance().addRequest(LoginActivity.this, Constant.URL_LOGIN,
                         ApiVolleyManager.METHOD_POST, Constant.HEADER_AUTH, body.create(),
-                        new AppRequestCallback(new AppRequestCallback.AdvancedRequestListener() {
+                        new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -84,11 +102,11 @@ public class LoginActivity extends AppCompatActivity {
                             AppSharedPreferences.Login(LoginActivity.this, jsonresult.getString("nip"),
                                     jsonresult.getString("nama"), jsonresult.getString("kode_gudang"),
                                     jsonresult.getString("kode_regional"), jsonresult.getString("nama_regional"),
-                                    jsonresult.getString("jabatan"));
+                                    jsonresult.getString("jabatan"), jsonresult.getString("posisi"));
                         }
                         catch (JSONException e){
                             Toast.makeText(LoginActivity.this, R.string.error_json, Toast.LENGTH_SHORT).show();
-                            Log.e("Login", e.getMessage());
+                            Log.e(Constant.TAG, e.getMessage());
                             e.printStackTrace();
                         }
                     }
@@ -106,10 +124,27 @@ public class LoginActivity extends AppCompatActivity {
         manager = new AppImeiManager(this, new AppImeiManager.IMEIListener() {
             @Override
             public void onGet(String result) {
-                imei = result;
+                if(result == null){
+                    Toast.makeText(LoginActivity.this, "gagal mendapatkan IMEI", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    imei = result;
+                }
             }
         });
         manager.getImei();
+
+        //Inisialisasi FCM_ID
+        FirebaseApp.initializeApp(this);
+        FirebaseInstanceId.getInstance().getInstanceId().
+                addOnSuccessListener( LoginActivity.this,  new OnSuccessListener<InstanceIdResult>() {
+                    @Override
+                    public void onSuccess(InstanceIdResult instanceIdResult) {
+                        fcm_id = instanceIdResult.getToken();
+                        AppSharedPreferences.setFcmId(LoginActivity.this, fcm_id);
+                        //System.out.println("FCM " + fcm_id);
+                    }
+                });
     }
 
     @Override

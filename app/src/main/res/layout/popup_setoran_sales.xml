@@ -1,89 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/dp15"
-    android:background="@color/white"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    app:cardCornerRadius="@dimen/dp10">
 
-    <TextView
-        android:id="@+id/lbl_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp20"
-        android:text="Pembayaran"
-        android:textSize="@dimen/sp14"/>
-
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/spn_pembayaran"
-        android:layout_below="@id/lbl_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp10"
-        android:layout_marginBottom="@dimen/dp20"
-        android:entries="@array/array_pembayaran"/>
-
-    <LinearLayout
-        android:id="@+id/layout_tanggal"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spn_pembayaran"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dp5"
-        android:layout_marginBottom="@dimen/dp5">
+        android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/vertical1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/vertical2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
 
         <TextView
-            android:id="@+id/txt_tgl_mulai"
-            android:layout_width="0dp"
-            android:layout_weight="0.4"
-            android:textSize="@dimen/sp14"
-            android:textStyle="bold"
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
             android:gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp10" />
-
-        <ImageView
-            android:id="@+id/img_tgl_mulai"
-            android:layout_width="@dimen/medium_icon_size"
-            android:layout_height="@dimen/medium_icon_size"
-            android:padding="@dimen/dp2"
-            android:src="@drawable/calendar"/>
-
-        <include layout="@layout/view_divider"
-            android:layout_width="0dp"
-            android:layout_weight="0.2"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_height="@dimen/dp2"/>
+            android:text="Bukti Transfer Setoran"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_tgl_selesai"
-            android:layout_width="0dp"
-            android:layout_weight="0.4"
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Nominal"
             android:textSize="@dimen/sp14"
             android:textStyle="bold"
-            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/layout_password_lama"
+            app:layout_constraintStart_toStartOf="@+id/vertical1"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <LinearLayout
+            android:id="@+id/layout_password_lama"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp10"/>
+            android:background="@drawable/style_fullrounded_white_rectangle"
+            app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+            app:layout_constraintEnd_toStartOf="@+id/vertical2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/vertical1"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
 
-        <ImageView
-            android:id="@+id/img_tgl_selesai"
-            android:layout_width="@dimen/medium_icon_size"
-            android:layout_height="@dimen/medium_icon_size"
-            android:padding="@dimen/dp2"
-            android:src="@drawable/calendar"/>
+            <EditText
+                android:id="@+id/txt_nominal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:padding="@dimen/dp10"
+                android:textSize="@dimen/sp16"
+                android:theme="@style/GrayViewTheme" />
 
-    </LinearLayout>
+            <!--<ImageView
+                android:id="@+id/img_password_lama"
+                android:layout_width="@dimen/login_icon_size"
+                android:layout_height="@dimen/login_icon_size"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:contentDescription="@string/password"
+                android:src="@drawable/lunasi_piutang" />-->
 
-    <Button
-        android:id="@+id/btn_proses"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/big_icon_size"
-        android:text="Proses"
-        android:layout_below="@id/layout_tanggal"
-        android:layout_centerHorizontal="true"
-        android:background="@color/green"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:layout_marginTop="@dimen/dp20"
-        android:layout_marginBottom="@dimen/dp20"/>
+        </LinearLayout>
 
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="@dimen/upload_layout_width"
+            android:layout_height="@dimen/upload_layout_height"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_password_lama">
+
+            <ImageView
+                android:id="@+id/img_bukti"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/outlet"
+                android:scaleType="fitCenter"
+                android:src="@color/gray" />
+
+            <ImageView
+                android:id="@+id/overlay_bukti"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ddffffff"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:visibility="invisible" />
+
+            <ProgressBar
+                android:id="@+id/bar_bukti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/img_upload_bukti"
+                android:layout_width="@dimen/upload_icon_size"
+                android:layout_height="@dimen/upload_icon_size"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp10"
+                android:contentDescription="@string/upload_ktp"
+                android:src="@drawable/camera" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Keterangan"
+            android:textSize="@dimen/sp14"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txt_keterangan"
+            app:layout_constraintStart_toStartOf="@+id/vertical1"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
+        <EditText
+            android:id="@+id/txt_keterangan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="text"
+            android:padding="@dimen/dp10"
+            android:textSize="@dimen/sp16"
+            android:theme="@style/GrayViewTheme"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+            app:layout_constraintEnd_toStartOf="@+id/vertical2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/vertical1"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vertical2"
+            app:layout_constraintTop_toBottomOf="@+id/txt_keterangan">
+
+            <TextView
+                android:id="@+id/btn_batal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp10"
+                android:text="Batal"
+                android:textColor="#B6B6B6"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btn_kirim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp10"
+                android:text="Kirim"
+                android:textColor="@color/green"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.card.MaterialCardView>

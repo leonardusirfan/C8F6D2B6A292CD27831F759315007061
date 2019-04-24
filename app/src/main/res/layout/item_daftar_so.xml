@@ -143,6 +143,52 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/sp14"/>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp10"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Status Kirim"
+                        android:textSize="@dimen/sp12"/>
+
+                    <TextView
+                        android:id="@+id/txt_status_kirim"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp14"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_kirim"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp10"
+                    android:visibility="invisible"
+                    app:layout_rowWeight="1"
+                    app:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nota Pengeluaran"
+                        android:textSize="@dimen/sp12"/>
+
+                    <TextView
+                        android:id="@+id/txt_nota_pengeluaran"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp14"/>
+                </LinearLayout>
             </android.support.v7.widget.GridLayout>
 
         </LinearLayout>

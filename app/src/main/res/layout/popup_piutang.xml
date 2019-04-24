@@ -34,32 +34,60 @@
             android:text="Masukkan Nominal Pembayaran"
             android:textSize="@dimen/sp22"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/layout_password_lama"
+            app:layout_constraintBottom_toTopOf="@+id/rb_jenis_pelunasan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <RadioGroup
+            android:id="@+id/rb_jenis_pelunasan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:theme="@style/GreenViewTheme"
+            app:layout_constraintBottom_toTopOf="@+id/layout_password_lama"
+            app:layout_constraintEnd_toStartOf="@+id/vertical2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/vertical1"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <RadioButton
+                android:id="@+id/rb_pembayaran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Pembayaran" />
+
+            <RadioButton
+                android:id="@+id/rb_retur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp30"
+                android:text="Retur" />
+        </RadioGroup>
+
         <LinearLayout
             android:id="@+id/layout_password_lama"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:background="@drawable/style_fullrounded_white_rectangle"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintEnd_toStartOf="@+id/vertical2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/vertical1"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
+            app:layout_constraintTop_toBottomOf="@+id/rb_jenis_pelunasan">
 
             <EditText
                 android:id="@+id/txt_nominal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:theme="@style/GrayViewTheme"
                 android:inputType="number"
                 android:padding="@dimen/dp10"
-                android:textSize="@dimen/sp16" />
+                android:textSize="@dimen/sp16"
+                android:theme="@style/GrayViewTheme" />
 
             <!--<ImageView
                 android:id="@+id/img_password_lama"

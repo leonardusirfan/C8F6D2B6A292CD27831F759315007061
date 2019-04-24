@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerAct.CustomerDetail">
+    tools:context=".Activity.CustomerDetail">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -53,7 +53,6 @@
                         android:layout_alignParentBottom="true"/>
 
                     <ImageView
-                        android:id="@+id/img_lokasi"
                         android:contentDescription="@null"
                         android:layout_width="@dimen/upload_icon_size"
                         android:layout_height="@dimen/upload_icon_size"
@@ -62,6 +61,28 @@
                         android:layout_alignParentEnd="true"
                         android:visibility="gone"
                         android:src="@mipmap/lokasi_sekarang"/>
+
+                    <TextView
+                        android:id="@+id/txt_update_lokasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp10"
+                        android:textSize="@dimen/sp12"
+                        android:text="Reset ke lokasi sekarang"
+                        android:background="@color/white"
+                        android:layout_margin="@dimen/dp10"
+                        android:layout_alignParentEnd="true"
+                        android:layout_above="@id/lbl_map"/>
+
+                    <ProgressBar
+                        android:id="@+id/pb_map"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:theme="@style/GreenViewTheme"
+                        android:indeterminate="true"
+                        android:visibility="invisible"
+                        android:layout_alignParentTop="true"/>
                 </RelativeLayout>
 
                 <android.support.v7.widget.Toolbar
@@ -78,7 +99,7 @@
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
@@ -131,6 +152,16 @@
                             android:layout_marginBottom="@dimen/dp10"
                             android:layout_marginEnd="@dimen/dp15"/>
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:text="Foto Outlet (maks 5)"
+                            android:textSize="@dimen/sp12"
+                            android:textStyle="bold"
+                            android:visibility="invisible"
+                            android:gravity="center"/>
                     </RelativeLayout>
 
 
@@ -172,6 +203,17 @@
                             android:layout_alignParentEnd="true"
                             android:layout_marginBottom="@dimen/dp10"
                             android:layout_marginEnd="@dimen/dp15"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:text="Foto KTP"
+                            android:visibility="invisible"
+                            android:textSize="@dimen/sp12"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
 
                     </RelativeLayout>
 
@@ -282,11 +324,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp5"
-                    android:text="@string/customer_detail_kota"
+                    android:text="@string/customer_detail_negara"
                     style="@style/TextView.CustomerTambah"/>
 
                 <EditText
-                    android:id="@+id/txt_kota"
+                    android:id="@+id/txt_negara"
                     android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -299,26 +341,36 @@
                     android:text="@string/customer_detail_provinsi"
                     style="@style/TextView.CustomerTambah"/>
 
-                <EditText
+                <TextView
                     android:id="@+id/txt_provinsi"
-                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/EditText.CustomerTambah"/>
+                    android:text="@string/customer_detail_pilih_provinsi"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="#747474"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginStart="@dimen/dp30"
+                    android:layout_marginEnd="@dimen/dp30"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp5"
-                    android:text="@string/customer_detail_negara"
+                    android:text="@string/customer_detail_kota"
                     style="@style/TextView.CustomerTambah"/>
 
-                <EditText
-                    android:id="@+id/txt_negara"
-                    android:inputType="text"
+                <TextView
+                    android:id="@+id/txt_kota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/EditText.CustomerTambah"/>
+                    android:text="@string/customer_detail_pilih_kota"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="#747474"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginStart="@dimen/dp30"
+                    android:layout_marginEnd="@dimen/dp30"/>
 
                 <Button
                     android:id="@+id/btn_simpan"
