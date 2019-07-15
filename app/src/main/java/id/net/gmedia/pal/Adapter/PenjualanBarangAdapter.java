@@ -16,7 +16,6 @@ import com.leonardus.irfan.Converter;
 
 import java.util.List;
 
-import id.net.gmedia.pal.Activity.PenjualanSoCanvas.PenjualanBarang;
 import id.net.gmedia.pal.Activity.PenjualanSoCanvas.PenjualanDetail;
 import id.net.gmedia.pal.Model.BarangModel;
 import id.net.gmedia.pal.R;
@@ -62,17 +61,13 @@ public class PenjualanBarangAdapter extends RecyclerView.Adapter<PenjualanBarang
         viewHolder.item_penjualan_barang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!AppKeranjangPenjualan.getInstance().isBarangAda(barang.getId())){
+                if(AppKeranjangPenjualan.getInstance().isBarangBelumAda(barang.getId())){
                     Gson gson = new Gson();
                     Intent i = new Intent(activity, PenjualanDetail.class);
                     i.putExtra(Constant.EXTRA_BARANG, gson.toJson(barang));
-                    i.putExtra(Constant.EXTRA_CARA_BAYAR, ((PenjualanBarang)activity).cara_bayar);
-                    i.putExtra(Constant.EXTRA_CUSTOMER, gson.toJson(((PenjualanBarang)activity).customer));
-                    i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, ((PenjualanBarang)activity).JENIS_PENJUALAN);
-                    i.putExtra(Constant.EXTRA_TEMPO, ((PenjualanBarang)activity).tempo);
-                    if(!((PenjualanBarang)activity).no_bukti.equals("")){
+                    /*if(!((PenjualanBarang)activity).no_bukti.equals("")){
                         i.putExtra(Constant.EXTRA_NO_NOTA, ((PenjualanBarang)activity).no_bukti);
-                    }
+                    }*/
                     activity.startActivity(i);
                 }
                 else {

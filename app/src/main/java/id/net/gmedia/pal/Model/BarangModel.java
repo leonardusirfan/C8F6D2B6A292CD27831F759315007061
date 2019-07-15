@@ -8,7 +8,7 @@ public class BarangModel {
     private String nama;
     private double harga = 0;
 
-    private String no_batch = "A112014";
+    private String no_batch = "";
 
     private String kode = "";
     private int jumlah = 0;

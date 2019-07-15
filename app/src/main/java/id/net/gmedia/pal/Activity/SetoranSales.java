@@ -275,37 +275,37 @@ public class SetoranSales extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        switch (requestCode) {
-            case UPLOAD_BUKTI:{
-                if(data != null){
-                    //Inisialisasi data upload
-                    try{
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
-                                Uri.fromFile(new File(data.getStringArrayListExtra(Pix.IMAGE_RESULTS).get(0))));
-                        bitmap = Converter.resizeBitmap(bitmap, 1200);
+        if(requestCode == UPLOAD_BUKTI) {
+            if(data != null){
+                //Inisialisasi data upload
+                try{
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
+                            Uri.fromFile(new File(data.getStringArrayListExtra(Pix.IMAGE_RESULTS).get(0))));
+                    bitmap = Converter.resizeBitmap(bitmap, 1200);
 
-                        img_bukti.setImageBitmap(bitmap);
-                        overlay_bukti.setVisibility(View.VISIBLE);
-                        bar_bukti.setVisibility(View.VISIBLE);
+                    img_bukti.setImageBitmap(bitmap);
+                    overlay_bukti.setVisibility(View.VISIBLE);
+                    bar_bukti.setVisibility(View.VISIBLE);
 
-                        upload = new UploadModel(bitmap);
-                        upload.setUrl(Uri.fromFile(new File(data.getStringArrayListExtra(Pix.IMAGE_RESULTS).get(0))).toString());
-                        uploadFotoBukti(upload);
-                    }
-                    catch (IOException e){
-                        Log.e(Constant.TAG, e.getMessage());
-                    }
+                    upload = new UploadModel(bitmap);
+                    upload.setUrl(Uri.fromFile(new File(data.getStringArrayListExtra(Pix.IMAGE_RESULTS).get(0))).toString());
+                    uploadFotoBukti(upload);
                 }
-                break;
+                catch (IOException e){
+                    Log.e(Constant.TAG, e.getMessage());
+                }
             }
-            default:super.onActivityResult(requestCode, resultCode, data);
+        }
+        else{
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
     private void uploadFotoBukti(final UploadModel upload){
         //Upload gambar bukti transfer ke Web Service
         ApiVolleyManager.getInstance().addMultipartRequest(this, Constant.URL_UPLOAD_FOTO_BUKTI,
-                Constant.getTokenHeader(AppSharedPreferences.getId(this)), Converter.getFileDataFromDrawable(upload.getBitmap()),
+                Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                "pic", Converter.getFileDataFromDrawable(upload.getBitmap()),
                 new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {

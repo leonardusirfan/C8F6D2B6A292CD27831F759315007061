@@ -39,10 +39,11 @@ public class Constant {
     public final static String EXTRA_LOKASI_OUTLET = "lokasi_outlet";
     public final static String EXTRA_EDIT = "edit";
     public final static String EXTRA_MERCHANDISER = "merchandiser";
-    public final static String EXTRA_CARA_BAYAR = "cara_bayar";
     public final static String EXTRA_ID_PENGAJUAN_PLAFON = "id_plafon";
     public final static String EXTRA_PENGAJUAN_PLAFON = "plafon";
-    public final static String EXTRA_TEMPO = "tempo";
+
+    /*public final static String EXTRA_CARA_BAYAR = "cara_bayar";
+    public final static String EXTRA_TEMPO = "tempo";*/
 
     public final static String EXTRA_ACT_CODE = "act_code";
 

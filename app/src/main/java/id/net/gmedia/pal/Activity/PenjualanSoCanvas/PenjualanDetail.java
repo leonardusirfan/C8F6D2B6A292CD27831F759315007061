@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.net.gmedia.pal.Model.BarangModel;
-import id.net.gmedia.pal.Model.CustomerModel;
 import id.net.gmedia.pal.Model.SatuanModel;
 import id.net.gmedia.pal.R;
 import id.net.gmedia.pal.Util.AppKeranjangPenjualan;
@@ -36,14 +34,10 @@ import id.net.gmedia.pal.Util.Constant;
 
 public class PenjualanDetail extends AppCompatActivity {
 
-    //Variabel global jenis penjualan
-    private int JENIS_PENJUALAN;
     //Variabel global flag apakah mode edit
     private int edit;
-
-    //Variabel global data barang dan customer
+    //Variabel global data barang
     private BarangModel barang;
-    private CustomerModel customer;
 
     //Variabel global budget diskon
     private double budget_diskon = 0;
@@ -82,16 +76,15 @@ public class PenjualanDetail extends AppCompatActivity {
 
         //Inisialisasi data global jenis penjualan, customer, barang, mode edit
         Gson gson = new Gson();
-        JENIS_PENJUALAN = getIntent().getIntExtra(Constant.EXTRA_JENIS_PENJUALAN, Constant.PENJUALAN_SO);
-        customer = gson.fromJson(getIntent().getStringExtra(Constant.EXTRA_CUSTOMER), CustomerModel.class);
+
         barang = gson.fromJson(getIntent().getStringExtra(Constant.EXTRA_BARANG), BarangModel.class);
         edit = getIntent().getIntExtra(Constant.EXTRA_EDIT, -1);
-        if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+        if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
             findViewById(R.id.layout_potong_stok_canvas).setVisibility(View.VISIBLE);
         }
 
         //Inisialisasi nilai UI
-        txt_nama_pelanggan.setText(customer.getNama());
+        txt_nama_pelanggan.setText(AppKeranjangPenjualan.getInstance().getCustomer().getNama());
         txt_nama_barang.setText(barang.getNama());
         txt_harga_satuan.setText(Converter.doubleToRupiah(barang.getHarga()));
 
@@ -121,13 +114,13 @@ public class PenjualanDetail extends AppCompatActivity {
                     //txt_total.setText(Converter.doubleToRupiah(Integer.parseInt(txt_jumlah.getText().toString()) * barang.getHarga()));
                     Toast.makeText(PenjualanDetail.this, "Jumlah barang tidak boleh melebihi stok barang", Toast.LENGTH_SHORT).show();
                 }
-                else if(JENIS_PENJUALAN == Constant.PENJUALAN_SO &&
+                else if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO &&
                         jumlah_canvas > barang.getListSatuanCanvas().get(spn_satuan.getSelectedItemPosition()).getJumlah()){
                     txt_jumlah_canvas.setText(String.valueOf(barang.getListSatuanCanvas().get(spn_satuan.getSelectedItemPosition()).getJumlah()));
                     //txt_total.setText(Converter.doubleToRupiah(Integer.parseInt(txt_jumlah.getText().toString()) * barang.getHarga()));
                     Toast.makeText(PenjualanDetail.this, "Jumlah barang tidak boleh melebihi stok canvas", Toast.LENGTH_SHORT).show();
                 }
-                else if(JENIS_PENJUALAN == Constant.PENJUALAN_SO &&
+                else if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO &&
                         diskon > 0 && AppKeranjangPenjualan.getInstance().getTotalBarangDiskon(edit)
                         + Integer.parseInt(txt_jumlah.getText().toString()) + jumlah_canvas > 20){
                     //txt_total.setText(Converter.doubleToRupiah(Integer.parseInt(txt_jumlah.getText().toString()) * barang.getHarga()));
@@ -154,9 +147,9 @@ public class PenjualanDetail extends AppCompatActivity {
         //cek harga total barang yang akan ditambahkan
         AppLoading.getInstance().showLoading(this, R.layout.popup_loading);
         JSONBuilder body = new JSONBuilder();
-        body.add("kode_pelanggan", customer.getId());
+        body.add("kode_pelanggan", AppKeranjangPenjualan.getInstance().getCustomer().getId());
         body.add("kode_barang", edit == -1?barang.getId():AppKeranjangPenjualan.getInstance().getBarang(edit).getId());
-        if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+        if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
             int jumlah_potong = txt_jumlah_canvas.getText().toString().equals("")?0:Integer.parseInt(txt_jumlah_canvas.getText().toString());
             body.add("jumlah", Integer.parseInt(txt_jumlah.getText().toString()) + jumlah_potong);
         }
@@ -263,7 +256,7 @@ public class PenjualanDetail extends AppCompatActivity {
                 String stok = barang.getListSatuan().get(position).getJumlah() + " " + spn_satuan.getItemAtPosition(position).toString();
                 txt_stok.setText(stok);
 
-                if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+                if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
                     String stok_canvas = barang.getListSatuanCanvas().get(position).getJumlah() + " " + spn_satuan.getItemAtPosition(position).toString();
                     txt_stok_canvas.setText(stok_canvas);
                 }
@@ -280,12 +273,13 @@ public class PenjualanDetail extends AppCompatActivity {
         //tambah barang ke nota penjualan
         if(edit == -1){
             //jika bukan edit, tambah ke keranjang penjualan
-            if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
-                int jumlah_potong = txt_jumlah_canvas.getText().toString().equals("")?0:Integer.parseInt(txt_jumlah_canvas.getText().toString());
+            if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
+                int jumlah_potong = txt_jumlah_canvas.getText().toString().equals("")?0:
+                        Integer.parseInt(txt_jumlah_canvas.getText().toString());
                 barang.setJumlah_potong(jumlah_potong);
                 barang.setJumlah(Integer.parseInt(txt_jumlah.getText().toString()) + jumlah_potong);
             }
-            else if(JENIS_PENJUALAN == Constant.PENJUALAN_CANVAS){
+            else if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_CANVAS){
                 barang.setJumlah(Integer.parseInt(txt_jumlah.getText().toString()));
             }
 
@@ -297,12 +291,13 @@ public class PenjualanDetail extends AppCompatActivity {
             AppKeranjangPenjualan.getInstance().addBarang(barang);
         }
         else{
-            if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
-                int jumlah_potong = txt_jumlah_canvas.getText().toString().equals("")?0:Integer.parseInt(txt_jumlah_canvas.getText().toString());
+            if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
+                int jumlah_potong = txt_jumlah_canvas.getText().toString().equals("")?0:
+                        Integer.parseInt(txt_jumlah_canvas.getText().toString());
                 AppKeranjangPenjualan.getInstance().getBarang(edit).setJumlah_potong(jumlah_potong);
                 AppKeranjangPenjualan.getInstance().getBarang(edit).setJumlah(Integer.parseInt(txt_jumlah.getText().toString()) + jumlah_potong);
             }
-            else if(JENIS_PENJUALAN == Constant.PENJUALAN_CANVAS){
+            else if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_CANVAS){
                 AppKeranjangPenjualan.getInstance().getBarang(edit).setJumlah(Integer.parseInt(txt_jumlah.getText().toString()));
             }
 
@@ -312,28 +307,15 @@ public class PenjualanDetail extends AppCompatActivity {
             AppKeranjangPenjualan.getInstance().edit_pakai_budget(AppKeranjangPenjualan.getInstance().getBarang(edit).getDiskon(), txt_diskon.getText().toString().equals("")?0:Double.parseDouble(txt_diskon.getText().toString()));
         }
 
-        Gson gson = new Gson();
         Intent i = new Intent(PenjualanDetail.this, PenjualanNota.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        i.putExtra(Constant.EXTRA_CUSTOMER, gson.toJson(customer));
-        i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, JENIS_PENJUALAN);
-        if(getIntent().hasExtra(Constant.EXTRA_CARA_BAYAR)){
-            i.putExtra(Constant.EXTRA_CARA_BAYAR, getIntent().getIntExtra(Constant.EXTRA_CARA_BAYAR, 0));
-        }
-        if(getIntent().hasExtra(Constant.EXTRA_TEMPO)){
-            i.putExtra(Constant.EXTRA_TEMPO, getIntent().getStringExtra(Constant.EXTRA_TEMPO));
-        }
         startActivity(i);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

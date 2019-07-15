@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.leonardus.irfan.ApiVolleyManager;
 import com.leonardus.irfan.AppLoading;
 import com.leonardus.irfan.AppRequestCallback;
+import com.leonardus.irfan.BuildConfig;
 import com.leonardus.irfan.Converter;
 
 import org.json.JSONArray;
@@ -40,7 +41,7 @@ import java.util.List;
 import java.util.Locale;
 
 import id.net.gmedia.pal.Adapter.SuratJalanDetailAdapter;
-import id.net.gmedia.pal.BuildConfig;
+
 import id.net.gmedia.pal.Model.BarangModel;
 import id.net.gmedia.pal.R;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
@@ -160,12 +161,10 @@ public class SuratJalanDetail extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_download:
-                if(writeStorageCheckPermission()){
-                    downloadFiles();
-                }
-                break;
+        if (item.getItemId() == R.id.action_download) {
+            if (writeStorageCheckPermission()) {
+                downloadFiles();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

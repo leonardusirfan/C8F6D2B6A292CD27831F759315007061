@@ -26,6 +26,7 @@ import id.net.gmedia.pal.Model.CustomerModel;
 import id.net.gmedia.pal.Activity.PenjualanSoCanvas.Penjualan;
 import id.net.gmedia.pal.Activity.PenjualanSoCanvas.PenjualanBarang;
 import id.net.gmedia.pal.R;
+import id.net.gmedia.pal.Util.AppKeranjangPenjualan;
 import id.net.gmedia.pal.Util.Constant;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder> {
@@ -143,10 +144,10 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
             customerViewHolder.item_customer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Gson gson = new Gson();
+                    AppKeranjangPenjualan.getInstance().startPenjualan(customer,
+                            ((Penjualan)activity).JENIS_PENJUALAN);
+
                     Intent i = new Intent(new Intent(activity, PenjualanBarang.class));
-                    i.putExtra(Constant.EXTRA_CUSTOMER, gson.toJson(customer));
-                    i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, ((Penjualan)activity).JENIS_PENJUALAN);
                     activity.startActivity(i);
                 }
             });

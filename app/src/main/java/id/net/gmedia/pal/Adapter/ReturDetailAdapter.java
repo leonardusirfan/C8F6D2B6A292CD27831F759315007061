@@ -203,7 +203,7 @@ public class ReturDetailAdapter extends RecyclerView.Adapter<ReturDetailAdapter.
 
     private void upload(){
         ApiVolleyManager.getInstance().addMultipartRequest(activity, Constant.URL_UPLOAD_FOTO_RETUR,
-                Constant.getTokenHeader(AppSharedPreferences.getId(activity)),
+                Constant.getTokenHeader(AppSharedPreferences.getId(activity)), "pic",
                 Converter.getFileDataFromDrawable(upload.getBitmap()), new ApiVolleyManager.RequestCallback() {
                     @Override
                     public void onSuccess(String result) {

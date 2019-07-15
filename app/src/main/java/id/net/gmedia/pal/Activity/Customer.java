@@ -78,7 +78,8 @@ public class Customer extends AppCompatActivity {
         //Inisialisasi Recycler View & Adapter
         RecyclerView rv_customer = findViewById(R.id.rv_customer);
         rv_customer.setItemAnimator(new DefaultItemAnimator());
-        rv_customer.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rv_customer.setLayoutManager(new LinearLayoutManager
+                (this, LinearLayoutManager.VERTICAL, false));
         adapter = new CustomerAdapter(this, listCustomer, act_code);
         rv_customer.setAdapter(adapter);
         loadMoreScrollListener = new LoadMoreScrollListener() {

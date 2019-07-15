@@ -12,7 +12,6 @@
         android:id="@+id/img_customer"
         android:layout_width="@dimen/medium_icon_size"
         android:layout_height="@dimen/medium_icon_size"
-        android:layout_above="@id/lbl_status"
         android:layout_marginEnd="@dimen/dp20"
         android:src="@drawable/foto_outlet"/>
 

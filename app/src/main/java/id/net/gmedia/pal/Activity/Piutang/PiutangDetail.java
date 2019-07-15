@@ -70,8 +70,6 @@ import id.net.gmedia.pal.PetaOutlet;
 import id.net.gmedia.pal.Adapter.PiutangDetailAdapter;
 import id.net.gmedia.pal.R;
 
-import com.leonardus.irfan.AppLocationManager;
-
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
 import id.net.gmedia.pal.Util.GoogleLocationManager;
@@ -901,7 +899,7 @@ public class PiutangDetail extends AppCompatActivity {
     private void uploadBukti(){
         //Upload foto bukti ke Web Service
         ApiVolleyManager.getInstance().addMultipartRequest(this, Constant.URL_UPLOAD_FOTO_PELUNASAN,
-                Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                Constant.getTokenHeader(AppSharedPreferences.getId(this)), "pic",
                 Converter.getFileDataFromDrawable(upload.getBitmap()), new ApiVolleyManager.RequestCallback() {
                     @Override
                     public void onSuccess(String result) {
@@ -938,7 +936,7 @@ public class PiutangDetail extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (requestCode) {
-            case AppLocationManager.ACTIVATE_LOCATION: {
+            case GoogleLocationManager.ACTIVATE_LOCATION: {
                 if (manager != null) {
                     manager.startLocationUpdates();
                 }
@@ -979,7 +977,7 @@ public class PiutangDetail extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
-            case AppLocationManager.PERMISSION_LOCATION:{
+            case GoogleLocationManager.PERMISSION_LOCATION:{
                 if(manager != null){
                     manager.startLocationUpdates();
                 }

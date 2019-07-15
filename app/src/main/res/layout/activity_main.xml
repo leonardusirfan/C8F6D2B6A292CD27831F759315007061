@@ -76,6 +76,7 @@
                 android:layout_height="@dimen/medium_icon_size"
                 android:layout_marginStart="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"
+                android:visibility="invisible"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/edit_akun"/>

@@ -235,9 +235,9 @@ public class DaftarSODetail extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        /*if(printerManager != null){
+        if(printerManager != null){
             printerManager.stopService();
-        }*/
+        }
         super.onDestroy();
     }
 }

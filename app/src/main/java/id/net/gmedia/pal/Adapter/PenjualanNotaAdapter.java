@@ -91,12 +91,10 @@ public class PenjualanNotaAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                             Intent i = new Intent(activity, PenjualanDetail.class);
                             i.putExtra(Constant.EXTRA_BARANG, gson.toJson(barang));
-                            i.putExtra(Constant.EXTRA_CUSTOMER, gson.toJson(((PenjualanNota)activity).customer));
-                            i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, ((PenjualanNota)activity).JENIS_PENJUALAN);
+
                             i.putExtra(Constant.EXTRA_EDIT, viewHolder.getAdapterPosition());
-                            if(((PenjualanNota)activity).spn_bayar.getSelectedItemPosition() != 0){
-                                i.putExtra(Constant.EXTRA_CARA_BAYAR, ((PenjualanNota)activity).spn_bayar.getSelectedItemPosition());
-                            }
+                            AppKeranjangPenjualan.getInstance().setCara_bayar(((PenjualanNota)activity).spn_bayar.getSelectedItemPosition());
+                            AppKeranjangPenjualan.getInstance().setTempo(((PenjualanNota)activity).txt_tempo.getText().toString());
 
                             activity.startActivity(i);
                             return true;

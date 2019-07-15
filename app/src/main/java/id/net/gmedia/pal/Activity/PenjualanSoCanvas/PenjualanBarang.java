@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Locale;
 
 import id.net.gmedia.pal.Model.BarangModel;
-import id.net.gmedia.pal.Model.CustomerModel;
 import id.net.gmedia.pal.Model.SatuanModel;
 import id.net.gmedia.pal.Adapter.PenjualanBarangAdapter;
 import id.net.gmedia.pal.R;
@@ -41,15 +40,6 @@ import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
 
 public class PenjualanBarang extends AppCompatActivity {
-
-    //Variabel global jenis penjualan
-    public int JENIS_PENJUALAN;
-    public String no_bukti = "";
-    public CustomerModel customer;
-
-    //Variabel global tracking penjualan
-    public int cara_bayar = 0;
-    public String tempo = "";
 
     //Variable filter & loadmore
     private String search = "";
@@ -64,23 +54,15 @@ public class PenjualanBarang extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_penjualan_barang);
 
-        //Inisialisasi data global
-        Gson gson = new Gson();
+        //inisialisasi Jenis penjualan dan Customer dari activity sebelumnya
+        /*Gson gson = new Gson();
         customer = gson.fromJson(getIntent().getStringExtra(Constant.EXTRA_CUSTOMER), CustomerModel.class);
+        JENIS_PENJUALAN = getIntent().getIntExtra(Constant.EXTRA_JENIS_PENJUALAN, Constant.PENJUALAN_SO);*/
+
         //nomor bukti
-        if(getIntent().hasExtra(Constant.EXTRA_NO_NOTA)){
+       /* if(getIntent().hasExtra(Constant.EXTRA_NO_NOTA)){
             no_bukti = getIntent().getStringExtra(Constant.EXTRA_NO_NOTA);
-        }
-        //cara bayar
-        if(getIntent().hasExtra(Constant.EXTRA_CARA_BAYAR)){
-            cara_bayar = getIntent().getIntExtra(Constant.EXTRA_CARA_BAYAR, 0);
-        }
-        //tempo
-        if(getIntent().hasExtra(Constant.EXTRA_TEMPO)){
-            tempo = getIntent().getStringExtra(Constant.EXTRA_TEMPO);
-        }
-        //Jenis penjualan
-        JENIS_PENJUALAN = getIntent().getIntExtra(Constant.EXTRA_JENIS_PENJUALAN, Constant.PENJUALAN_SO);
+        }*/
 
         //Inisialisasi toolbar
         if(getSupportActionBar() != null){
@@ -92,7 +74,7 @@ public class PenjualanBarang extends AppCompatActivity {
         RecyclerView rv_barang = findViewById(R.id.rv_barang);
         rv_barang.setItemAnimator(new DefaultItemAnimator());
         rv_barang.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        if(JENIS_PENJUALAN == Constant.PENJUALAN_CANVAS){
+        if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_CANVAS){
             adapter = new PenjualanBarangAdapter(this, listBarang, true);
         }
         else{
@@ -102,7 +84,7 @@ public class PenjualanBarang extends AppCompatActivity {
         loadMoreScrollListener = new LoadMoreScrollListener() {
             @Override
             public void onLoadMore() {
-                if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+                if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
                     loadSO(false);
                 }
                 else{
@@ -113,7 +95,7 @@ public class PenjualanBarang extends AppCompatActivity {
         rv_barang.addOnScrollListener(loadMoreScrollListener);
 
         //muat data berdasarkan jenis penjualan
-        if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+        if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
             loadSO(true);
         }
         else{
@@ -215,8 +197,8 @@ public class PenjualanBarang extends AppCompatActivity {
         //Membaca data Canvas dari Web Service
         AppLoading.getInstance().showLoading(this, R.layout.popup_loading);
 
-        String parameter = String.format(Locale.getDefault(), "?search=%s&start=%d&limit=%d", Converter.encodeURL(search),
-                loadMoreScrollListener.getLoaded(), 10);
+        String parameter = String.format(Locale.getDefault(), "?search=%s&start=%d&limit=%d",
+                Converter.encodeURL(search), loadMoreScrollListener.getLoaded(), 10);
         ApiVolleyManager.getInstance().addRequest(this, Constant.URL_PENJUALAN_BARANG_CANVAS + parameter,
                 ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
                 new AppRequestCallback(new AppRequestCallback.RequestListener() {
@@ -292,13 +274,12 @@ public class PenjualanBarang extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 search = s;
-                if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+                if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
                     loadSO(true);
                 }
                 else{
                     loadCanvas(true);
                 }
-
 
                 return true;
             }
@@ -307,7 +288,7 @@ public class PenjualanBarang extends AppCompatActivity {
             public boolean onQueryTextChange(String s) {
                 if (!searchView.isIconified() && TextUtils.isEmpty(s)) {
                     search = "";
-                    if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+                    if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
                         loadSO(true);
                     }
                     else{
@@ -348,7 +329,9 @@ public class PenjualanBarang extends AppCompatActivity {
         //Membaca data barang berdasarkan barcode
 
         String parameter = String.format(Locale.getDefault(), "?barcode=%s", kode);
-        String url = JENIS_PENJUALAN == Constant.PENJUALAN_SO?Constant.URL_SO_CARI_BARCODE:Constant.URL_CANVAS_CARI_BARCODE;
+        String url = AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN()
+                == Constant.PENJUALAN_SO?Constant.URL_SO_CARI_BARCODE:Constant.URL_CANVAS_CARI_BARCODE;
+
         ApiVolleyManager.getInstance().addRequest(this, url + parameter,
                 ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
                 new AppRequestCallback(new AppRequestCallback.RequestListener() {
@@ -369,16 +352,16 @@ public class PenjualanBarang extends AppCompatActivity {
 
                             for(int i = 0; i < array_satuan.length(); i++){
                                 satuan.add(new SatuanModel(array_satuan.getString(i)));
-                                if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+                                if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
                                     satuanCanvas.add(new SatuanModel(array_satuan.getString(i)));
                                 }
                             }
 
-                            if(JENIS_PENJUALAN == Constant.PENJUALAN_CANVAS){
+                            if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_CANVAS){
                                 satuan.get(0).setJumlah(obj.getInt("stok"));
                                 satuan.get(1).setJumlah(obj.getInt("stok_besar"));
                             }
-                            else if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+                            else if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
                                 satuan.get(0).setJumlah(obj.getInt("stok"));
                                 satuan.get(1).setJumlah(obj.getInt("stok_besar"));
                                 satuanCanvas.get(0).setJumlah(obj.getInt("stok_canvas"));
@@ -388,23 +371,22 @@ public class PenjualanBarang extends AppCompatActivity {
                             BarangModel barang = new BarangModel(obj.getString("kode_barang"),
                                     obj.getString("nama_barang"), obj.getDouble("harga"));
                             barang.setListSatuan(satuan);
-                            if(JENIS_PENJUALAN == Constant.PENJUALAN_SO){
+                            if(AppKeranjangPenjualan.getInstance().getJENIS_PENJUALAN() == Constant.PENJUALAN_SO){
                                 barang.setListSatuanCanvas(satuanCanvas);
                             }
 
-                            if(!AppKeranjangPenjualan.getInstance().isBarangAda(barang.getId())){
+                            if(AppKeranjangPenjualan.getInstance().isBarangBelumAda(barang.getId())){
                                 Gson gson = new Gson();
                                 Intent i = new Intent(PenjualanBarang.this, PenjualanDetail.class);
                                 i.putExtra(Constant.EXTRA_BARANG, gson.toJson(barang));
-                                i.putExtra(Constant.EXTRA_CUSTOMER, gson.toJson(customer));
-                                i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, JENIS_PENJUALAN);
-                                if(!no_bukti.equals("")){
+                                /*if(!no_bukti.equals("")){
                                     i.putExtra(Constant.EXTRA_NO_NOTA, no_bukti);
-                                }
+                                }*/
                                 startActivity(i);
                             }
                             else{
-                                Toast.makeText(PenjualanBarang.this, "Barang sudah ada di penjualan anda", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PenjualanBarang.this,
+                                        "Barang sudah ada di penjualan anda", Toast.LENGTH_SHORT).show();
                             }
                         }
                         catch (JSONException e){

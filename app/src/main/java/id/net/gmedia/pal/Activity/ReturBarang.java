@@ -60,7 +60,8 @@ public class ReturBarang extends AppCompatActivity {
         //Inisialisasi RecyclerView & Adapter
         RecyclerView rv_riwayat = findViewById(R.id.rv_riwayat);
         rv_riwayat.setItemAnimator(new DefaultItemAnimator());
-        rv_riwayat.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rv_riwayat.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.VERTICAL, false));
         adapter = new RiwayatAdapter(this, listNota);
         rv_riwayat.setAdapter(adapter);
         loadMoreScrollListener = new LoadMoreScrollListener() {
@@ -108,7 +109,8 @@ public class ReturBarang extends AppCompatActivity {
                             JSONArray array = new JSONObject(result).getJSONArray("riwayat_list");
                             for(int i = 0; i < array.length(); i++){
                                 JSONObject nota = array.getJSONObject(i);
-                                int type = nota.getString("tipe").equals("canvas")?Constant.PENJUALAN_CANVAS:Constant.PENJUALAN_SO;
+                                int type = nota.getString("tipe").equals("canvas")?
+                                        Constant.PENJUALAN_CANVAS:Constant.PENJUALAN_SO;
 
                                 listNota.add(new NotaPenjualanModel(nota.getString("no_bukti"),
                                         new CustomerModel("", nota.getString("nama_pelanggan")),

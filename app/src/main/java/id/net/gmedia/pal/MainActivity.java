@@ -26,6 +26,7 @@ import com.leonardus.irfan.AppRequestCallback;
 import com.leonardus.irfan.Converter;
 import com.leonardus.irfan.DialogFactory;
 import com.leonardus.irfan.JSONBuilder;
+import com.leonardus.irfan.bluetoothprinter.BluetoothPrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -402,6 +403,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(exit){
+            new BluetoothPrinter(this).stopService();
             super.onBackPressed();
         }
         else{
@@ -421,8 +423,9 @@ public class MainActivity extends AppCompatActivity {
         JSONBuilder body = new JSONBuilder();
         body.add("fcm_id", AppSharedPreferences.getFcmId(this));
 
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_UPDATE_FCM, ApiVolleyManager.METHOD_POST,
-                Constant.getTokenHeader(AppSharedPreferences.getId(this)), body.create(), new ApiVolleyManager.RequestCallback() {
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_UPDATE_FCM,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new ApiVolleyManager.RequestCallback() {
                     @Override
                     public void onSuccess(String result) {
                         Log.v(Constant.TAG, "Update FCM berhasil");

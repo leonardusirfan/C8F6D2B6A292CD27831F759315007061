@@ -24,7 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.DaftarPelunasanDetail"></activity>
+        <activity android:name=".Activity.DaftarPelunasanDetail"/>
         <activity android:name=".Activity.DaftarPelunasan" />
         <activity android:name=".Activity.Approval.ApprovalDispensasiPiutang" />
         <activity android:name=".Activity.SuratJalanDetail" />
@@ -182,6 +182,16 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_path" />
         </provider>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/launcher" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/notification_channel_id" />
     </application>
 
 </manifest>

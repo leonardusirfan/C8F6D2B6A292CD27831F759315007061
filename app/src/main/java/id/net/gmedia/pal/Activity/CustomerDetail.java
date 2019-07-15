@@ -60,8 +60,6 @@ import id.net.gmedia.pal.MainActivity;
 import id.net.gmedia.pal.Model.UploadModel;
 import id.net.gmedia.pal.R;
 
-import com.leonardus.irfan.AppLocationManager;
-
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
 import id.net.gmedia.pal.Util.GoogleLocationManager;
@@ -784,7 +782,7 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
-            case AppLocationManager.PERMISSION_LOCATION:{
+            case GoogleLocationManager.PERMISSION_LOCATION:{
                 if(manager != null){
                     manager.startLocationUpdates();
                 }
@@ -797,7 +795,7 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (requestCode){
-            case AppLocationManager.ACTIVATE_LOCATION:{
+            case GoogleLocationManager.ACTIVATE_LOCATION:{
                 if(manager != null){
                     manager.startLocationUpdates();
                 }
@@ -865,7 +863,7 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
     private void upload(final UploadModel upload, final int uploadCode){
         if(uploadCode == UPLOAD_KTP){
             ApiVolleyManager.getInstance().addMultipartRequest(CustomerDetail.this, Constant.URL_UPLOAD_KTP,
-                    Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                    Constant.getTokenHeader(AppSharedPreferences.getId(this)), "pic",
                     Converter.getFileDataFromDrawable(upload.getBitmap()), new ApiVolleyManager.RequestCallback() {
                         @Override
                         public void onSuccess(String result) {
@@ -900,8 +898,8 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                     });
         }
         else if(uploadCode == UPLOAD_OUTLET){
-            ApiVolleyManager.getInstance().addMultipartRequest(CustomerDetail.this,
-                    Constant.URL_UPLOAD_OUTLET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+            ApiVolleyManager.getInstance().addMultipartRequest(CustomerDetail.this, Constant.URL_UPLOAD_OUTLET,
+                    Constant.getTokenHeader(AppSharedPreferences.getId(this)), "pic",
                     Converter.getFileDataFromDrawable(upload.getBitmap()), new ApiVolleyManager.RequestCallback() {
                 @Override
                 public void onSuccess(String result) {

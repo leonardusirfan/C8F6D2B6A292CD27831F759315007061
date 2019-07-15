@@ -62,7 +62,8 @@ public class AppSharedPreferences {
         editor.apply();
     }
 
-    public static void Login(Context context, String id, String nama, String gudang, String regional, String nama_regional, String jabatan, String posisi){
+    public static void Login(Context context, String id, String nama, String gudang,
+                             String regional, String nama_regional, String jabatan, String posisi){
         SharedPreferences.Editor editor = getPreferences(context).edit();
         editor.putBoolean(LOGIN_PREF, true);
         editor.putString(ID_PREF, id);

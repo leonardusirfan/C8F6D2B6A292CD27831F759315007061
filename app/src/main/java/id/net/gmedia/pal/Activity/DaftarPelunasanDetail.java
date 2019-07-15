@@ -130,36 +130,39 @@ public class DaftarPelunasanDetail extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_print:
-                Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.logo_pal_nota);
-                printerManager = new PalPrinter(DaftarPelunasanDetail.this, Bitmap.createScaledBitmap(
-                        logo, 170, 170, false));
-                printerManager.startService();
-                printerManager.setListener(new BluetoothPrinter.BluetoothListener() {
-                    @Override
-                    public void onBluetoothConnected() {
-                        PelunasanModel pelunasan = new PelunasanModel(customer.getNama(),
-                                AppSharedPreferences.getNamaRegional(DaftarPelunasanDetail.this),
-                                AppSharedPreferences.getNama(DaftarPelunasanDetail.this),
-                                no_nota, new Date(), total, listNota);
+        if (item.getItemId() == R.id.action_print) {
+            Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.logo_pal_nota);
+            printerManager = new PalPrinter(DaftarPelunasanDetail.this, Bitmap.createScaledBitmap(
+                    logo, 170, 170, false));
+            printerManager.startService();
+            printerManager.setListener(new BluetoothPrinter.BluetoothListener() {
+                @Override
+                public void onBluetoothConnected() {
+                    PelunasanModel pelunasan = new PelunasanModel(customer.getNama(),
+                            AppSharedPreferences.getNamaRegional(DaftarPelunasanDetail.this),
+                            AppSharedPreferences.getNama(DaftarPelunasanDetail.this),
+                            no_nota, new Date(), total, listNota);
 
-                        printerManager.printPelunasan(pelunasan);
-                    }
+                    printerManager.printPelunasan(pelunasan);
+                }
 
-                    @Override
-                    public void onBluetoothFailed(String message) {
-                        Toast.makeText(DaftarPelunasanDetail.this, message, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                return true;
+                @Override
+                public void onBluetoothFailed(String message) {
+                    Toast.makeText(DaftarPelunasanDetail.this, message, Toast.LENGTH_SHORT).show();
+                }
+            });
+            return true;
         }
-        return super.onOptionsItemSelected(item);
+        else{
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
     protected void onDestroy() {
-        //printerManager.stopService();
+        if(printerManager != null){
+            printerManager.stopService();
+        }
         super.onDestroy();
     }
 

@@ -216,4 +216,12 @@ public class RiwayatDetail extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onDestroy() {
+        if(printerManager != null){
+            printerManager.stopService();
+        }
+        super.onDestroy();
+    }
 }

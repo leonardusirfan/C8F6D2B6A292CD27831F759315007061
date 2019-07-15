@@ -73,6 +73,8 @@
     <string name="approval_so">"Setujui Penjualan SO ini?"</string>
     <string name="indonesia">"Indonesia"</string>
 
+    <string name="notification_channel_id">"channel_id_01"</string>
+
     <string-array name="array_pembayaran">
         <item>semua</item>
         <item>tunai</item>

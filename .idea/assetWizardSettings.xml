@@ -57,8 +57,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="D:\GMEDIA\PAL\PAL Resource\icon\calendar.png" />
-                                      <entry key="outputName" value="ic_calendar" />
+                                      <entry key="imageAsset" value="D:\GMEDIA\PAL\PAL Resource\icon\download.png" />
+                                      <entry key="outputName" value="ic_download" />
                                       <entry key="theme" value="HOLO_DARK" />
                                       <entry key="themeColor" value="029446" />
                                     </map>
@@ -76,7 +76,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="56" />
+                                                <entry key="scalingPercent" value="57" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -87,7 +87,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="56" />
+                                                <entry key="scalingPercent" value="57" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -99,6 +99,8 @@
                                     <map>
                                       <entry key="backgroundImage" value="D:\GMEDIA\PAL\PAL Resource\launcher.png" />
                                       <entry key="foregroundImage" value="D:\GMEDIA\PAL\PAL Resource\launcher.png" />
+                                      <entry key="legacyIconShape" value="NONE" />
+                                      <entry key="webIconShape" value="NONE" />
                                     </map>
                                   </option>
                                 </PersistentState>

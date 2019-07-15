@@ -70,7 +70,8 @@ public class MerchandiserTambah extends AppCompatActivity {
         //Inisialisasi data
         if(getIntent().hasExtra(Constant.EXTRA_MERCHANDISER)){
             Gson gson = new Gson();
-            MerchandiserModel merchandiser = gson.fromJson(getIntent().getStringExtra(Constant.EXTRA_MERCHANDISER), MerchandiserModel.class);
+            MerchandiserModel merchandiser = gson.fromJson(getIntent().getStringExtra
+                    (Constant.EXTRA_MERCHANDISER), MerchandiserModel.class);
             txt_nama.setText(merchandiser.getNama());
             txt_alamat.setText(merchandiser.getAlamat());
             txt_no_telepon.setText(merchandiser.getNo_telp());
@@ -111,7 +112,8 @@ public class MerchandiserTambah extends AppCompatActivity {
             public void onClick(View v) {
                 //cek validasi
                 if(!upload.isUploaded()){
-                    Toast.makeText(MerchandiserTambah.this, "Upload gambar terlebih dahulu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MerchandiserTambah.this,
+                            "Upload gambar terlebih dahulu", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     simpanMerchandiser();
@@ -130,12 +132,13 @@ public class MerchandiserTambah extends AppCompatActivity {
         body.add("keterangan", txt_keterangan.getText().toString());
         body.add("id_gambar", upload.getId());
 
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_MERCHANDISER_TAMBAH, ApiVolleyManager.METHOD_POST,
-                Constant.getTokenHeader(AppSharedPreferences.getId(this)), body.create(),
-                new AppRequestCallback(new AppRequestCallback.SimpleRequestListener() {
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_MERCHANDISER_TAMBAH,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.SimpleRequestListener() {
                     @Override
                     public void onSuccess(String result) {
-                        Toast.makeText(MerchandiserTambah.this, "Tambah Promosi Barang berhasil", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MerchandiserTambah.this,
+                                "Tambah Promosi Barang berhasil", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MerchandiserTambah.this, MainActivity.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -182,9 +185,9 @@ public class MerchandiserTambah extends AppCompatActivity {
 
     private void upload(final UploadModel upload){
         //Upload foto merchandiser
-        ApiVolleyManager.getInstance().addMultipartRequest(MerchandiserTambah.this, Constant.URL_MERCHANDISER_UPLOAD,
-                Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                Converter.getFileDataFromDrawable(upload.getBitmap()), new ApiVolleyManager.RequestCallback() {
+        ApiVolleyManager.getInstance().addMultipartRequest(MerchandiserTambah.this,
+                Constant.URL_MERCHANDISER_UPLOAD, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                "pic", Converter.getFileDataFromDrawable(upload.getBitmap()), new ApiVolleyManager.RequestCallback() {
                     @Override
                     public void onSuccess(String result) {
                         try{
@@ -200,18 +203,21 @@ public class MerchandiserTambah extends AppCompatActivity {
                                 bar_merchandiser.setVisibility(View.INVISIBLE);
                             }
                             else{
-                                Toast.makeText(MerchandiserTambah.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MerchandiserTambah.this,
+                                        message, Toast.LENGTH_SHORT).show();
                             }
                         }
                         catch (JSONException e){
-                            Toast.makeText(MerchandiserTambah.this, R.string.error_json, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MerchandiserTambah.this,
+                                    R.string.error_json, Toast.LENGTH_SHORT).show();
                             Log.e(Constant.TAG, e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(String result) {
-                        Toast.makeText(MerchandiserTambah.this, "Upload gambar gagal", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MerchandiserTambah.this,
+                                "Upload gambar gagal", Toast.LENGTH_SHORT).show();
                         Log.e(Constant.TAG, result);
                     }
                 });
