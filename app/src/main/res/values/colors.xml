@@ -10,10 +10,12 @@
     <color name="green">#029446</color>
     <color name="light_green">#1ec260</color>
     <color name="medium_light_green">#0BA92E</color>
+    <color name="green_accent">#4C9A2A</color>
     <color name="dark_green">#056f37</color>
     <color name="very_dark_gray">#b6b6b6</color>
     <color name="light_black">#6D6D6D</color>
 
+    <color name="black">#000000</color>
     <color name="light_gray">#f5f5f5</color>
     <color name="gray">#eee8e8</color>
     <color name="dark_gray">#d7d3d4</color>

@@ -175,7 +175,8 @@ public class ApprovalPenambahanPlafonDetail extends AppCompatActivity {
 
     public void loadApproval(){
         //Memuat data respon showApproval dari Web Service
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_MASTER_APPROVAL, ApiVolleyManager.METHOD_GET,
+        ApiVolleyManager.getInstance().addRequest(this,
+                Constant.URL_MASTER_APPROVAL + "/tambah_plafon", ApiVolleyManager.METHOD_GET,
                 Constant.getTokenHeader(AppSharedPreferences.getId(this)),
                 new AppRequestCallback(new AppRequestCallback.SimpleRequestListener() {
                     @Override

@@ -169,18 +169,20 @@ public class PenjualanNota extends AppCompatActivity {
             @Override
             public void onChange(Location location) {
                 //Update jarak customer
-                double distance = Haversine.distance(location.getLatitude(),
-                        location.getLongitude(), AppKeranjangPenjualan.getInstance().getCustomer().getLatitude(),
-                        AppKeranjangPenjualan.getInstance().getCustomer().getLongitude());
-                String string_lokasi = "( Jarak dengan outlet : ";
-                if(distance >= 1){
-                    string_lokasi +=  String.format(Locale.getDefault(), "%.2f Km )", distance);
+                if(AppKeranjangPenjualan.getInstance().getCustomer() != null){
+                    double distance = Haversine.distance(location.getLatitude(),
+                            location.getLongitude(), AppKeranjangPenjualan.getInstance().getCustomer().getLatitude(),
+                            AppKeranjangPenjualan.getInstance().getCustomer().getLongitude());
+                    String string_lokasi = "( Jarak dengan outlet : ";
+                    if(distance >= 1){
+                        string_lokasi +=  String.format(Locale.getDefault(), "%.2f Km )", distance);
+                    }
+                    else{
+                        string_lokasi +=  String.format(Locale.getDefault(), "%.2f m )", distance * 1000);
+                    }
+                    txt_jarak.setText(string_lokasi);
+                    current_location = location;
                 }
-                else{
-                    string_lokasi +=  String.format(Locale.getDefault(), "%.2f m )", distance * 1000);
-                }
-                txt_jarak.setText(string_lokasi);
-                current_location = location;
             }
         });
         manager.startLocationUpdates();

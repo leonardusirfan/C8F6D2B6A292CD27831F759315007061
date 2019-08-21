@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Activity.PengajuanMutasi.PengajuanMutasiActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="List barang"
+            android:textSize="@dimen/sp18"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:textColor="@color/black"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E3E3E3"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_barang"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+       <!-- <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keterangan"
+            android:layout_marginTop="@dimen/dp20"
+            android:textSize="@dimen/sp18"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/txt_keterangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp5"
+            android:minLines="3" />-->
+
+        <LinearLayout
+            android:id="@+id/btn_keterangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/approval_button_height"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/dp10"
+                android:background="@drawable/style_rounded_gray_rectangle">
+
+                <ImageView
+                    android:id="@+id/img_keterangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/pencil_green" />
+
+                <TextView
+                    android:id="@+id/lbl_keterangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp10"
+                    android:textColor="@color/green"
+                    android:text="Keterangan"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_pengajuan"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="@dimen/approval_button_height"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_gravity="center"
+                android:background="@drawable/style_rounded_green_rectangle"
+                android:text="Kirim Pengajuan"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

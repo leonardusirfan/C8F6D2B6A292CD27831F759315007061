@@ -78,10 +78,13 @@ public class DispensasiPiutang extends AppCompatActivity {
 
     private void loadRekap(){
         AppLoading.getInstance().showLoading(this, R.layout.popup_loading);
-        String parameter = String.format(Locale.getDefault(), "/%s", id_customer);
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_CUSTOMER_REKAP + parameter,
-                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+
+        JSONBuilder body = new JSONBuilder();
+        body.add("kode_pelanggan", id_customer);
+
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_CUSTOMER_REKAP,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         Toast.makeText(DispensasiPiutang.this, message, Toast.LENGTH_SHORT).show();

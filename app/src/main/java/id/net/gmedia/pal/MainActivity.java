@@ -3,8 +3,10 @@ package id.net.gmedia.pal;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Handler;
-import android.support.constraint.Guideline;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,14 +30,26 @@ import com.leonardus.irfan.DialogFactory;
 import com.leonardus.irfan.JSONBuilder;
 import com.leonardus.irfan.bluetoothprinter.BluetoothPrinter;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import id.net.gmedia.pal.Activity.Approval.Approval;
+import id.net.gmedia.pal.Activity.Approval.ApprovalDispensasiPiutang;
+import id.net.gmedia.pal.Activity.Approval.ApprovalLoginPengganti;
+import id.net.gmedia.pal.Activity.Approval.ApprovalPO;
+import id.net.gmedia.pal.Activity.Approval.ApprovalPelanggan;
+import id.net.gmedia.pal.Activity.Approval.ApprovalPenambahanPlafon;
+import id.net.gmedia.pal.Activity.Approval.ApprovalPengajuanMutasi;
+import id.net.gmedia.pal.Activity.Approval.ApprovalRetur;
+import id.net.gmedia.pal.Activity.Approval.ApprovalSo;
 import id.net.gmedia.pal.Activity.BlacklistCustomer;
 import id.net.gmedia.pal.Activity.Customer;
+import id.net.gmedia.pal.Activity.CustomerDetail;
 import id.net.gmedia.pal.Activity.DaftarSO.DaftarSO;
-import id.net.gmedia.pal.Activity.Merchandiser;
+import id.net.gmedia.pal.Activity.PengajuanMutasi.PengajuanMutasiActivity;
+import id.net.gmedia.pal.Activity.ReturCanvas.ReturCanvas;
 import id.net.gmedia.pal.Activity.SuratJalan;
 import id.net.gmedia.pal.Activity.PenjualanSoCanvas.Penjualan;
 import id.net.gmedia.pal.Activity.Piutang.Piutang;
@@ -53,12 +67,18 @@ public class MainActivity extends AppCompatActivity {
     //Variabel flag edit password
     private boolean pass_lama = true, pass_baru = true, re_pass_baru = true;
 
+    private Dialog dialogVersion;
+    private String link = "";
+    private String version = "";
+
     //Variabel slider
     private List<String> listImage = new ArrayList<>();
     private Slider slider;
 
     //Variabel flag double click exit
     private boolean exit = false;
+
+    private Dialog sub_menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,135 +194,281 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Menu button click
-        findViewById(R.id.img_data_customer).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_customer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Customer.class));
+                checkIsDialogShowing();
+                sub_menu = DialogFactory.getInstance().
+                        createDialog(MainActivity.this,
+                                R.layout.popup_main_customer, 90);
+
+                View btn_data, btn_tambah, btn_blacklist;
+                btn_data = sub_menu.findViewById(R.id.btn_data);
+                btn_tambah = sub_menu.findViewById(R.id.btn_tambah);
+                btn_blacklist = sub_menu.findViewById(R.id.btn_blacklist);
+
+                btn_data.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, Customer.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_tambah.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, CustomerDetail.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_blacklist.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, BlacklistCustomer.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                sub_menu.show();
             }
         });
 
         findViewById(R.id.img_piutang).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Piutang.class));
+                checkIsDialogShowing();
+                sub_menu = DialogFactory.getInstance().
+                        createDialog(MainActivity.this,
+                                R.layout.popup_main_piutang, 90);
+
+                View btn_piutang, btn_dispensasi, btn_plafon;
+                btn_piutang = sub_menu.findViewById(R.id.btn_piutang);
+                btn_dispensasi = sub_menu.findViewById(R.id.btn_dispensasi);
+                btn_plafon = sub_menu.findViewById(R.id.btn_plafon);
+
+                btn_piutang.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, Piutang.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_dispensasi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.this, Customer.class);
+                        i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_DISPENSASI);
+                        startActivity(i);
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_plafon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.this, Customer.class);
+                        i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_PENAMBAHAN_PLAFON);
+                        startActivity(i);
+                        sub_menu.dismiss();
+                    }
+                });
+
+                sub_menu.show();
             }
         });
 
-        findViewById(R.id.img_penjualan_so).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_penjualan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Penjualan.class);
-                i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, Constant.PENJUALAN_SO);
-                startActivity(i);
+                checkIsDialogShowing();
+                sub_menu = DialogFactory.getInstance().
+                        createDialog(MainActivity.this,
+                                R.layout.popup_main_penjualan, 90);
+
+                View btn_so, btn_canvas;
+                btn_so = sub_menu.findViewById(R.id.btn_so);
+                btn_canvas = sub_menu.findViewById(R.id.btn_canvas);
+
+                btn_so.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.this, Penjualan.class);
+                        i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, Constant.PENJUALAN_SO);
+                        startActivity(i);
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_canvas.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.this, Penjualan.class);
+                        i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, Constant.PENJUALAN_CANVAS);
+                        startActivity(i);
+                        sub_menu.dismiss();
+                    }
+                });
+
+                sub_menu.show();
             }
         });
 
-        findViewById(R.id.img_penjualan_canvas).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_riwayat).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Penjualan.class);
-                i.putExtra(Constant.EXTRA_JENIS_PENJUALAN, Constant.PENJUALAN_CANVAS);
-                startActivity(i);
+                checkIsDialogShowing();
+                sub_menu = DialogFactory.getInstance().
+                        createDialog(MainActivity.this,
+                                R.layout.popup_main_history, 90);
+
+                View btn_so, btn_penjualan;
+                btn_so = sub_menu.findViewById(R.id.btn_so);
+                btn_penjualan = sub_menu.findViewById(R.id.btn_penjualan);
+
+                btn_so.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, DaftarSO.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_penjualan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, Riwayat.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                sub_menu.show();
             }
         });
 
-        findViewById(R.id.img_data_riwayat_customer).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_setoranpelunasan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Riwayat.class));
+                checkIsDialogShowing();
+                sub_menu = DialogFactory.getInstance().
+                        createDialog(MainActivity.this,
+                                R.layout.popup_main_setoranpelunasan, 90);
+
+                View btn_setoran, btn_pelunasan,  btn_giro;
+                btn_setoran = sub_menu.findViewById(R.id.btn_setoran);
+                btn_pelunasan = sub_menu.findViewById(R.id.btn_pelunasan);
+                btn_giro = sub_menu.findViewById(R.id.btn_giro);
+
+                btn_setoran.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, SetoranSales.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_pelunasan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.this, Customer.class);
+                        i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_DAFTAR_PELUNASAN);
+                        startActivity(i);
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_giro.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.this, Customer.class);
+                        i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_GIRO);
+                        startActivity(i);
+                        sub_menu.dismiss();
+                    }
+                });
+
+                sub_menu.show();
             }
         });
 
-        findViewById(R.id.img_daftar_so).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_retur).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DaftarSO.class));
+                checkIsDialogShowing();
+                sub_menu = DialogFactory.getInstance().
+                        createDialog(MainActivity.this,
+                                R.layout.popup_main_retur, 90);
+
+                View btn_customer, btn_canvas;
+                btn_customer = sub_menu.findViewById(R.id.btn_customer);
+                btn_canvas = sub_menu.findViewById(R.id.btn_canvas);
+
+                btn_customer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, ReturBarang.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_canvas.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, ReturCanvas.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                sub_menu.show();
             }
         });
 
-        findViewById(R.id.img_merchandiser).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_stok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Merchandiser.class));
+                checkIsDialogShowing();
+                sub_menu = DialogFactory.getInstance().
+                        createDialog(MainActivity.this,
+                                R.layout.popup_main_stok, 90);
+
+                View btn_stok, btn_pengajuan;
+                btn_stok = sub_menu.findViewById(R.id.btn_stok);
+                btn_pengajuan = sub_menu.findViewById(R.id.btn_pengajuan);
+
+                btn_stok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, StokCanvas.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_pengajuan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, PengajuanMutasiActivity.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                sub_menu.show();
             }
         });
 
-        findViewById(R.id.img_stok_canvas).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, StokCanvas.class));
-            }
-        });
-
-        findViewById(R.id.img_setoran_sales).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SetoranSales.class));
-            }
-        });
-
-        findViewById(R.id.img_blacklist_customer).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BlacklistCustomer.class));
-            }
-        });
-
-        findViewById(R.id.img_retur_barang).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ReturBarang.class));
-            }
-        });
-
-        findViewById(R.id.img_giro).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Customer.class);
-                i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_GIRO);
-                startActivity(i);
-            }
-        });
-
-        findViewById(R.id.img_mutasi).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_suratjalan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SuratJalan.class));
             }
         });
 
-        findViewById(R.id.img_dispensasi).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Customer.class);
-                i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_DISPENSASI);
-                startActivity(i);
-            }
-        });
-
-        findViewById(R.id.img_pengajuan_penambahan_plafon).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Customer.class);
-                i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_PENAMBAHAN_PLAFON);
-                startActivity(i);
-            }
-        });
-
-        findViewById(R.id.img_daftar_pelunasan).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Customer.class);
-                i.putExtra(Constant.EXTRA_ACT_CODE, Constant.ACT_DAFTAR_PELUNASAN);
-                startActivity(i);
-            }
-        });
-
         //Inisialisasi menu berdasarkan jabatan user
         if(AppSharedPreferences.getJabatan(this).equals("Manager") ||
                 AppSharedPreferences.getJabatan(this).equals("Direktur") ||
-                AppSharedPreferences.getPosisi(this).equals("Accounting")){
-            ((Guideline)findViewById(R.id.guideline2)).setGuidelinePercent(0.15f);
+                AppSharedPreferences.getPosisi(this).equals("Accounting") ||
+                AppSharedPreferences.getJabatan(this).equals("Supervisor") ){
 
             //Inisialisasi menu approval
             LinearLayout img_approval = findViewById(R.id.img_approval);
@@ -310,11 +476,103 @@ public class MainActivity extends AppCompatActivity {
             img_approval.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, Approval.class));
+                    //startActivity(new Intent(MainActivity.this, Approval.class));
+                    checkIsDialogShowing();
+                    sub_menu = DialogFactory.getInstance().
+                            createDialog(MainActivity.this,
+                                    R.layout.popup_main_approval, 90);
+
+                    View btn_customer, btn_so, btn_po, btn_retur, btn_dispensasi, btn_login, btn_plafon, btn_mutasi;
+                    btn_customer = sub_menu.findViewById(R.id.btn_customer);
+                    btn_so = sub_menu.findViewById(R.id.btn_so);
+                    btn_po = sub_menu.findViewById(R.id.btn_po);
+                    btn_retur = sub_menu.findViewById(R.id.btn_retur);
+                    btn_dispensasi = sub_menu.findViewById(R.id.btn_dispensasi);
+                    btn_login = sub_menu.findViewById(R.id.btn_login);
+                    btn_plafon = sub_menu.findViewById(R.id.btn_plafon);
+                    btn_mutasi = sub_menu.findViewById(R.id.btn_mutasi);
+
+                    btn_so.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(MainActivity.this, ApprovalSo.class));
+                            sub_menu.dismiss();
+                        }
+                    });
+
+                    btn_retur.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(MainActivity.this, ApprovalRetur.class));
+                            sub_menu.dismiss();
+                        }
+                    });
+
+                    btn_plafon.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(MainActivity.this, ApprovalPenambahanPlafon.class));
+                            sub_menu.dismiss();
+                        }
+                    });
+
+                    if(AppSharedPreferences.getJabatan(MainActivity.this).equals("Manager") ||
+                            AppSharedPreferences.getJabatan(MainActivity.this).equals("Direktur") ||
+                            AppSharedPreferences.getJabatan(MainActivity.this).equals("Supervisor")) {
+
+                        btn_customer.setVisibility(View.VISIBLE);
+                        btn_po.setVisibility(View.VISIBLE);
+                        btn_dispensasi.setVisibility(View.VISIBLE);
+                        btn_login.setVisibility(View.VISIBLE);
+                        btn_mutasi.setVisibility(View.VISIBLE);
+
+                        btn_customer.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this, ApprovalPelanggan.class));
+                                sub_menu.dismiss();
+                            }
+                        });
+
+                        btn_po.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this, ApprovalPO.class));
+                                sub_menu.dismiss();
+                            }
+                        });
+
+                        btn_login.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this, ApprovalLoginPengganti.class));
+                                sub_menu.dismiss();
+                            }
+                        });
+
+                        btn_dispensasi.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this, ApprovalDispensasiPiutang.class));
+                                sub_menu.dismiss();
+                            }
+                        });
+
+                        btn_mutasi.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this, ApprovalPengajuanMutasi.class));
+                                sub_menu.dismiss();
+                            }
+                        });
+                    }
+
+                    sub_menu.show();
                 }
             });
         }
 
+        //startActivity(new Intent(MainActivity.this, Merchandiser.class));
         initSlider();
     }
 
@@ -371,32 +629,32 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_logout:
-                //logout user
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Logout");
-                builder.setMessage("Apakah anda yakin ingin keluar?");
-                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(i);
-                        AppSharedPreferences.Logout(MainActivity.this);
-                    }
-                });
-                builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.create().show();
-                return true;
-                default:return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_logout) {//logout user
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Logout");
+            builder.setMessage("Apakah anda yakin ingin keluar?");
+            builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                    AppSharedPreferences.Logout(MainActivity.this);
+                }
+            });
+            builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.create().show();
+            return true;
+        }
+        else{
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -432,16 +690,107 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-
                     public void onError(String result) {
                         Log.v(Constant.TAG, "Update FCM gagal");
                     }
                 });
     }
 
+    private void checkVersion(){
+        PackageInfo pInfo = null;
+        version = "";
+
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(Constant.TAG, e.getMessage());
+        }
+
+        if(pInfo != null){
+            version = pInfo.versionName;
+        }
+
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_VERSION, ApiVolleyManager.METHOD_GET,
+                Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        Log.e(Constant.TAG, message);
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        try{
+                            JSONObject response = new JSONObject(result);
+                            String latestVersion = response.getString("version");
+                            link = response.getString("url");
+                            boolean updateRequired = response.getString("is_required").equals("1");
+
+                            if (!version.trim().equals(latestVersion.trim()) && link.length() > 0) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                if (updateRequired) {
+                                    builder.setIcon(R.mipmap.ic_launcher)
+                                            .setTitle("Update")
+                                            .setMessage("Versi terbaru " + latestVersion +
+                                                    " telah tersedia, mohon download versi terbaru.")
+                                            .setPositiveButton("Update Sekarang", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                                                    startActivity(browserIntent);
+                                                }
+                                            });
+                                    dialogVersion = builder.create();
+                                    dialogVersion.setCancelable(false);
+                                    dialogVersion.show();
+                                } else {
+                                    builder.setIcon(R.mipmap.ic_launcher)
+                                            .setTitle("Update")
+                                            .setMessage("Versi terbaru " + latestVersion +
+                                                    " telah tersedia, mohon download versi terbaru.")
+                                            .setPositiveButton("Update Sekarang", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                                                    startActivity(browserIntent);
+                                                }
+                                            })
+                                            .setNegativeButton("Update Nanti", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                    dialogVersion = builder.create();
+                                    dialogVersion.show();
+                                }
+                            }
+
+                        }
+                        catch (JSONException e){
+                            Log.e(Constant.TAG, e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        Log.e(Constant.TAG, message);
+                    }
+                }));
+    }
+
+    private void checkIsDialogShowing(){
+        if(sub_menu != null){
+            if(sub_menu.isShowing()){
+                sub_menu.dismiss();
+            }
+        }
+    }
+
     @Override
     protected void onResume() {
         updateFcm();
+        checkVersion();
         super.onResume();
     }
 }

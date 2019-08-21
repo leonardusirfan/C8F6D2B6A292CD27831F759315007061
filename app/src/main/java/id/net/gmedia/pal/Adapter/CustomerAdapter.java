@@ -132,14 +132,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
                 });
             }
         }
-        else if(activity instanceof ApprovalPelanggan){
-            customerViewHolder.item_customer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ((ApprovalPelanggan)activity).showApproval(customer.getId());
-                }
-            });
-        }
         else if(activity instanceof Penjualan){
             customerViewHolder.item_customer.setOnClickListener(new View.OnClickListener() {
                 @Override

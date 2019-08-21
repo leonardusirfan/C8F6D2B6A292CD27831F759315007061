@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp15">
+
+        <ImageView
+            android:id="@+id/img_customer"
+            android:layout_width="@dimen/medium_icon_size"
+            android:layout_height="@dimen/medium_icon_size"
+            android:layout_marginEnd="@dimen/dp20"
+            android:src="@drawable/foto_outlet"/>
+
+        <TextView
+            android:id="@+id/txt_nama"
+            android:layout_toEndOf="@id/img_customer"
+            android:layout_toStartOf="@id/btn_approval"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/dp10"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txt_alamat"
+            android:layout_below="@id/txt_nama"
+            android:layout_toStartOf="@id/btn_approval"
+            android:layout_toEndOf="@id/img_customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp5" />
+
+        <Button
+            android:id="@+id/btn_approval"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="Approval"
+            android:background="@drawable/style_rounded_green_rectangle_small"
+            android:layout_margin="@dimen/dp5"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp10"
+            android:textAllCaps="false"
+            android:layout_width="@dimen/small_approval_button_width"
+            android:layout_height="@dimen/small_approval_button_height" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp15"
+        android:background="#FAFAFA"/>
+
+</LinearLayout>

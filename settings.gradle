@@ -5,4 +5,3 @@ include ':thermalbluetoothprinter'
 project (":thermalbluetoothprinter").projectDir = new File("D:\\GMEDIA\\AppCustomModule\\thermalbluetoothprinter")
 include ':locationmanager'
 project (":locationmanager").projectDir = new File("D:\\GMEDIA\\AppCustomModule\\locationmanager")
-

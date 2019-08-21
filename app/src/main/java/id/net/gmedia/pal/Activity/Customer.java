@@ -1,6 +1,5 @@
 package id.net.gmedia.pal.Activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.leonardus.irfan.ApiVolleyManager;
@@ -35,7 +33,6 @@ import id.net.gmedia.pal.Model.CustomerModel;
 import id.net.gmedia.pal.R;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
-import rjsv.floatingmenu.floatingmenubutton.FloatingMenuButton;
 
 public class Customer extends AppCompatActivity {
 
@@ -62,17 +59,6 @@ public class Customer extends AppCompatActivity {
         //inisialisasi intent jika ada
         if(getIntent().hasExtra(Constant.EXTRA_ACT_CODE)){
             act_code = getIntent().getIntExtra(Constant.EXTRA_ACT_CODE, 0);
-        }
-        else{
-            FloatingMenuButton fab_tambah = findViewById(R.id.fab_tambah);
-            fab_tambah.setVisibility(View.VISIBLE);
-            //on Click tambah Customer
-            fab_tambah.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(Customer.this, CustomerDetail.class));
-                }
-            });
         }
 
         //Inisialisasi Recycler View & Adapter

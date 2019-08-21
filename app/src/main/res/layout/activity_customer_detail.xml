@@ -413,24 +413,30 @@
             app:zoomEnabled="true"
             app:hasClickableChildren="false">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:id="@+id/layout_galeri_selected"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/dp5">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/img_galeri_selected"
-                    android:contentDescription="@null"
+                <android.support.v7.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_next"
-                    app:layout_constraintStart_toEndOf="@+id/btn_previous"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:cardCornerRadius="@dimen/dp5">
 
-            </android.support.v7.widget.CardView>
+                    <ImageView
+                        android:id="@+id/img_galeri_selected"
+                        android:contentDescription="@null"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_next"
+                        app:layout_constraintStart_toEndOf="@+id/btn_previous"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
         </com.otaliastudios.zoom.ZoomLayout>
 
         <Button

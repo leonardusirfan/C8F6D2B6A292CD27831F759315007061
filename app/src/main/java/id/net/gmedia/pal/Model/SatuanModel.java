@@ -1,5 +1,7 @@
 package id.net.gmedia.pal.Model;
 
+import android.support.annotation.NonNull;
+
 public class SatuanModel {
     private String satuan;
     private int jumlah;
@@ -23,5 +25,11 @@ public class SatuanModel {
 
     public int getJumlah() {
         return jumlah;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return satuan;
     }
 }

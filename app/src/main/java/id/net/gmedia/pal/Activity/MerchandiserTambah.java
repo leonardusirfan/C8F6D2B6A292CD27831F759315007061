@@ -162,7 +162,7 @@ public class MerchandiserTambah extends AppCompatActivity {
                     try{
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
                                 Uri.fromFile(new File(data.getStringArrayListExtra(Pix.IMAGE_RESULTS).get(0))));
-                        bitmap = Converter.resizeBitmap(bitmap, 1200);
+                        bitmap = Converter.resizeBitmap(bitmap, 750);
 
                         img_merchandiser.setImageBitmap(bitmap);
                         //img_merchandiser.setScaleType(ImageView.ScaleType.CENTER_CROP);

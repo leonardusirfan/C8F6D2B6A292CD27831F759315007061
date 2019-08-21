@@ -3,7 +3,6 @@ package id.net.gmedia.pal.Activity.Piutang;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -43,10 +42,6 @@ import com.leonardus.irfan.DialogFactory;
 import com.leonardus.irfan.JSONBuilder;
 import com.leonardus.irfan.LoadMoreScrollListener;
 import com.leonardus.irfan.SimpleObjectModel;
-import com.leonardus.irfan.bluetoothprinter.BluetoothPrinter;
-import com.leonardus.irfan.bluetoothprinter.Model.Item;
-import com.leonardus.irfan.bluetoothprinter.Model.Transaksi;
-import com.leonardus.irfan.bluetoothprinter.NotaPrinter;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.json.JSONArray;
@@ -56,13 +51,10 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import id.net.gmedia.pal.Activity.DaftarSO.DaftarSODetail;
 import id.net.gmedia.pal.MainActivity;
-import id.net.gmedia.pal.Model.BarangModel;
 import id.net.gmedia.pal.Model.CustomerModel;
 import id.net.gmedia.pal.Model.PiutangModel;
 import id.net.gmedia.pal.Model.UploadModel;
@@ -76,8 +68,6 @@ import id.net.gmedia.pal.Util.GoogleLocationManager;
 import com.leonardus.irfan.Haversine;
 
 public class PiutangDetail extends AppCompatActivity {
-
-    private NotaPrinter printerManager;
 
     //Variabel global id upload
     private final int UPLOAD_BUKTI = 999;
@@ -492,14 +482,17 @@ public class PiutangDetail extends AppCompatActivity {
             loadMoreScrollListener.initLoad();
         }
 
-        String parameter = String.format(Locale.getDefault(), "%s?start=%d&limit=%d",
-                customer.getId(), loadMoreScrollListener.getLoaded(), 10);
-        if(tempo){
-            parameter += "&filter=tempo";
-        }
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_PIUTANG_CUSTOMER + parameter,
-                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+        JSONBuilder body = new JSONBuilder();
+        body.add("kode_pelanggan", customer.getId());
+        body.add("filter", tempo?"tempo":"");
+        body.add("status", "");
+        body.add("start", loadMoreScrollListener.getLoaded());
+        body.add("limit", 10);
+        body.add("search", "");
+
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_PIUTANG_CUSTOMER,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         if(init){
@@ -718,10 +711,12 @@ public class PiutangDetail extends AppCompatActivity {
 
     private void initReturPiutang(){
         //Inisialisasi jumlah piutang
-        String parameter = String.format(Locale.getDefault(), "/%s", customer.getId());
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_RETUR_CUSTOMER_CREDIT + parameter,
-                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+        JSONBuilder body = new JSONBuilder();
+        body.add("kode_pelanggan", customer.getId());
+
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_RETUR_CUSTOMER_CREDIT,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         jum_retur = 0;
@@ -859,10 +854,12 @@ public class PiutangDetail extends AppCompatActivity {
 
     private void loadGiro(){
         //Membaca data nomor giro dari Web Service
-        String parameter = String.format(Locale.getDefault(), "/%s", customer.getId());
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_GIRO_LIST + parameter,
-                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+        JSONBuilder body = new JSONBuilder();
+        body.add("kode_pelanggan", customer.getId());
+
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_GIRO_LIST,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         listNomorGiro = new ArrayList<>();
@@ -948,7 +945,7 @@ public class PiutangDetail extends AppCompatActivity {
                     try{
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
                                 Uri.fromFile(new File(data.getStringArrayListExtra(Pix.IMAGE_RESULTS).get(0))));
-                        bitmap = Converter.resizeBitmap(bitmap, 1200);
+                        bitmap = Converter.resizeBitmap(bitmap, 750);
 
                         img_bukti.setImageBitmap(bitmap);
                         overlay_bukti.setVisibility(View.VISIBLE);
@@ -976,15 +973,14 @@ public class PiutangDetail extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case GoogleLocationManager.PERMISSION_LOCATION:{
-                if(manager != null){
-                    manager.startLocationUpdates();
-                }
-                break;
+        if(requestCode == GoogleLocationManager.PERMISSION_LOCATION){
+            if(manager != null){
+                manager.startLocationUpdates();
             }
         }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        else{
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     @Override

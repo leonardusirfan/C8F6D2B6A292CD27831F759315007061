@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Activity.Approval.ApprovalPengajuanMutasiDetail">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_barang"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@drawable/style_shadow"
+        app:layout_constraintBottom_toTopOf="@+id/layout_approval" />
+
+    <LinearLayout
+        android:id="@+id/layout_approval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/dp20"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spn_approval"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/style_rounded_gray_rectangle"
+            android:layout_marginBottom="@dimen/dp20" />
+
+        <Button
+            android:id="@+id/btn_proses"
+            android:layout_width="@dimen/approval_button_width"
+            android:layout_height="@dimen/approval_button_height"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/style_rounded_green_rectangle"
+            android:text="Proses"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

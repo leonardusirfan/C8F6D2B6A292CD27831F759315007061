@@ -188,12 +188,16 @@ public class ListGiroDetail extends AppCompatActivity{
             loadMoreScrollListener.initLoad();
         }
 
+        JSONBuilder body = new JSONBuilder();
+        body.add("kode_pelanggan", id_customer);
+        body.add("start", loadMoreScrollListener.getLoaded());
+        body.add("limit", LOAD_COUNT);
+        body.add("search", search);
+
         AppLoading.getInstance().showLoading(this, R.layout.popup_loading);
-        String parameter = String.format(Locale.getDefault(), "/%s?start=%d&limit=%d&search=%s", id_customer,
-                loadMoreScrollListener.getLoaded(), LOAD_COUNT, search);
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_GIRO_LIST + parameter,
-                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_GIRO_LIST,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         if(init){

@@ -63,6 +63,16 @@ public class BarangModel {
         this.subtotal = subtotal;
     }
 
+    public BarangModel(String id, String kode, String nama){
+        this.id = id;
+        this.kode = kode;
+        this.nama = nama;
+    }
+
+    public void setNo_batch(String no_batch) {
+        this.no_batch = no_batch;
+    }
+
     public BarangModel(String id, String nama, double harga, double diskon){
         this.id = id;
         this.nama = nama;

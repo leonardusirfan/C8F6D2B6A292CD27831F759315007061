@@ -187,7 +187,7 @@ public class ReturDetailAdapter extends RecyclerView.Adapter<ReturDetailAdapter.
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(),
                     Uri.fromFile(new File(data.getStringArrayListExtra(Pix.IMAGE_RESULTS).get(0))));
-            bitmap = Converter.resizeBitmap(bitmap, 1200);
+            bitmap = Converter.resizeBitmap(bitmap, 750);
 
             img_retur.setImageBitmap(bitmap);
             overlay_retur.setVisibility(View.VISIBLE);

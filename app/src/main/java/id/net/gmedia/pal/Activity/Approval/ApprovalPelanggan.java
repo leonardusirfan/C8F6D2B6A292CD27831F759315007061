@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.net.gmedia.pal.Adapter.CustomerAdapter;
+import id.net.gmedia.pal.Adapter.AdapterApprovalPelanggan;
 import id.net.gmedia.pal.Model.CustomerModel;
 import id.net.gmedia.pal.R;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
@@ -35,7 +35,7 @@ import id.net.gmedia.pal.Util.Constant;
 public class ApprovalPelanggan extends AppCompatActivity {
 
     //Variabel data Customer
-    private CustomerAdapter adapter;
+    private AdapterApprovalPelanggan adapter;
     private List<CustomerModel> listCustomer = new ArrayList<>();
 
     @Override
@@ -44,6 +44,7 @@ public class ApprovalPelanggan extends AppCompatActivity {
         setContentView(R.layout.activity_list_customer);
 
         //Inisialisasi Toolbar
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         if(getSupportActionBar() != null){
             getSupportActionBar().setTitle("Approval Customer");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -53,7 +54,7 @@ public class ApprovalPelanggan extends AppCompatActivity {
         RecyclerView rv_customer = findViewById(R.id.rv_customer);
         rv_customer.setItemAnimator(new DefaultItemAnimator());
         rv_customer.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CustomerAdapter(this, listCustomer);
+        adapter = new AdapterApprovalPelanggan(this, listCustomer);
         rv_customer.setAdapter(adapter);
 
         //muat data Customer
@@ -123,7 +124,9 @@ public class ApprovalPelanggan extends AppCompatActivity {
                     public void onEmpty(String message) {
                         listCustomer.clear();
                         adapter.notifyDataSetChanged();
+
                         AppLoading.getInstance().stopLoading();
+                        Toast.makeText(ApprovalPelanggan.this, message, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -158,12 +161,8 @@ public class ApprovalPelanggan extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

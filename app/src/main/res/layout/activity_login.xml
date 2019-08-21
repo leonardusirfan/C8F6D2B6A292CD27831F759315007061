@@ -94,7 +94,7 @@
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/style_fullrounded_green_rectangle"
+        android:background="@drawable/style_rounded_green_rectangle"
         android:text="@string/login"
         android:textAllCaps="false"
         android:textColor="@color/white"

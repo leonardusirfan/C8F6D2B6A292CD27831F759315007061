@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:cardCornerRadius="@dimen/dp10"
+    android:layout_margin="@dimen/dp10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/dp20">
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp20"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/medium_icon_size"
+                android:layout_height="@dimen/medium_icon_size"
+                android:src="@drawable/men" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CUSTOMER"
+                android:layout_marginStart="@dimen/dp20"
+                android:layout_marginEnd="@dimen/dp20"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/btn_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/approval_button_height"
+                    android:layout_margin="@dimen/dp10"
+                    app:cardCornerRadius="@dimen/dp10">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#76BA1B"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_weight="0.2"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/costumer" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp10"
+                            android:layout_weight="0.8"
+                            android:background="@android:color/transparent"
+                            android:text="Data Customer"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp16"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.design.card.MaterialCardView>
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/btn_tambah"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/approval_button_height"
+                    app:cardCornerRadius="@dimen/dp10"
+                    android:layout_margin="@dimen/dp10">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#4C9A2A"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_weight="0.2"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/tambah_white" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp10"
+                            android:layout_weight="0.8"
+                            android:background="@android:color/transparent"
+                            android:text="Tambah Customer"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp16"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.design.card.MaterialCardView>
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/btn_blacklist"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/approval_button_height"
+                    android:layout_margin="@dimen/dp10"
+                    app:cardCornerRadius="@dimen/dp10">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#1E5631"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_weight="0.2"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/blacklist" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp10"
+                            android:layout_weight="0.8"
+                            android:background="@android:color/transparent"
+                            android:text="Blacklist Customer"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp16"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.design.card.MaterialCardView>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</android.support.design.card.MaterialCardView>

@@ -92,6 +92,7 @@ public class ApprovalDispensasiPiutang extends AppCompatActivity {
                         }
                         AppLoading.getInstance().stopLoading();
                         loadManager.finishLoad(0);
+                        Toast.makeText(ApprovalDispensasiPiutang.this, message, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -132,9 +133,16 @@ public class ApprovalDispensasiPiutang extends AppCompatActivity {
 
     public void loadApproval(){
         //Memuat data respon approval dari Web Service
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_MASTER_APPROVAL, ApiVolleyManager.METHOD_GET,
+        ApiVolleyManager.getInstance().addRequest(this,
+                Constant.URL_MASTER_APPROVAL + "/dispen_piutang", ApiVolleyManager.METHOD_GET,
                 Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                new AppRequestCallback(new AppRequestCallback.SimpleRequestListener() {
+                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        listApproval.clear();
+                        adapter.setListApproval(listApproval);
+                    }
+
                     @Override
                     public void onSuccess(String result) {
                         try{

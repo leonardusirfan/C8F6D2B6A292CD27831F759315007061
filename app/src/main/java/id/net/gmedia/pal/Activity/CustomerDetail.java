@@ -14,7 +14,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -24,6 +23,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -89,7 +89,7 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
     private ProgressBar bar_ktp, bar_outlet;
     private ImageView img_galeri_selected;
     private ConstraintLayout layout_overlay;
-    private CardView layout_galeri_selected;
+    private LinearLayout layout_galeri_selected;
     private ZoomLayout layout_zoom;
     private Button btn_next, btn_previous;
     private CollapsingToolbarLayout collapsing;
@@ -667,67 +667,68 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
     }
 
     private void initCustomer(){
-        if(!id_customer.equals("")){
-            ApiVolleyManager.getInstance().addRequest(this, Constant.URL_CUSTOMER_DETAIL + id_customer,
-                    ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                    new AppRequestCallback(new AppRequestCallback.RequestListener() {
-                @Override
-                public void onEmpty(String message) {
-                    Toast.makeText(CustomerDetail.this, message, Toast.LENGTH_SHORT).show();
-                }
+        JSONBuilder body = new JSONBuilder();
+        body.add("kode_pelanggan", id_customer);
 
-                @Override
-                public void onSuccess(String result) {
-                    try{
-                        JSONObject customer = new JSONObject(result).getJSONObject("customer");
-                        JSONArray imageList = new JSONObject(result).getJSONArray("image_list");
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_CUSTOMER_DETAIL,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        Toast.makeText(CustomerDetail.this, message, Toast.LENGTH_SHORT).show();
+                    }
 
-                        txt_nama.setText(customer.getString("nama"));
-                        txt_nama_pemilik.setText(customer.getString("nama_pemilik"));
-                        txt_alamat.setText(customer.getString("alamat"));
-                        txt_no_ktp.setText(customer.getString("no_ktp"));
-                        txt_area.setText(customer.getString("area"));
-                        txt_npwp.setText(customer.getString("npwp"));
-                        txt_no_hp.setText(customer.getString("no_hp"));
-                        txt_kota.setText(customer.getString("kota"));
-                        txt_provinsi.setText(customer.getString("provinsi"));
-                        txt_negara.setText(customer.getString("negara"));
+                    @Override
+                    public void onSuccess(String result) {
+                        try{
+                            JSONObject customer = new JSONObject(result).getJSONObject("customer");
+                            JSONArray imageList = new JSONObject(result).getJSONArray("image_list");
 
-                        for(int i = 0; i < imageList.length(); i++){
-                            listFotoOutlet.add(imageList.getJSONObject(i).getString("image"));
+                            txt_nama.setText(customer.getString("nama"));
+                            txt_nama_pemilik.setText(customer.getString("nama_pemilik"));
+                            txt_alamat.setText(customer.getString("alamat"));
+                            txt_no_ktp.setText(customer.getString("no_ktp"));
+                            txt_area.setText(customer.getString("area"));
+                            txt_npwp.setText(customer.getString("npwp"));
+                            txt_no_hp.setText(customer.getString("no_hp"));
+                            txt_kota.setText(customer.getString("kota"));
+                            txt_provinsi.setText(customer.getString("provinsi"));
+                            txt_negara.setText(customer.getString("negara"));
+
+                            for(int i = 0; i < imageList.length(); i++){
+                                listFotoOutlet.add(imageList.getJSONObject(i).getString("image"));
+                            }
+
+                            if(!customer.getString("gambar_ktp").equals("null") && !customer.getString("gambar_ktp").equals("")){
+                                img_ktp.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                                listFotoKtp.add(customer.getString("gambar_ktp"));
+                                Glide.with(CustomerDetail.this).load(customer.getString("gambar_ktp")).into(img_ktp);
+                            }
+
+                            if(listFotoOutlet.size() > 0){
+                                img_outlet.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                                Glide.with(CustomerDetail.this).load(listFotoOutlet.get(0)).into(img_outlet);
+                            }
+
+                            if(!customer.getString("latitude").equals("null") && !customer.getString("longitude").equals("null") ){
+                                lokasi = new LatLng(customer.getDouble("latitude"), customer.getDouble("longitude"));
+                                marker = mMap.addMarker(new MarkerOptions().position(lokasi).title("Lokasi Customer").draggable(true));
+                                marker.setPosition(lokasi);
+                                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
+                            }
                         }
-
-                        if(!customer.getString("gambar_ktp").equals("null") && !customer.getString("gambar_ktp").equals("")){
-                            img_ktp.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                            listFotoKtp.add(customer.getString("gambar_ktp"));
-                            Glide.with(CustomerDetail.this).load(customer.getString("gambar_ktp")).into(img_ktp);
-                        }
-
-                        if(listFotoOutlet.size() > 0){
-                            img_outlet.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                            Glide.with(CustomerDetail.this).load(listFotoOutlet.get(0)).into(img_outlet);
-                        }
-
-                        if(!customer.getString("latitude").equals("null") && !customer.getString("longitude").equals("null") ){
-                            lokasi = new LatLng(customer.getDouble("latitude"), customer.getDouble("longitude"));
-                            marker = mMap.addMarker(new MarkerOptions().position(lokasi).title("Lokasi Customer").draggable(true));
-                            marker.setPosition(lokasi);
-                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15.0f));
+                        catch (JSONException e){
+                            Toast.makeText(CustomerDetail.this, R.string.error_json, Toast.LENGTH_SHORT).show();
+                            Log.e(Constant.TAG, e.getMessage());
+                            e.printStackTrace();
                         }
                     }
-                    catch (JSONException e){
-                        Toast.makeText(CustomerDetail.this, R.string.error_json, Toast.LENGTH_SHORT).show();
-                        Log.e(Constant.TAG, e.getMessage());
-                        e.printStackTrace();
-                    }
-                }
 
-                @Override
-                public void onFail(String message) {
-                    Toast.makeText(CustomerDetail.this, message, Toast.LENGTH_SHORT).show();
-                }
-            }));
-        }
+                    @Override
+                    public void onFail(String message) {
+                        Toast.makeText(CustomerDetail.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                }));
     }
 
     @Override
@@ -781,15 +782,14 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case GoogleLocationManager.PERMISSION_LOCATION:{
-                if(manager != null){
-                    manager.startLocationUpdates();
-                }
-                break;
+        if (requestCode == GoogleLocationManager.PERMISSION_LOCATION) {
+            if (manager != null) {
+                manager.startLocationUpdates();
             }
         }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        else{
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     @Override
@@ -807,7 +807,7 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                         listFotoKtp.clear();
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
                                 Uri.fromFile(new File(data.getStringArrayListExtra(Pix.IMAGE_RESULTS).get(0))));
-                        bitmap = Converter.resizeBitmap(bitmap, 1200);
+                        bitmap = Converter.resizeBitmap(bitmap, 750);
 
                         //UploadModel uploadModel = new UploadModel(resized);
                         img_ktp.setImageBitmap(bitmap);
@@ -834,7 +834,7 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                         for(int i = 0; i < listPath.size(); i++){
                             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
                                     Uri.fromFile(new File(listPath.get(i))));
-                            bitmap = Converter.resizeBitmap(bitmap, 1200);
+                            bitmap = Converter.resizeBitmap(bitmap, 750);
 
                             UploadModel uploadModel = new UploadModel(bitmap);
                             uploadModel.setUrl(Uri.fromFile(new File(listPath.get(i))).toString());
@@ -882,11 +882,15 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                                 }
                                 else{
                                     Toast.makeText(CustomerDetail.this, message, Toast.LENGTH_SHORT).show();
+
+                                    bar_ktp.setVisibility(View.INVISIBLE);
                                 }
                             }
                             catch (JSONException e){
                                 Toast.makeText(CustomerDetail.this, R.string.error_json, Toast.LENGTH_SHORT).show();
                                 Log.e(Constant.TAG, e.getMessage());
+
+                                bar_ktp.setVisibility(View.INVISIBLE);
                             }
                         }
 
@@ -894,6 +898,8 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                         public void onError(String result) {
                             Toast.makeText(CustomerDetail.this, "Upload gambar gagal", Toast.LENGTH_SHORT).show();
                             Log.e(Constant.TAG, result);
+
+                            bar_ktp.setVisibility(View.INVISIBLE);
                         }
                     });
         }
@@ -920,11 +926,13 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                         }
                         else{
                             Toast.makeText(CustomerDetail.this, message, Toast.LENGTH_SHORT).show();
+                            bar_ktp.setVisibility(View.INVISIBLE);
                         }
                     }
                     catch (JSONException e){
                         Toast.makeText(CustomerDetail.this, R.string.error_json, Toast.LENGTH_SHORT).show();
                         Log.e(Constant.TAG, e.getMessage());
+                        bar_ktp.setVisibility(View.INVISIBLE);
                     }
                 }
 
@@ -932,6 +940,7 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                 public void onError(String result) {
                     Toast.makeText(CustomerDetail.this, "Upload gambar gagal", Toast.LENGTH_SHORT).show();
                     Log.e(Constant.TAG, result);
+                    bar_ktp.setVisibility(View.INVISIBLE);
                 }
             });
         }

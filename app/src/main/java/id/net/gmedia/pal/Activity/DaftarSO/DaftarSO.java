@@ -23,6 +23,7 @@ import com.leonardus.irfan.AppLoading;
 import com.leonardus.irfan.AppRequestCallback;
 import com.leonardus.irfan.Converter;
 import com.leonardus.irfan.DateTimeChooser;
+import com.leonardus.irfan.JSONBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -181,12 +182,16 @@ public class DaftarSO extends AppCompatActivity {
 
     private void loadSo(String search){
         //Membaca data SO dari Web service
+        JSONBuilder body = new JSONBuilder();
+        body.add("start_date", tanggal_mulai);
+        body.add("end_date", tanggal_selesai);
+        body.add("search", search);
+        body.add("status", status);
+
         AppLoading.getInstance().showLoading(this, R.layout.popup_loading);
-        String parameter = String.format(Locale.getDefault(), "?start_date=%s&end_date=%s&search=%s&status=%s",
-                tanggal_mulai, tanggal_selesai, Converter.encodeURL(search), status);
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_DAFTAR_SO + parameter,
-                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_DAFTAR_SO,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         AppLoading.getInstance().stopLoading();
@@ -207,7 +212,6 @@ public class DaftarSO extends AppCompatActivity {
                                         nota.getString("status"), nota.getString("nota_penjualan")));
                             }
 
-                            AppLoading.getInstance().stopLoading();
                             adapter.notifyDataSetChanged();
                         }
                         catch (JSONException e){
@@ -215,11 +219,14 @@ public class DaftarSO extends AppCompatActivity {
                             Log.e(Constant.TAG, e.getMessage());
                             e.printStackTrace();
                         }
+
+                        AppLoading.getInstance().stopLoading();
                     }
 
                     @Override
                     public void onFail(String message) {
                         Toast.makeText(DaftarSO.this, message, Toast.LENGTH_SHORT).show();
+                        AppLoading.getInstance().stopLoading();
                     }
                 }));
     }

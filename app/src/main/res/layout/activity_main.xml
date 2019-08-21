@@ -5,16 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <ss.com.bannerslider.Slider
             android:id="@+id/slider"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="#DBDBDB"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +37,7 @@
 
         </ImageView>
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/imageView2"
             android:contentDescription="@null"
             android:layout_width="match_parent"
@@ -44,7 +47,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        </ImageView>
+        </ImageView>-->
+
+        <View
+            android:id="@+id/guide_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="@dimen/main_layout_icon_height_half"
+            app:layout_constraintBottom_toBottomOf="@id/slider"/>
 
         <RelativeLayout
             android:id="@+id/layout_tunai"
@@ -55,9 +67,9 @@
             android:paddingStart="@dimen/dp30"
             android:paddingEnd="@dimen/dp30"
             android:paddingTop="@dimen/dp10"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/guideline2">
+            app:layout_constraintEnd_toStartOf="@+id/guide_view"
+            app:layout_constraintStart_toEndOf="@+id/guide_view"
+            app:layout_constraintTop_toBottomOf="@id/guide_view">
 
             <TextView
                 android:id="@+id/txt_nama"
@@ -110,11 +122,11 @@
         <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/guideline2"
+            android:layout_below="@id/layout_tunai"
             android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/dp10"
             android:layout_marginEnd="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp20"
             android:layout_marginBottom="@dimen/dp15"
             android:paddingStart="@dimen/dp10"
             android:paddingEnd="@dimen/dp10"
@@ -125,12 +137,11 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_tunai">
 
             <LinearLayout
-                android:id="@+id/img_data_customer"
+                android:id="@+id/img_customer"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -148,17 +159,16 @@
                     android:padding="@dimen/dp2"
                     android:minLines="2"
                     android:text="@string/main_daftar_customer"
-                    android:textSize="@dimen/sp10" />
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/img_penjualan_so"
+                android:id="@+id/img_penjualan"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -167,7 +177,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/main_so" />
+                    android:src="@drawable/main_penjualan" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -176,17 +186,16 @@
                     android:padding="@dimen/dp2"
                     android:minLines="2"
                     android:text="@string/main_penjualan_so"
-                    android:textSize="@dimen/sp10" />
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/img_penjualan_canvas"
+                android:id="@+id/img_riwayat"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -195,7 +204,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/main_canvas" />
+                    android:src="@drawable/main_history" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -203,18 +212,17 @@
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:minLines="2"
-                    android:text="@string/main_penjualan_canvas"
-                    android:textSize="@dimen/sp10" />
+                    android:text="History"
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/img_daftar_so"
+                android:id="@+id/img_setoranpelunasan"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -223,7 +231,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/main_list_so" />
+                    android:src="@drawable/main_setoranpelunasan" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -231,18 +239,17 @@
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:minLines="2"
-                    android:text="Daftar SO"
-                    android:textSize="@dimen/sp10" />
+                    android:text="Setoran dan Pelunasan"
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/img_data_riwayat_customer"
+                android:id="@+id/img_stok"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -251,7 +258,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/main_riwayat" />
+                    android:src="@drawable/main_stok" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -259,8 +266,8 @@
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:minLines="2"
-                    android:text="@string/main_riwayat_penjualan"
-                    android:textSize="@dimen/sp10" />
+                    android:text="Stock"
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
 
@@ -268,9 +275,8 @@
                 android:id="@+id/img_piutang"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -287,17 +293,16 @@
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:text="@string/main_piutang"
-                    android:textSize="@dimen/sp10" />
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/img_merchandiser"
+                android:id="@+id/img_suratjalan"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -306,231 +311,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/main_merchandizer" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:minLines="2"
-                    android:text="Promosi Barang"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_stok_canvas"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/stok_canvas" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:minLines="2"
-                    android:text="Stok Canvas"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_setoran_sales"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/setoran_sales" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:minLines="2"
-                    android:text="Setoran Sales"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_daftar_pelunasan"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/piutang_terlunasi" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:minLines="2"
-                    android:text="Daftar Pelunasan"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_blacklist_customer"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/main_blacklist" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:minLines="2"
-                    android:text="Blacklist Customer"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_retur_barang"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/retur" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:minLines="2"
-                    android:text="Retur Barang"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_giro"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/main_giro" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:minLines="2"
-                    android:text="Daftar Giro"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_dispensasi"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/main_dispensasi" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:minLines="2"
-                    android:text="Dispensasi Piutang"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_mutasi"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/main_surat_jalan" />
+                    android:src="@drawable/main_suratjalan" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -539,17 +320,16 @@
                     android:padding="@dimen/dp2"
                     android:minLines="2"
                     android:text="Surat Jalan"
-                    android:textSize="@dimen/sp10" />
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/img_pengajuan_penambahan_plafon"
+                android:id="@+id/img_retur"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1">
 
@@ -558,7 +338,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/main_plafon" />
+                    android:src="@drawable/main_retur" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -566,28 +346,27 @@
                     android:gravity="center"
                     android:padding="@dimen/dp2"
                     android:minLines="2"
-                    android:text="Penambahan Plafon"
-                    android:textSize="@dimen/sp10" />
+                    android:text="Retur"
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/img_approval"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
                 android:orientation="vertical"
-                android:padding="@dimen/dp15"
+                android:padding="@dimen/dp10"
                 app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                android:visibility="gone">
+                app:layout_rowWeight="1">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/approval_pelanggan" />
+                    android:src="@drawable/main_approval" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -596,102 +375,11 @@
                     android:padding="@dimen/dp2"
                     android:minLines="2"
                     android:text="Approval"
-                    android:textSize="@dimen/sp10" />
+                    android:textSize="@dimen/sp12" />
 
             </LinearLayout>
-
-            <!--<LinearLayout
-                android:id="@+id/img_approval_so"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                android:visibility="gone">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/approval_so" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="Approval SO"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_approval_retur"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                android:visibility="gone">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/approval_retur" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="Approval Retur"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/img_approval_po"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_icon_height"
-                android:background="@drawable/kotak"
-                android:orientation="vertical"
-                android:padding="@dimen/dp15"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                android:visibility="gone">
-
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/approval_po" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dp2"
-                    android:text="Approval PO"
-                    android:textSize="@dimen/sp10" />
-
-            </LinearLayout>-->
 
         </android.support.v7.widget.GridLayout>
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.2" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"

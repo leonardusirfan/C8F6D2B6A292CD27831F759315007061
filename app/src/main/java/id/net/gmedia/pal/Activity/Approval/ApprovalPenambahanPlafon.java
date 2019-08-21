@@ -68,6 +68,7 @@ public class ApprovalPenambahanPlafon extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
 
                         AppLoading.getInstance().stopLoading();
+                        Toast.makeText(ApprovalPenambahanPlafon.this, message, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

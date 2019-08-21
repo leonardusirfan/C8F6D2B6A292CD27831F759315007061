@@ -27,8 +27,10 @@
     <dimen name="upload_icon_size">60dp</dimen>
 
     <dimen name="main_layout_icon_height">150dp</dimen>
+    <dimen name="main_layout_icon_height_half">75dp</dimen>
     <dimen name="customer_tambah_map_height">450dp</dimen>
     <dimen name="icon_size">30dp</dimen>
+    <dimen name="konfirmasi_image_size">240dp</dimen>
     <dimen name="small_icon_size">27dp</dimen>
     <dimen name="medium_icon_size">45dp</dimen>
     <dimen name="default_icon_size">36dp</dimen>
@@ -55,4 +57,7 @@
 
     <dimen name="pengajuan_penambahan_plafon_text_width">225dp</dimen>
     <dimen name="pengajuan_penambahan_plafon_button_width">300dp</dimen>
+
+    <dimen name="small_approval_button_height">60dp</dimen>
+    <dimen name="small_approval_button_width">180dp</dimen>
 </resources>

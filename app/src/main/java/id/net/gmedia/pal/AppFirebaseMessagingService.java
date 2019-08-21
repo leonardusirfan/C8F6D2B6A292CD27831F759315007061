@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -18,6 +19,7 @@ import id.net.gmedia.pal.Activity.Approval.ApprovalPelanggan;
 import id.net.gmedia.pal.Activity.Approval.ApprovalRetur;
 import id.net.gmedia.pal.Activity.Approval.ApprovalSo;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
+import id.net.gmedia.pal.Util.Constant;
 
 public class AppFirebaseMessagingService extends FirebaseMessagingService {
     @Override
@@ -45,6 +47,8 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
             body = remoteMessage.getNotification().getBody();
         }
 
+        Log.d(Constant.TAG, "Notif : " + title + " - " + body);
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = getResources().getString(R.string.notification_channel_id);
 
@@ -69,64 +73,61 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setTicker(title)
-                //     .setPriority(Notification.PRIORITY_MAX)
+                .setContentTitle(title)
+                .setContentText(body);
+        //     .setPriority(Notification.PRIORITY_MAX)
                 /*.setContentTitle(remoteMessage.getNotification().getTitle())
                 .setContentText(remoteMessage.getNotification().getBody())
                 .setContentInfo(remoteMessage.getNotification().getTag());*/
-                .setContentTitle(title)
-                .setContentText(body);
         //.setContentInfo(remoteMessage.getData().get("key_1"));
 
         // notification click action
-        if(AppSharedPreferences.getJabatan(this).equals("Manager") ||
-                AppSharedPreferences.getJabatan(this).equals("Direktur")){
-            if(type != null){
-                switch (type){
-                    case "customer":{
-                        Intent notificationIntent = new Intent(this, ApprovalPelanggan.class);
-                        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                        notificationBuilder.setContentIntent(resultPendingIntent);
-                        break;
-                    }
-                    case "purchase_order":{
-                        Intent notificationIntent = new Intent(this, ApprovalPO.class);
-                        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                        notificationBuilder.setContentIntent(resultPendingIntent);
-                        break;
-                    }
-                    case "sales_order":{
-                        Intent notificationIntent = new Intent(this, ApprovalSo.class);
-                        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                        notificationBuilder.setContentIntent(resultPendingIntent);
-                        break;
-                    }
-                    case "retur_jual":{
-                        Intent notificationIntent = new Intent(this, ApprovalRetur.class);
-                        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                        notificationBuilder.setContentIntent(resultPendingIntent);
-                        break;
-                    }
-                    default:{
-                        Intent notificationIntent = new Intent(this, MainActivity.class);
-                        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                        notificationBuilder.setContentIntent(resultPendingIntent);
-                        break;
-                    }
+        if(type != null){
+            switch (type){
+                case "customer":{
+                    Intent notificationIntent = new Intent(this, ApprovalPelanggan.class);
+                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
+                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    break;
+                }
+                case "purchase_order":{
+                    Intent notificationIntent = new Intent(this, ApprovalPO.class);
+                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
+                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    break;
+                }
+                case "sales_order":{
+                    Intent notificationIntent = new Intent(this, ApprovalSo.class);
+                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
+                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    break;
+                }
+                case "retur_jual":{
+                    Intent notificationIntent = new Intent(this, ApprovalRetur.class);
+                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
+                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    break;
+                }
+                default:{
+                    Intent notificationIntent = new Intent(this, MainActivity.class);
+                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
+                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    break;
                 }
             }
-            else{
-                Intent notificationIntent = new Intent(this, MainActivity.class);
-                PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                        notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                notificationBuilder.setContentIntent(resultPendingIntent);
-            }
-
-            notificationManager.notify(1, notificationBuilder.build());
         }
+        else{
+            Intent notificationIntent = new Intent(this, MainActivity.class);
+            PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
+                    notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(resultPendingIntent);
+        }
+
+        notificationManager.notify(1, notificationBuilder.build());
     }
 }

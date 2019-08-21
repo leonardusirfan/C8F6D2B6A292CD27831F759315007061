@@ -42,8 +42,8 @@
     <string name="customer_detail_pilih_kota">Pilih kota</string>
     <string name="customer_detail_pilih_provinsi">Pilih provinsi</string>
 
-    <string name="main_daftar_customer">Daftar Customer</string>
-    <string name="main_penjualan_so">Penjualan SO</string>
+    <string name="main_daftar_customer">Customer</string>
+    <string name="main_penjualan_so">Penjualan</string>
     <string name="main_penjualan_canvas">Penjualan Canvas</string>
     <string name="main_riwayat_penjualan">Riwayat Penjualan</string>
     <string name="main_piutang">Piutang</string>
@@ -68,9 +68,6 @@
     <string name="title_activity_peta_outlet">Map</string>
 
     <string name="approval_customer">"Setujui Customer ini?"</string>
-    <string name="approval_retur_setuju">"Setujui Retur ini?"</string>
-    <string name="approval_retur_tolak">"Tolak Retur ini?"</string>
-    <string name="approval_so">"Setujui Penjualan SO ini?"</string>
     <string name="indonesia">"Indonesia"</string>
 
     <string name="notification_channel_id">"channel_id_01"</string>

@@ -46,7 +46,7 @@ public class Penjualan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_customer);
+        setContentView(R.layout.activity_customer);
 
         //Inisialisasi Toolbar
         if(getSupportActionBar() != null){

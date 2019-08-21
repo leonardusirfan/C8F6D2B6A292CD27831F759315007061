@@ -13,6 +13,7 @@ import com.leonardus.irfan.ApiVolleyManager;
 import com.leonardus.irfan.AppLoading;
 import com.leonardus.irfan.AppRequestCallback;
 import com.leonardus.irfan.Converter;
+import com.leonardus.irfan.JSONBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,11 +64,12 @@ public class DaftarPelunasan extends AppCompatActivity {
     private void loadPelunasan(){
         AppLoading.getInstance().showLoading(this);
 
-        String parameter = String.format(Locale.getDefault(),
-                "/%s?search=%s", customer.getId(), Converter.encodeURL(""));
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_DAFTAR_PELUNASAN_NOTA + parameter,
-                ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                new AppRequestCallback(new AppRequestCallback.RequestListener() {
+        JSONBuilder body = new JSONBuilder();
+        body.add("kode_pelangaan", customer.getId());
+
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_DAFTAR_PELUNASAN_NOTA,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override
                     public void onEmpty(String message) {
                         listPelunasan.clear();
