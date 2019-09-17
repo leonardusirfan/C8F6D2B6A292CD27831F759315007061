@@ -1,0 +1,23 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.leonardus.irfan.ImageSlider.ImageSliderViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/circle_indicator_layout_size"
+        android:layout_alignBottom="@+id/viewpager"
+        android:layout_alignStart="@id/viewpager"
+        android:layout_marginStart="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp20"
+        app:ci_drawable="@drawable/custom_indicator_selected"
+        app:ci_drawable_unselected="@drawable/custom_indicator_unselected"
+        app:ci_height="@dimen/circle_indicator_size"
+        app:ci_width="@dimen/circle_indicator_size" />
+</RelativeLayout>

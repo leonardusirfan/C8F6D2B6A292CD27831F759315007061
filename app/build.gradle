@@ -64,12 +64,12 @@ dependencies {
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0@aar'
     implementation 'com.google.zxing:core:3.3.0'
-    implementation project(path: ':appcustommodule')
-    implementation project(path: ':thermalbluetoothprinter')
-    implementation project(path: ':locationmanager')
     implementation 'com.itextpdf:itextg:5.5.10'
     // Jika aplikasi memiliki lebih dari 65k (65.536) method
     implementation 'com.android.support:multidex:1.0.3'
+    implementation project(path: ':locationmanager')
+    implementation project(path: ':thermalbluetoothprinter')
+    implementation project(path: ':appcustommodule')
 }
 
 apply plugin: 'com.google.gms.google-services'
