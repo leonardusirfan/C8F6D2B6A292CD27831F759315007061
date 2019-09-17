@@ -46,7 +46,8 @@ public class ApprovalPOAdapter extends RecyclerView.Adapter<ApprovalPOAdapter.Ap
     @NonNull
     @Override
     public ApprovalPOViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ApprovalPOViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_approval_po, viewGroup, false));
+        return new ApprovalPOViewHolder(LayoutInflater.from(viewGroup.getContext()).
+                inflate(R.layout.item_approval_po, viewGroup, false));
     }
 
     @Override
@@ -59,6 +60,7 @@ public class ApprovalPOAdapter extends RecyclerView.Adapter<ApprovalPOAdapter.Ap
         viewHolder.txt_ppn.setText(Converter.doubleToRupiah(po.getPpn()));
         viewHolder.txt_biaya_lain.setText(Converter.doubleToRupiah(po.getBiaya_lain()));
         viewHolder.txt_kode_supplier.setText(po.getKode_supplier());
+        viewHolder.txt_nama_supplier.setText(po.getNama_supplier());
         viewHolder.txt_tanggal_tempo.setText(po.getTanggal_tempo());
         viewHolder.txt_keterangan.setText(po.getKeterangan());
 
@@ -113,7 +115,7 @@ public class ApprovalPOAdapter extends RecyclerView.Adapter<ApprovalPOAdapter.Ap
 
         MaterialCardView layout_parent;
         TextView txt_nama, txt_tanggal, txt_total, txt_ppn, txt_biaya_lain,
-        txt_tanggal_tempo, txt_kode_supplier, txt_keterangan;
+        txt_tanggal_tempo, txt_kode_supplier, txt_keterangan, txt_nama_supplier;
         ImageView img_approval;
 
         ApprovalPOViewHolder(@NonNull View itemView) {
@@ -124,6 +126,7 @@ public class ApprovalPOAdapter extends RecyclerView.Adapter<ApprovalPOAdapter.Ap
             txt_ppn = itemView.findViewById(R.id.txt_ppn);
             txt_biaya_lain = itemView.findViewById(R.id.txt_biaya_lain);
             txt_kode_supplier = itemView.findViewById(R.id.txt_kode_supplier);
+            txt_nama_supplier = itemView.findViewById(R.id.txt_nama_supplier);
             txt_tanggal_tempo = itemView.findViewById(R.id.txt_tanggal_tempo);
             txt_keterangan = itemView.findViewById(R.id.txt_keterangan);
             img_approval = itemView.findViewById(R.id.img_approval);

@@ -245,7 +245,8 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                     manager.startLocationUpdates();
                 }
                 else{
-                    Toast.makeText(CustomerDetail.this, "Map tidak dapat menampilkan lokasi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CustomerDetail.this,
+                            "Map tidak dapat menampilkan lokasi", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -632,8 +633,8 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
         }
         body.add("id_gambar_lokasi", new JSONArray(listFoto));
 
-        ApiVolleyManager.getInstance().addRequest(CustomerDetail.this, Constant.URL_CUSTOMER_TAMBAH, ApiVolleyManager.METHOD_POST,
-                Constant.getTokenHeader(AppSharedPreferences.getId(this)),
+        ApiVolleyManager.getInstance().addRequest(CustomerDetail.this, Constant.URL_CUSTOMER_TAMBAH,
+                ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
                 body.create(), new AppRequestCallback(new AppRequestCallback.SimpleRequestListener() {
                     @Override
                     public void onSuccess(String result) {
@@ -882,7 +883,6 @@ public class CustomerDetail extends AppCompatActivity implements OnMapReadyCallb
                                 }
                                 else{
                                     Toast.makeText(CustomerDetail.this, message, Toast.LENGTH_SHORT).show();
-
                                     bar_ktp.setVisibility(View.INVISIBLE);
                                 }
                             }

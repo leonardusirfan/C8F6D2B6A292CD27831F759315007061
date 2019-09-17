@@ -8,31 +8,45 @@
     android:background="@color/white"
     android:layout_marginStart="@dimen/dp15"
     android:layout_marginEnd="@dimen/dp15"
-    android:layout_marginTop="@dimen/dp10">
+    android:layout_marginTop="@dimen/dp20">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txt_tanggal"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/sp14"
-            android:padding="@dimen/dp10"
-            android:background="@color/green"
-            android:gravity="end"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:padding="@dimen/dp15"
+            android:background="@color/green">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp14"
+                android:text="Nomor Nota"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_nama"
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp14"
+                android:gravity="end"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/dp15"
-            android:paddingEnd="@dimen/dp15"
-            android:paddingTop="@dimen/dp10">
+            android:padding="@dimen/dp15">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -46,17 +60,18 @@
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
                     android:layout_marginEnd="@dimen/dp10"
-                    android:text="No. Nota"
+                    android:text="Tanggal Nota"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:textSize="@dimen/sp12" />
 
                 <TextView
-                    android:id="@+id/txt_nama"
+                    android:id="@+id/txt_tanggal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp14"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp5"
                     android:layout_marginEnd="@dimen/dp10"/>
 
                 <TextView
@@ -64,6 +79,8 @@
                     android:layout_height="wrap_content"
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:text="Tanggal Tempo"
                     android:layout_marginEnd="@dimen/dp10"
                     android:textSize="@dimen/sp12" />
@@ -75,9 +92,8 @@
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
                     android:layout_marginEnd="@dimen/dp10"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/dp5"
                     android:textSize="@dimen/sp14" />
 
                 <TextView
@@ -85,20 +101,20 @@
                     android:layout_height="wrap_content"
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
-                    android:text="Kode Supplier"
+                    android:text="Nama Supplier"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:layout_marginEnd="@dimen/dp10"
                     android:textSize="@dimen/sp12" />
 
                 <TextView
-                    android:id="@+id/txt_kode_supplier"
+                    android:id="@+id/txt_nama_supplier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
                     android:layout_marginEnd="@dimen/dp10"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/dp10"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp14" />
 
             </LinearLayout>
@@ -114,20 +130,21 @@
                     android:layout_height="wrap_content"
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
+                    android:text="Kode Supplier"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:layout_marginEnd="@dimen/dp10"
-                    android:text="Total"
                     android:textSize="@dimen/sp12" />
 
                 <TextView
-                    android:id="@+id/txt_total"
+                    android:id="@+id/txt_kode_supplier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
                     android:layout_marginEnd="@dimen/dp10"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/dp5"
                     android:textSize="@dimen/sp14" />
 
                 <TextView
@@ -136,6 +153,8 @@
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
                     android:text="PPN"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:layout_marginEnd="@dimen/dp10"
                     android:textSize="@dimen/sp12" />
 
@@ -146,9 +165,8 @@
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
                     android:layout_marginEnd="@dimen/dp10"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/dp10"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/dp5"
                     android:textSize="@dimen/sp14" />
 
                 <TextView
@@ -157,6 +175,8 @@
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
                     android:text="Biaya Lain"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:layout_marginEnd="@dimen/dp10"
                     android:textSize="@dimen/sp12" />
 
@@ -167,9 +187,7 @@
                     android:layout_marginEnd="@dimen/dp10"
                     app:layout_rowWeight="1"
                     app:layout_columnWeight="1"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/dp10"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp14" />
 
             </LinearLayout>
@@ -185,26 +203,55 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EFEFEF"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp10">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="Total"
+                android:textSize="@dimen/sp14"
+                android:textColor="@color/green_accent"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txt_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textSize="@dimen/sp14"
+                android:textColor="@color/green_accent"
+                android:textStyle="bold"
+                android:gravity="end" />
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_rowWeight="1"
             app:layout_columnWeight="1"
             android:text="Keterangan"
-            android:layout_marginStart="@dimen/dp15"
-            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
             android:textSize="@dimen/sp12" />
 
         <TextView
             android:id="@+id/txt_keterangan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp15"
-            android:layout_marginEnd="@dimen/dp15"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp10"
             android:layout_marginBottom="@dimen/dp20"
-            app:layout_rowWeight="1"
-            app:layout_columnWeight="1"
-            android:textColor="#000"
+            android:textColor="@color/black"
             android:textSize="@dimen/sp14" />
     </LinearLayout>
 

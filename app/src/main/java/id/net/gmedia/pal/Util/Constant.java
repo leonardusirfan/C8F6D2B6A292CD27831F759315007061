@@ -114,6 +114,7 @@ public class Constant {
     public final static String URL_RETUR_CUSTOMER_CREDIT = BASE_URL + "customer/credit_note";
     public final static String URL_UPDATE_FCM = BASE_URL + "authentication/update_fcm_id";
     public final static String URL_GIRO_LIST = BASE_URL + "giro/customer";
+    public final static String URL_GIRO_LIST_CAIR = BASE_URL + "giro/customer_cair";
     public final static String URL_GIRO_TAMBAH = BASE_URL + "giro/store";
     public final static String URL_SALES_PENGGANTI_LIST = BASE_URL + "sales/list_request_pengganti";
     public final static String URL_SALES_PENGGANTI_APPROVAL = BASE_URL + "sales/approval_request_pengganti";
@@ -128,7 +129,7 @@ public class Constant {
     public final static String URL_DISPENSASI_APPROVE = BASE_URL + "piutang/approval_dispensasi_piutang";
     public final static String URL_DISPENSASI_REQUEST = BASE_URL + "piutang/request_dispensasi_piutang";
     public final static String URL_CUSTOMER_REKAP = BASE_URL + "customer/rekap_jual_bayar";
-    public final static String URL_SURAT_JALAN_DOWNLOAD = BASE_URL + "https://gmedia.bz/pal/gudang/Mutasi_sales/cetak_surat_jalan";
+    public final static String URL_SURAT_JALAN_DOWNLOAD = "https://gmedia.bz/pal/gudang/Mutasi_sales/cetak_surat_jalan";
     public final static String URL_DAFTAR_PELUNASAN_PELANGGAN = BASE_URL + "piutang/list_pelanggan_sales";
     public final static String URL_DAFTAR_PELUNASAN_NOTA = BASE_URL + "piutang/pelunasan_pelanggan";
     public final static String URL_DAFTAR_PELUNASAN_NOTA_DETAIL = BASE_URL + "piutang/nota_pelunasan_piutang";
@@ -140,6 +141,7 @@ public class Constant {
     public final static String URL_PENGAJUAN_MUTASI_APPROVAL_HAPUS_BARANG = BASE_URL + "penjualan/delete_detail_barang_canvas";
     public final static String URL_PENGAJUAN_MUTASI_APPROVAL_LIST_BARANG = BASE_URL + "penjualan/view_approval_barang_canvas";
     public final static String URL_RETUR_CANVAS = BASE_URL + "penjualan/request_retur_barang_canvas";
+    public final static String URL_RETUR_KONFIRMASI_LIST = BASE_URL + "penjualan/req_retur_jual_sales";
 
     //Token heaader dengan enkripsi
     public static Map<String, String> getTokenHeader(String id){

@@ -62,6 +62,7 @@ import id.net.gmedia.pal.PetaOutlet;
 import id.net.gmedia.pal.Adapter.PiutangDetailAdapter;
 import id.net.gmedia.pal.R;
 
+import id.net.gmedia.pal.Util.AppDialogKonfirmasi;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
 import id.net.gmedia.pal.Util.GoogleLocationManager;
@@ -104,8 +105,9 @@ public class PiutangDetail extends AppCompatActivity {
             txt_total_bayar, txt_jarak, txt_keterangan;
     private SlidingUpPanelLayout slidingpanel;
     private ImageView overlay_bukti, img_bukti;
-    private ProgressBar bar_bukti;
+    private ProgressBar bar_bukti, pb_map;
     private Spinner spn_akun_tunai, spn_akun_bank, spn_nomor_giro;
+    private View img_refresh;
 
     //Variabel data akun tunai & bank
     private List<SimpleObjectModel> listAkunTunai;
@@ -120,6 +122,7 @@ public class PiutangDetail extends AppCompatActivity {
     //Variabel data piutang
     private List<PiutangModel> listPiutang = new ArrayList<>();
     private PiutangDetailAdapter adapter;
+    private List<JSONObject> listBayar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +161,8 @@ public class PiutangDetail extends AppCompatActivity {
         overlay_bukti = findViewById(R.id.overlay_bukti);
         img_bukti = findViewById(R.id.img_bukti);
         bar_bukti = findViewById(R.id.bar_bukti);
+        img_refresh = findViewById(R.id.img_refresh);
+        pb_map = findViewById(R.id.pb_map);
 
         //Inisialisasi Spinner akun tunai
         spinner_item_tunai = new ArrayList<>();
@@ -374,10 +379,39 @@ public class PiutangDetail extends AppCompatActivity {
                                     txt_jarak.setText(String.format(Locale.getDefault(), "%.2f m", distance * 1000));
                                 }
                                 current_location = location;
+                                pb_map.setVisibility(View.INVISIBLE);
                             }
                         });
                         manager.startLocationUpdates();
+                        pb_map.setVisibility(View.VISIBLE);
                     }
+
+                    img_refresh.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(manager != null){
+                                manager.stopLocationUpdates();
+                            }
+
+                            manager = new GoogleLocationManager(PiutangDetail.this, new GoogleLocationManager.LocationUpdateListener() {
+                                @Override
+                                public void onChange(Location location) {
+                                    double distance = Haversine.distance(location.getLatitude(),
+                                            location.getLongitude(),outlet_location.latitude, outlet_location.longitude);
+                                    if(distance >= 1){
+                                        txt_jarak.setText(String.format(Locale.getDefault(), "%.2f Km", distance));
+                                    }
+                                    else{
+                                        txt_jarak.setText(String.format(Locale.getDefault(), "%.2f m", distance * 1000));
+                                    }
+                                    current_location = location;
+                                    pb_map.setVisibility(View.INVISIBLE);
+                                }
+                            });
+                            manager.startLocationUpdates();
+                            pb_map.setVisibility(View.VISIBLE);
+                        }
+                    });
 
                     //inisialisasi UI total pembayaran
                     txt_total_bayar.setText(Converter.doubleToRupiah(jumlah));
@@ -393,7 +427,7 @@ public class PiutangDetail extends AppCompatActivity {
         findViewById(R.id.btn_bayar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<JSONObject> listBayar = new ArrayList<>();
+                listBayar = new ArrayList<>();
                 double pelunasan = jumlah;
 
                 for(PiutangModel p : listPiutang){
@@ -434,7 +468,13 @@ public class PiutangDetail extends AppCompatActivity {
                 }
                 else{
                     //lakukan pelunasan piutang
-                    lunasiPiutang(listBayar);
+                    AppDialogKonfirmasi.showKonfirmasi(PiutangDetail.this, "Konfirmasi Pelunasan",
+                            "Yakin ingin melakukan pelunasan piutang ini?", new AppDialogKonfirmasi.KonfirmasiListener() {
+                                @Override
+                                public void onLanjut() {
+                                    lunasiPiutang(listBayar);
+                                }
+                            });
                 }
             }
         });
@@ -555,30 +595,31 @@ public class PiutangDetail extends AppCompatActivity {
     }
 
     private void showDialogGiro(){
-        final Dialog dialog = DialogFactory.getInstance().createDialog(this, R.layout.popup_tambah_giro,
-                85, 80);
+        final Dialog dialog = DialogFactory.getInstance().createDialog(this,
+                R.layout.popup_tambah_giro, 85);
 
         final EditText txt_nomor, txt_bank, txt_nominal;
-        final TextView txt_tgl_terbit, txt_tgl_kadaluarsa;
+        final TextView txt_tgl_kadaluarsa;
+        //final TextView txt_tgl_terbit;
 
         txt_nomor = dialog.findViewById(R.id.txt_nomor);
         txt_bank = dialog.findViewById(R.id.txt_bank);
         txt_nominal = dialog.findViewById(R.id.txt_nominal);
-        txt_tgl_terbit = dialog.findViewById(R.id.txt_tgl_terbit);
+        //txt_tgl_terbit = dialog.findViewById(R.id.txt_tgl_terbit);
         txt_tgl_kadaluarsa = dialog.findViewById(R.id.txt_tgl_kadaluarsa);
 
         txt_nominal.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    dialog.findViewById(R.id.layout_tgl_terbit).performClick();
+                    dialog.findViewById(R.id.layout_tgl_kadaluarsa).performClick();
                     return true;
                 }
                 return false;
             }
         });
 
-        dialog.findViewById(R.id.layout_tgl_terbit).setOnClickListener(new View.OnClickListener() {
+        /*dialog.findViewById(R.id.layout_tgl_terbit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DateTimeChooser.getInstance().selectDate(PiutangDetail.this, new DateTimeChooser.DateTimeListener() {
@@ -588,7 +629,7 @@ public class PiutangDetail extends AppCompatActivity {
                     }
                 });
             }
-        });
+        });*/
 
         dialog.findViewById(R.id.layout_tgl_kadaluarsa).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -608,11 +649,12 @@ public class PiutangDetail extends AppCompatActivity {
                 String nomor = txt_nomor.getText().toString();
                 String bank = txt_bank.getText().toString();
                 String nominal = txt_nominal.getText().toString();
-                String tgl_terbit = txt_tgl_terbit.getText().toString();
+                //String tgl_terbit = txt_tgl_terbit.getText().toString();
                 String tgl_kadaluarsa = txt_tgl_kadaluarsa.getText().toString();
 
                 if(nomor.equals("") || bank.equals("") || nominal.equals("")||
-                        tgl_terbit.equals("") || tgl_kadaluarsa.equals("")){
+                        //tgl_terbit.equals("") ||
+                        tgl_kadaluarsa.equals("")){
                     Toast.makeText(PiutangDetail.this, "Pastikan semua input terisi", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -620,7 +662,7 @@ public class PiutangDetail extends AppCompatActivity {
                     body.add("kode_pelanggan", customer.getId());
                     body.add("nomor_giro", nomor);
                     body.add("bank", bank);
-                    body.add("tanggal_cair", tgl_terbit);
+                    //body.add("tanggal_cair", tgl_terbit);
                     body.add("tanggal_expired", tgl_kadaluarsa);
                     body.add("total", nominal);
 
@@ -741,6 +783,7 @@ public class PiutangDetail extends AppCompatActivity {
     }
 
     private void lunasiPiutang(List<JSONObject> listBayar){
+        AppLoading.getInstance().showLoading(this);
         //Kirim data pelunasan piutang ke Web Service
         JSONBuilder body = new JSONBuilder();
         body.add("nota_jual", new JSONArray(listBayar));
@@ -776,7 +819,13 @@ public class PiutangDetail extends AppCompatActivity {
 
         ApiVolleyManager.getInstance().addRequest(this, Constant.URL_PIUTANG_PELUNASAN,
                 ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
-                body.create(), new AppRequestCallback(new AppRequestCallback.SimpleRequestListener() {
+                body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
+                    @Override
+                    public void onEmpty(String message) {
+                        Toast.makeText(PiutangDetail.this, message, Toast.LENGTH_SHORT).show();
+                        AppLoading.getInstance().showLoading(PiutangDetail.this);
+                    }
+
                     @Override
                     public void onSuccess(String result) {
                         Toast.makeText(PiutangDetail.this, "Pelunasan berhasil", Toast.LENGTH_SHORT).show();
@@ -785,11 +834,14 @@ public class PiutangDetail extends AppCompatActivity {
                         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
+
+                        AppLoading.getInstance().showLoading(PiutangDetail.this);
                     }
 
                     @Override
                     public void onFail(String message) {
                         Toast.makeText(PiutangDetail.this, message, Toast.LENGTH_SHORT).show();
+                        AppLoading.getInstance().showLoading(PiutangDetail.this);
                     }
                 }));
     }
@@ -857,7 +909,7 @@ public class PiutangDetail extends AppCompatActivity {
         JSONBuilder body = new JSONBuilder();
         body.add("kode_pelanggan", customer.getId());
 
-        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_GIRO_LIST,
+        ApiVolleyManager.getInstance().addRequest(this, Constant.URL_GIRO_LIST_CAIR,
                 ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
                 body.create(), new AppRequestCallback(new AppRequestCallback.RequestListener() {
                     @Override

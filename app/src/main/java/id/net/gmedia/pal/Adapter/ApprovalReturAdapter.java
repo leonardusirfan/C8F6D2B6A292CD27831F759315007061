@@ -24,6 +24,7 @@ import java.util.List;
 
 import id.net.gmedia.pal.Activity.Approval.ApprovalRetur;
 import id.net.gmedia.pal.Activity.Approval.ApprovalReturDetail;
+import id.net.gmedia.pal.Activity.ReturKonfirmasi;
 import id.net.gmedia.pal.Model.NotaPenjualanModel;
 import id.net.gmedia.pal.R;
 import id.net.gmedia.pal.Util.Constant;
@@ -46,7 +47,8 @@ public class ApprovalReturAdapter extends RecyclerView.Adapter<ApprovalReturAdap
     @NonNull
     @Override
     public ApprovalReturViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ApprovalReturViewHolder(LayoutInflater.from(activity).inflate(R.layout.item_approval_retur, viewGroup, false));
+        return new ApprovalReturViewHolder(LayoutInflater.from(activity).
+                inflate(R.layout.item_approval_retur, viewGroup, false));
     }
 
     @Override
@@ -60,13 +62,17 @@ public class ApprovalReturAdapter extends RecyclerView.Adapter<ApprovalReturAdap
         approvalReturViewHolder.img_approval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(listApproval != null){
+                if(listApproval.size() > 0){
                     showApproval(approvalReturViewHolder.img_approval, m.getId());
                 }
                 else{
                     Toast.makeText(activity, "Data approval belum termuat", Toast.LENGTH_SHORT).show();
-                    ((ApprovalRetur)activity).loadApproval();
+                    if(activity instanceof ApprovalRetur){
+                        ((ApprovalRetur)activity).loadApproval();
+                    }
+                    else if(activity instanceof ReturKonfirmasi){
+                        ((ReturKonfirmasi)activity).loadApproval();
+                    }
                 }
             }
         });
@@ -92,7 +98,12 @@ public class ApprovalReturAdapter extends RecyclerView.Adapter<ApprovalReturAdap
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                ((ApprovalRetur)activity).responRetur(id, listApproval.get(menuItem.getItemId()).getId());
+                if(activity instanceof ApprovalRetur){
+                    ((ApprovalRetur)activity).responRetur(id, listApproval.get(menuItem.getItemId()).getId());
+                }
+                else if(activity instanceof ReturKonfirmasi){
+                    ((ReturKonfirmasi)activity).responRetur(id, listApproval.get(menuItem.getItemId()).getId());
+                }
                 return false;
             }
         });

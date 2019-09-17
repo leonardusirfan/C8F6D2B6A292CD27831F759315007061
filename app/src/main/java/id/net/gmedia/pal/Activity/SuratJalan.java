@@ -76,7 +76,7 @@ public class SuratJalan extends AppCompatActivity {
 
     private void loadSuratJalan(final boolean init){
         if(init){
-            AppLoading.getInstance().showLoading(this);
+            AppLoading.getInstance().showLoading(this, R.layout.popup_loading);
             loadManager.initLoad();
         }
 

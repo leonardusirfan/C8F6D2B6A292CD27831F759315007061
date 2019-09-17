@@ -50,6 +50,7 @@ import id.net.gmedia.pal.Activity.CustomerDetail;
 import id.net.gmedia.pal.Activity.DaftarSO.DaftarSO;
 import id.net.gmedia.pal.Activity.PengajuanMutasi.PengajuanMutasiActivity;
 import id.net.gmedia.pal.Activity.ReturCanvas.ReturCanvas;
+import id.net.gmedia.pal.Activity.ReturKonfirmasi;
 import id.net.gmedia.pal.Activity.SuratJalan;
 import id.net.gmedia.pal.Activity.PenjualanSoCanvas.Penjualan;
 import id.net.gmedia.pal.Activity.Piutang.Piutang;
@@ -83,6 +84,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(AppSharedPreferences.isLoggedIn(this)){
+            handleNotif();
+        }
+        else{
+            Intent i = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_main);
 
         //Inisialisasi UI
@@ -401,9 +413,10 @@ public class MainActivity extends AppCompatActivity {
                         createDialog(MainActivity.this,
                                 R.layout.popup_main_retur, 90);
 
-                View btn_customer, btn_canvas;
+                View btn_customer, btn_canvas, btn_konfirmasi;
                 btn_customer = sub_menu.findViewById(R.id.btn_customer);
                 btn_canvas = sub_menu.findViewById(R.id.btn_canvas);
+                btn_konfirmasi = sub_menu.findViewById(R.id.btn_konfirmasi);
 
                 btn_customer.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -417,6 +430,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(MainActivity.this, ReturCanvas.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_konfirmasi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, ReturKonfirmasi.class));
                         sub_menu.dismiss();
                     }
                 });
@@ -574,6 +595,43 @@ public class MainActivity extends AppCompatActivity {
 
         //startActivity(new Intent(MainActivity.this, Merchandiser.class));
         initSlider();
+    }
+
+    private void handleNotif(){
+        //masuk intent dari notif
+        if(getIntent().hasExtra("type")){
+            String type = getIntent().getStringExtra("type");
+            switch (type) {
+                case "customer": {
+                    Intent i = new Intent(this, ApprovalPelanggan.class);
+                    startActivity(i);
+                    break;
+                }
+                case "purchase_order": {
+                    Intent i = new Intent(this, ApprovalPO.class);
+                    startActivity(i);
+                    break;
+                }
+                case "sales_order": {
+                    Intent i = new Intent(this, ApprovalSo.class);
+                    startActivity(i);
+                    break;
+                }
+                case "retur_jual": {
+                    Intent i = new Intent(this, ApprovalRetur.class);
+                    startActivity(i);
+                    break;
+                }
+                case "request_barang_canvas" : {
+                    Intent i = new Intent(this, ApprovalPengajuanMutasi.class);
+                    startActivity(i);
+                    break;
+                }
+            }
+        }
+        else if(getIntent().hasExtra("id_bayar_piutang")){
+            startActivity(new Intent(MainActivity.this, SetoranSales.class));
+        }
     }
 
     private void initSlider(){

@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 public class SatuanModel {
     private String satuan;
-    private int jumlah;
+    private int jumlah = 0;
 
     public SatuanModel(String satuan){
         this.satuan = satuan;

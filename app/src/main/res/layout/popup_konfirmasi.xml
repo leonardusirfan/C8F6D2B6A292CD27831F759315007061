@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/dp10"
+    android:layout_margin="@dimen/dp10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp20"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi Aksi"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp20"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp18"/>
+
+        <TextView
+            android:id="@+id/txt_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="Yakin ingin melanjutkan proses ini?"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp14"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20">
+
+            <Button
+                android:id="@+id/btn_batal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Batal"
+                android:layout_margin="@dimen/dp10"
+                android:textColor="@color/black"
+                android:background="@drawable/style_rounded_gray_rectangle"/>
+
+            <Button
+                android:id="@+id/btn_lanjut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ya"
+                android:layout_margin="@dimen/dp10"
+                android:textColor="@color/white"
+                android:background="@drawable/style_rounded_green_rectangle"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.design.card.MaterialCardView>

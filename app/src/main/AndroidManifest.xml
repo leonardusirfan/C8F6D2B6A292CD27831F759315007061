@@ -24,42 +24,59 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ReturCanvas.ReturCanvasBarang"
+        <activity android:name=".Activity.ReturKonfirmasi"/>
+        <activity android:name=".Activity.RiwayatRetur" />
+        <activity
+            android:name=".Activity.ReturCanvas.ReturCanvasBarang"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ReturCanvas.ReturCanvas"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.PengajuanMutasi.PengajuanMutasiBarang"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.PengajuanMutasi.PengajuanMutasiBarang"
+        <activity
+            android:name=".Activity.Approval.ApprovalPengajuanMutasiDetail"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Approval.ApprovalPengajuanMutasiDetail"
-            android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Approval.ApprovalPengajuanMutasi"
+        <activity
+            android:name=".Activity.Approval.ApprovalPengajuanMutasi"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.PengajuanMutasi.PengajuanMutasiActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.DaftarPelunasanDetail"
+        <activity
+            android:name=".Activity.DaftarPelunasanDetail"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.DaftarPelunasan"
+        <activity
+            android:name=".Activity.DaftarPelunasan"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Approval.ApprovalDispensasiPiutang"
+        <activity
+            android:name=".Activity.Approval.ApprovalDispensasiPiutang"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.SuratJalanDetail"
+        <activity
+            android:name=".Activity.SuratJalanDetail"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Approval.ApprovalPenambahanPlafonDetail"
+        <activity
+            android:name=".Activity.Approval.ApprovalPenambahanPlafonDetail"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Approval.ApprovalPenambahanPlafon"
+        <activity
+            android:name=".Activity.Approval.ApprovalPenambahanPlafon"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.PengajuanPlafon"
+        <activity
+            android:name=".Activity.PengajuanPlafon"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.Approval.ApprovalLoginPengganti"
+        <activity
+            android:name=".Activity.Approval.ApprovalLoginPengganti"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.DispensasiPiutang"
+        <activity
+            android:name=".Activity.DispensasiPiutang"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.SuratJalan"
+        <activity
+            android:name=".Activity.SuratJalan"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.ListGiroDetail"
+        <activity
+            android:name=".Activity.ListGiroDetail"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.Approval.ApprovalPOEdit"
@@ -132,7 +149,13 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="ACT_NOTIF" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activity.Customer"
             android:screenOrientation="portrait" />

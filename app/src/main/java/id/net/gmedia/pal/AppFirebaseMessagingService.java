@@ -16,8 +16,10 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import id.net.gmedia.pal.Activity.Approval.ApprovalPO;
 import id.net.gmedia.pal.Activity.Approval.ApprovalPelanggan;
+import id.net.gmedia.pal.Activity.Approval.ApprovalPengajuanMutasi;
 import id.net.gmedia.pal.Activity.Approval.ApprovalRetur;
 import id.net.gmedia.pal.Activity.Approval.ApprovalSo;
+import id.net.gmedia.pal.Activity.SetoranSales;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
 
@@ -39,7 +41,9 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
         if(remoteMessage.getData() != null){
             title = remoteMessage.getData().get("title");
             body = remoteMessage.getData().get("body");
-            type = remoteMessage.getData().get("type");
+            if(remoteMessage.getData().containsKey("type")){
+                type = remoteMessage.getData().get("type");
+            }
         }
 
         if(remoteMessage.getNotification() != null){
@@ -66,7 +70,8 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(notificationChannel);
         }
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
 
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
@@ -82,52 +87,49 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
         //.setContentInfo(remoteMessage.getData().get("key_1"));
 
         // notification click action
-        if(type != null){
+        Intent notificationIntent;
+        if(!AppSharedPreferences.isLoggedIn(this)){
+            notificationIntent = new Intent(this, LoginActivity.class);
+        }
+        else if(type != null && !type.isEmpty()){
             switch (type){
                 case "customer":{
-                    Intent notificationIntent = new Intent(this, ApprovalPelanggan.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    notificationIntent = new Intent(this, ApprovalPelanggan.class);
                     break;
                 }
                 case "purchase_order":{
-                    Intent notificationIntent = new Intent(this, ApprovalPO.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    notificationIntent = new Intent(this, ApprovalPO.class);
                     break;
                 }
                 case "sales_order":{
-                    Intent notificationIntent = new Intent(this, ApprovalSo.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    notificationIntent = new Intent(this, ApprovalSo.class);
                     break;
                 }
                 case "retur_jual":{
-                    Intent notificationIntent = new Intent(this, ApprovalRetur.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    notificationIntent = new Intent(this, ApprovalRetur.class);
+                    break;
+                }
+                case "request_barang_canvas" : {
+                    notificationIntent = new Intent(this, ApprovalPengajuanMutasi.class);
                     break;
                 }
                 default:{
-                    Intent notificationIntent = new Intent(this, MainActivity.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                            notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notificationBuilder.setContentIntent(resultPendingIntent);
+                    notificationIntent = new Intent(this, MainActivity.class);
                     break;
                 }
             }
         }
+        else if(remoteMessage.getData().containsKey("id_bayar_piutang")){
+            notificationIntent = new Intent(this, SetoranSales.class);
+        }
         else{
-            Intent notificationIntent = new Intent(this, MainActivity.class);
-            PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
-                    notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            notificationBuilder.setContentIntent(resultPendingIntent);
+            notificationIntent = new Intent(this, MainActivity.class);
         }
 
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity
+                (this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationBuilder.setContentIntent(resultPendingIntent);
         notificationManager.notify(1, notificationBuilder.build());
     }
 }

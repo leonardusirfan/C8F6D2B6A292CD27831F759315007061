@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,12 +53,13 @@ import com.leonardus.irfan.DateTimeChooser;
 import com.leonardus.irfan.Haversine;
 import com.leonardus.irfan.JSONBuilder;
 
-public class PenjualanNota extends AppCompatActivity {
+public class PenjualanNota extends AppCompatActivity implements GoogleLocationManager.LocationUpdateListener {
 
     //Variabel UI
     private TextView txt_total, txt_jarak;
     public TextView txt_tempo;
     public AppCompatSpinner spn_bayar;
+    private ProgressBar pb_map;
 
     //Variabel lokasi
     private GoogleLocationManager manager;
@@ -82,6 +84,7 @@ public class PenjualanNota extends AppCompatActivity {
         txt_jarak = findViewById(R.id.txt_jarak);
         spn_bayar = findViewById(R.id.spn_bayar);
         txt_tempo = findViewById(R.id.txt_tempo);
+        pb_map = findViewById(R.id.pb_map);
 
         spn_bayar.setSelection(AppKeranjangPenjualan.getInstance().getCara_bayar());
         txt_tempo.setText(AppKeranjangPenjualan.getInstance().getTempo());
@@ -146,46 +149,23 @@ public class PenjualanNota extends AppCompatActivity {
             }
         });
 
-        /*spn_bayar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        findViewById(R.id.img_refresh).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                txt_tempo.setText("");
-                if(position > 1){
-                    findViewById(R.id.layout_tempo).setVisibility(View.VISIBLE);
+            public void onClick(View v) {
+                if(manager != null){
+                    manager.stopLocationUpdates();
                 }
-                else{
-                    findViewById(R.id.layout_tempo).setVisibility(View.GONE);
-                }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
-        //Inisialisasi manager lokasi
-        manager = new GoogleLocationManager(this, new GoogleLocationManager.LocationUpdateListener() {
-            @Override
-            public void onChange(Location location) {
-                //Update jarak customer
-                if(AppKeranjangPenjualan.getInstance().getCustomer() != null){
-                    double distance = Haversine.distance(location.getLatitude(),
-                            location.getLongitude(), AppKeranjangPenjualan.getInstance().getCustomer().getLatitude(),
-                            AppKeranjangPenjualan.getInstance().getCustomer().getLongitude());
-                    String string_lokasi = "( Jarak dengan outlet : ";
-                    if(distance >= 1){
-                        string_lokasi +=  String.format(Locale.getDefault(), "%.2f Km )", distance);
-                    }
-                    else{
-                        string_lokasi +=  String.format(Locale.getDefault(), "%.2f m )", distance * 1000);
-                    }
-                    txt_jarak.setText(string_lokasi);
-                    current_location = location;
-                }
+                manager = new GoogleLocationManager(PenjualanNota.this, PenjualanNota.this);
+                manager.startLocationUpdates();
+                pb_map.setVisibility(View.VISIBLE);
             }
         });
+
+        //Inisialisasi manager lokasi
+        manager = new GoogleLocationManager(this, this);
         manager.startLocationUpdates();
+        pb_map.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -362,5 +342,26 @@ public class PenjualanNota extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         manager.stopLocationUpdates();
+    }
+
+    @Override
+    public void onChange(Location location) {
+        //Update jarak customer
+        if(AppKeranjangPenjualan.getInstance().getCustomer() != null){
+            double distance = Haversine.distance(location.getLatitude(),
+                    location.getLongitude(), AppKeranjangPenjualan.getInstance().getCustomer().getLatitude(),
+                    AppKeranjangPenjualan.getInstance().getCustomer().getLongitude());
+            String string_lokasi = "( Jarak dengan outlet : ";
+            if(distance >= 1){
+                string_lokasi +=  String.format(Locale.getDefault(), "%.2f Km )", distance);
+            }
+            else{
+                string_lokasi +=  String.format(Locale.getDefault(), "%.2f m )", distance * 1000);
+            }
+            txt_jarak.setText(string_lokasi);
+            current_location = location;
+        }
+
+        pb_map.setVisibility(View.INVISIBLE);
     }
 }

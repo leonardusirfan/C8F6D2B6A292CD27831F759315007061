@@ -33,7 +33,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import id.net.gmedia.pal.Adapter.ListGiroAdapter;
 import id.net.gmedia.pal.Model.GiroModel;
@@ -86,26 +85,27 @@ public class ListGiroDetail extends AppCompatActivity{
                         85, 80);
 
                 final EditText txt_nomor, txt_bank, txt_nominal;
-                final TextView txt_tgl_terbit, txt_tgl_kadaluarsa;
+                final TextView txt_tgl_kadaluarsa;
+                //TextView txt_tgl_terbit;
 
                 txt_nomor = dialog.findViewById(R.id.txt_nomor);
                 txt_bank = dialog.findViewById(R.id.txt_bank);
                 txt_nominal = dialog.findViewById(R.id.txt_nominal);
-                txt_tgl_terbit = dialog.findViewById(R.id.txt_tgl_terbit);
+                //txt_tgl_terbit = dialog.findViewById(R.id.txt_tgl_terbit);
                 txt_tgl_kadaluarsa = dialog.findViewById(R.id.txt_tgl_kadaluarsa);
 
                 txt_nominal.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
                     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                         if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                            dialog.findViewById(R.id.layout_tgl_terbit).performClick();
+                            dialog.findViewById(R.id.layout_tgl_kadaluarsa).performClick();
                             return true;
                         }
                         return false;
                     }
                 });
 
-                dialog.findViewById(R.id.layout_tgl_terbit).setOnClickListener(new View.OnClickListener() {
+                /*dialog.findViewById(R.id.layout_tgl_terbit).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         DateTimeChooser.getInstance().selectDate(ListGiroDetail.this, new DateTimeChooser.DateTimeListener() {
@@ -116,7 +116,7 @@ public class ListGiroDetail extends AppCompatActivity{
                         });
                     }
                 });
-
+*/
                 dialog.findViewById(R.id.layout_tgl_kadaluarsa).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -135,11 +135,12 @@ public class ListGiroDetail extends AppCompatActivity{
                         String nomor = txt_nomor.getText().toString();
                         String bank = txt_bank.getText().toString();
                         String nominal = txt_nominal.getText().toString();
-                        String tgl_terbit = txt_tgl_terbit.getText().toString();
+                        //String tgl_terbit = txt_tgl_terbit.getText().toString();
                         String tgl_kadaluarsa = txt_tgl_kadaluarsa.getText().toString();
 
                         if(nomor.equals("") || bank.equals("") || nominal.equals("")||
-                            tgl_terbit.equals("") || tgl_kadaluarsa.equals("")){
+                            //tgl_terbit.equals("") ||
+                                tgl_kadaluarsa.equals("")){
                             Toast.makeText(ListGiroDetail.this, "Pastikan semua input terisi", Toast.LENGTH_SHORT).show();
                         }
                         else{
@@ -147,7 +148,7 @@ public class ListGiroDetail extends AppCompatActivity{
                             body.add("kode_pelanggan", id_customer);
                             body.add("nomor_giro", nomor);
                             body.add("bank", bank);
-                            body.add("tanggal_cair", tgl_terbit);
+                            //body.add("tanggal_cair", tgl_terbit);
                             body.add("tanggal_expired", tgl_kadaluarsa);
                             body.add("total", nominal);
 

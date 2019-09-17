@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class GoogleLocationManager {
+    private final String TAG = "location_log";
     private final int UPDATE_INTERVAL = 5000;
 
     public final static int ACTIVATE_LOCATION = 16;
@@ -67,7 +68,7 @@ public class GoogleLocationManager {
                         @Override
                         public void onLocationResult(LocationResult locationResult) {
                             super.onLocationResult(locationResult);
-                            System.out.println("LOCATION RESULT " + locationResult);
+                            Log.d(TAG, "LOCATION RESULT " + locationResult);
                             Location location = locationResult.getLastLocation();
                             listener.onChange(location);
                         }
@@ -95,11 +96,11 @@ public class GoogleLocationManager {
                         resolvable.startResolutionForResult(activity,
                                 ACTIVATE_LOCATION);
                     } catch (IntentSender.SendIntentException sendEx) {
-                        Log.e("GoogleLocationManager", sendEx.getMessage());
+                        Log.e(TAG, sendEx.getMessage());
                     }
                 }
                 else{
-                    Log.e("GoogleLocationManager", e.getMessage());
+                    Log.e(TAG, e.getMessage());
                 }
             }
         });

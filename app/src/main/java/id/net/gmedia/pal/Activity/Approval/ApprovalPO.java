@@ -114,7 +114,8 @@ public class ApprovalPO extends AppCompatActivity {
                                 JSONObject po = purchase_orders.getJSONObject(i);
                                 listPO.add(new PurchaseOrderModel(po.getString("nomor_nota"), po.getString("tanggal"),
                                         po.getDouble("total"), po.getDouble("ppn"), po.getDouble("biaya_lain"),
-                                        po.getString("kode_supplier"), po.getString("tanggal_tempo"), po.getString("keterangan")));
+                                        po.getString("kode_supplier"), po.getString("nama_supplier"),
+                                        po.getString("tanggal_tempo"), po.getString("keterangan")));
                             }
 
                             loadMoreScrollListener.finishLoad(purchase_orders.length());

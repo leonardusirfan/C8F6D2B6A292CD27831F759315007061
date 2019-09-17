@@ -122,6 +122,41 @@
 
                 </android.support.design.card.MaterialCardView>
 
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/btn_konfirmasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/approval_button_height"
+                    app:cardCornerRadius="@dimen/dp10"
+                    android:layout_margin="@dimen/dp10">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#AA0028"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_weight="0.2"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/konfirmasiretur" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp10"
+                            android:layout_weight="0.8"
+                            android:background="@android:color/transparent"
+                            android:text="Konfirmasi Retur"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp16"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.design.card.MaterialCardView>
+
             </LinearLayout>
 
         </ScrollView>

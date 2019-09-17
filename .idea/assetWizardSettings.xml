@@ -57,9 +57,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="D:\GMEDIA\PAL\PAL Resource\icon\download.png" />
-                                      <entry key="outputName" value="ic_download" />
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="imageAsset" value="D:\GMEDIA\PAL\PAL Resource\V2\Icon\refresh.png" />
+                                      <entry key="outputName" value="ic_refresh" />
+                                      <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="029446" />
                                     </map>
                                   </option>
@@ -99,8 +99,6 @@
                                     <map>
                                       <entry key="backgroundImage" value="D:\GMEDIA\PAL\PAL Resource\launcher.png" />
                                       <entry key="foregroundImage" value="D:\GMEDIA\PAL\PAL Resource\launcher.png" />
-                                      <entry key="legacyIconShape" value="NONE" />
-                                      <entry key="webIconShape" value="NONE" />
                                     </map>
                                   </option>
                                 </PersistentState>
