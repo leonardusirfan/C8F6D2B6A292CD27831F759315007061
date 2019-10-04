@@ -24,6 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,7 +35,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/D:/APPLICATION/Android_Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_sort_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/D:/APPLICATION/Android_Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_settings_overscan_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -46,6 +47,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="80" />
                                                 <entry key="paddingPercent" value="5" />
                                               </map>
                                             </option>
@@ -56,9 +58,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="imageAsset" value="D:\GMEDIA\PAL\PAL Resource\V2\Icon\refresh.png" />
-                                      <entry key="outputName" value="ic_refresh" />
+                                      <entry key="outputName" value="ic_green_scan" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="029446" />
                                     </map>
@@ -87,7 +88,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="57" />
+                                                <entry key="scalingPercent" value="50" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -97,6 +98,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="f7f8f3" />
                                       <entry key="backgroundImage" value="D:\GMEDIA\PAL\PAL Resource\launcher.png" />
                                       <entry key="foregroundImage" value="D:\GMEDIA\PAL\PAL Resource\launcher.png" />
                                     </map>
@@ -164,11 +167,6 @@
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

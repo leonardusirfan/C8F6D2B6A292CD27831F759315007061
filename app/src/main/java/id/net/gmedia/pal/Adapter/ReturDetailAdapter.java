@@ -163,6 +163,7 @@ public class ReturDetailAdapter extends RecyclerView.Adapter<ReturDetailAdapter.
                         ReturModel retur = new ReturModel(barang.getKode(), Integer.parseInt(txt_jumlah.getText().toString()),
                                 barang.getSatuan(), txt_alasan.getText().toString(), upload.getId(),
                                 spn_jenis.getSelectedItemPosition() == 0);
+                        retur.setNo_batch(barang.getNo_batch());
                         ((ReturBarangDetail)activity).tambahBarangRetur(retur);
                         upload = null;
                         dialog.dismiss();

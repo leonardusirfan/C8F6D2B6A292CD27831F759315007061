@@ -154,7 +154,7 @@ public class ReturBarangDetail extends AppCompatActivity {
                                 BarangModel barang = new BarangModel(item.getString("id"), item.getString("kode_barang"), item.getString("nama_barang"),
                                         item.getDouble("harga_satuan"), item.getInt("jumlah"), item.getString("satuan"),
                                         item.getDouble("diskon_rupiah"), item.getDouble("harga_total"));
-
+                                barang.setNo_batch(item.getString("no_batch"));
                                 listBarang.add(barang);
                             }
 
@@ -189,6 +189,7 @@ public class ReturBarangDetail extends AppCompatActivity {
         List<JSONObject> listRetur = new ArrayList<>();
         for(ReturModel r : barangRetur){
             JSONBuilder retur = new JSONBuilder();
+            retur.add("no_batch", r.getNo_batch());
             retur.add("kode_barang", r.getKode_barang());
             retur.add("jumlah", r.getJumlah());
             retur.add("satuan", r.getSatuan());
@@ -198,6 +199,7 @@ public class ReturBarangDetail extends AppCompatActivity {
             listRetur.add(retur.create());
         }
         body.add("barang", new JSONArray(listRetur));
+        Log.d(Constant.TAG, "body " + body.create());
 
         ApiVolleyManager.getInstance().addRequest(this, Constant.URL_UPLOAD_RETUR, ApiVolleyManager.METHOD_POST,
                 Constant.getTokenHeader(AppSharedPreferences.getId(this)), body.create(),

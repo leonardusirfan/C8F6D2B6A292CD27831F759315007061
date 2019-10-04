@@ -3,6 +3,7 @@ package id.net.gmedia.pal.Model;
 public class ReturModel {
     private String kode_barang;
     private String nama_barang;
+    private String no_batch;
     private boolean barang_baik;
     private int jumlah;
     private String satuan;
@@ -25,6 +26,14 @@ public class ReturModel {
         this.alasan = alasan;
         this.gambar = gambar;
         this.nama_barang = nama_barang;
+    }
+
+    public void setNo_batch(String no_batch) {
+        this.no_batch = no_batch;
+    }
+
+    public String getNo_batch() {
+        return no_batch;
     }
 
     public String getNama_barang() {

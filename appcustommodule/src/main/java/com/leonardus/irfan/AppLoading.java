@@ -21,6 +21,7 @@ public class AppLoading {
     }
 
     private AppLoading() {
+
     }
 
     public void showLoading(Context context){
