@@ -23,7 +23,6 @@ public class DateTimeChooser {
     }
 
     public void selectDateTime(final Context context, final DateTimeListener listener){
-
         c = Calendar.getInstance();
         int startyear = c.get(Calendar.YEAR);
         int startmonth = c.get(Calendar.MONTH);

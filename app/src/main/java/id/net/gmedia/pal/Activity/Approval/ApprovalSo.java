@@ -112,8 +112,9 @@ public class ApprovalSo extends AppCompatActivity {
                             for(int i = 0; i < so_list.length(); i++){
                                 JSONObject nota = so_list.getJSONObject(i);
                                 listNota.add(new NotaPenjualanModel(nota.getString("nomor_nota"),
-                                        new CustomerModel("", nota.getString("nama_pelanggan")),
-                                        Constant.PENJUALAN_SO, nota.getString("tanggal"), nota.getDouble("total")));
+                                        new CustomerModel("", nota.getString("nama_pelanggan"), "",
+                                                nota.getString("kodearea")), Constant.PENJUALAN_SO,
+                                        nota.getString("tanggal"), nota.getDouble("total")));
                             }
 
                             loadMoreScrollListener.finishLoad(so_list.length());

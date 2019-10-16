@@ -52,7 +52,8 @@
                     android:layout_toStartOf="@id/img_approval"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nama Customer"
+                    android:text="Customer"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp12"/>
 
                 <TextView
@@ -61,9 +62,18 @@
                     android:layout_toStartOf="@id/img_approval"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Anyar Banjarnegara"
+                    android:textColor="@color/light_black"
                     android:textStyle="bold"
                     android:textSize="@dimen/sp14"/>
+
+                <TextView
+                    android:id="@+id/txt_kode_area"
+                    android:layout_below="@id/txt_nama_customer"
+                    android:layout_toStartOf="@id/img_approval"
+                    android:textColor="@color/light_black"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
                 <ImageView
                     android:id="@+id/img_approval"
@@ -92,13 +102,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/sp12"
+                        android:textColor="@color/black"
                         android:text="Total Penjualan"/>
 
                     <TextView
                         android:id="@+id/txt_total"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rp 100.000"
+                        android:textColor="@color/light_black"
                         android:textSize="@dimen/sp14"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -114,13 +125,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/sp12"
+                        android:textColor="@color/black"
                         android:text="No. Nota"/>
 
                     <TextView
                         android:id="@+id/txt_nota"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="MGC189001"
+                        android:textColor="@color/light_black"
                         android:textSize="@dimen/sp14"
                         android:textStyle="bold"/>
 

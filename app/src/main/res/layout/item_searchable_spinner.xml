@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Semarang"
+        android:textColor="@color/black"
         android:layout_marginBottom="@dimen/dp10"/>
 
     <include layout="@layout/view_divider"

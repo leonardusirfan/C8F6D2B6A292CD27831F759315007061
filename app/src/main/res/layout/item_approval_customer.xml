@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_marginEnd="@dimen/dp10"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_height="wrap_content" />
 
         <TextView
@@ -36,9 +37,22 @@
             android:layout_toStartOf="@id/btn_approval"
             android:layout_toEndOf="@id/img_customer"
             android:layout_width="match_parent"
+            android:textColor="@color/light_black"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp10"
+            android:textSize="@dimen/sp12"
             android:layout_marginTop="@dimen/dp5" />
+
+        <TextView
+            android:id="@+id/txt_area"
+            android:layout_below="@id/txt_alamat"
+            android:layout_toStartOf="@id/btn_approval"
+            android:layout_toEndOf="@id/img_customer"
+            android:textColor="@color/light_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp12"
+            android:layout_marginEnd="@dimen/dp10" />
 
         <Button
             android:id="@+id/btn_approval"

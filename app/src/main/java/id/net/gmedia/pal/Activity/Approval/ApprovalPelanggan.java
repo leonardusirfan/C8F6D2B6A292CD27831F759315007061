@@ -138,7 +138,7 @@ public class ApprovalPelanggan extends AppCompatActivity {
                             for(int i = 0; i < customers.length(); i++){
                                 JSONObject customer = customers.getJSONObject(i);
                                 listCustomer.add(new CustomerModel(customer.getString("kode_pelanggan"),
-                                        customer.getString("nama"),
+                                        customer.getString("nama"), customer.getString("kodearea"),
                                         customer.getString("alamat"), customer.getString("kota"),
                                         "belum terverifikasi"));
                             }

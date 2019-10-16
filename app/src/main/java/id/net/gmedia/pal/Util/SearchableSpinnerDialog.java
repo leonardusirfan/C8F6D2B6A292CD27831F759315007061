@@ -136,10 +136,12 @@ public class SearchableSpinnerDialog {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             if(i == LOAD_MORE){
-                return new LoadMoreViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_searchable_spinner_load_more, viewGroup, false));
+                return new LoadMoreViewHolder(LayoutInflater.from(viewGroup.getContext()).
+                        inflate(R.layout.item_searchable_spinner_load_more, viewGroup, false));
             }
             else{
-                return new SearchableSpinnerViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_searchable_spinner, viewGroup, false));
+                return new SearchableSpinnerViewHolder(LayoutInflater.from(viewGroup.getContext()).
+                        inflate(R.layout.item_searchable_spinner, viewGroup, false));
             }
         }
 

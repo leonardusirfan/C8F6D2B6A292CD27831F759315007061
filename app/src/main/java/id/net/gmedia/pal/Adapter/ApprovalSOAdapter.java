@@ -46,7 +46,8 @@ public class ApprovalSOAdapter extends RecyclerView.Adapter<ApprovalSOAdapter.Ap
     @NonNull
     @Override
     public ApprovalSOViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ApprovalSOViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_approval_so, viewGroup, false));
+        return new ApprovalSOViewHolder(LayoutInflater.from(viewGroup.getContext()).
+                inflate(R.layout.item_approval_so, viewGroup, false));
     }
 
     @Override
@@ -58,6 +59,8 @@ public class ApprovalSOAdapter extends RecyclerView.Adapter<ApprovalSOAdapter.Ap
         viewHolder.txt_nota.setText(m.getId());
         viewHolder.txt_total.setText(Converter.doubleToRupiah(m.getTotal()));
         viewHolder.txt_tanggal.setText(m.getTanggal());
+        String area = "Kode area : " + m.getCustomer().getKode_area();
+        viewHolder.txt_kode_area.setText(area);
 
         final Gson gson = new Gson();
         viewHolder.layout_header.setBackgroundColor(activity.getResources().getColor(R.color.orange));
@@ -111,7 +114,7 @@ public class ApprovalSOAdapter extends RecyclerView.Adapter<ApprovalSOAdapter.Ap
 
         MaterialCardView item_riwayat;
         LinearLayout layout_header;
-        TextView txt_tanggal, txt_nama_customer, txt_total, txt_nota;
+        TextView txt_tanggal, txt_nama_customer, txt_total, txt_nota, txt_kode_area;
         ImageView img_approval;
 
         ApprovalSOViewHolder(@NonNull View itemView) {
@@ -123,6 +126,7 @@ public class ApprovalSOAdapter extends RecyclerView.Adapter<ApprovalSOAdapter.Ap
             layout_header = itemView.findViewById(R.id.layout_header);
             item_riwayat = itemView.findViewById(R.id.item_riwayat);
             img_approval = itemView.findViewById(R.id.img_approval);
+            txt_kode_area = itemView.findViewById(R.id.txt_kode_area);
         }
     }
 }

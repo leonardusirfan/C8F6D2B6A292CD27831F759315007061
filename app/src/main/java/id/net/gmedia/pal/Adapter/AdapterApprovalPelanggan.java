@@ -47,7 +47,7 @@ public class AdapterApprovalPelanggan extends RecyclerView.Adapter<AdapterApprov
     class ViewHolderApprovalPelanggan extends RecyclerView.ViewHolder{
 
         View layout_parent;
-        TextView txt_nama, txt_alamat;
+        TextView txt_nama, txt_alamat, txt_area;
         Button btn_approval;
 
         ViewHolderApprovalPelanggan(@NonNull View itemView) {
@@ -56,11 +56,15 @@ public class AdapterApprovalPelanggan extends RecyclerView.Adapter<AdapterApprov
             txt_nama = itemView.findViewById(R.id.txt_nama);
             txt_alamat = itemView.findViewById(R.id.txt_alamat);
             btn_approval = itemView.findViewById(R.id.btn_approval);
+            txt_area = itemView.findViewById(R.id.txt_area);
         }
 
         void bind(final CustomerModel c){
             txt_nama.setText(c.getNama());
-            txt_alamat.setText(c.getAlamat());
+            String alamat = "Alamat : " + c.getAlamat();
+            txt_alamat.setText(alamat);
+            String area = "Area : " + c.getKode_area();
+            txt_area.setText(area);
 
             layout_parent.setOnClickListener(new View.OnClickListener() {
                 @Override

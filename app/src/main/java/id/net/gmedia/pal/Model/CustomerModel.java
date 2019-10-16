@@ -6,7 +6,7 @@ public class CustomerModel {
 
     private String alamat = "";
     private String no_ktp = "";
-    private String area = "";
+    private String kode_area = "";
     private String npwp = "";
     private String no_hp = "";
     private String kota = "";
@@ -33,6 +33,15 @@ public class CustomerModel {
         this.status = status;
     }
 
+    public CustomerModel(String id, String nama, String kode_area, String alamat, String kota, String status){
+        this.id = id;
+        this.nama = nama;
+        this.alamat = alamat;
+        this.kota = kota;
+        this.status = status;
+        this.kode_area = kode_area;
+    }
+
     public CustomerModel(String id, String nama, String alamat, String kota, double total_piutang){
         this.id = id;
         this.nama = nama;
@@ -45,6 +54,13 @@ public class CustomerModel {
         this.id = id;
         this.nama = nama;
         this.alamat = alamat;
+    }
+
+    public CustomerModel(String id, String nama, String alamat, String kode_area){
+        this.id = id;
+        this.nama = nama;
+        this.alamat = alamat;
+        this.kode_area = kode_area;
     }
 
     public CustomerModel(String id, String nama, double total_piutang){
@@ -93,5 +109,9 @@ public class CustomerModel {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public String getKode_area() {
+        return kode_area;
     }
 }
