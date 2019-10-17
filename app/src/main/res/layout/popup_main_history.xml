@@ -62,7 +62,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#4C9A2A"
+                        android:background="#76BA1B"
                         android:gravity="center">
 
                         <ImageView
@@ -97,7 +97,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#1E5631"
+                        android:background="#4C9A2A"
                         android:gravity="center">
 
                         <ImageView
@@ -114,6 +114,41 @@
                             android:layout_weight="0.8"
                             android:background="@android:color/transparent"
                             android:text="Riwayat Penjualan"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp16"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </android.support.design.card.MaterialCardView>
+
+                <android.support.design.card.MaterialCardView
+                    android:id="@+id/btn_setoran"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/approval_button_height"
+                    android:layout_margin="@dimen/dp10"
+                    app:cardCornerRadius="@dimen/dp10">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#1E5631"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_weight="0.2"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/pelunasan" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp10"
+                            android:layout_weight="0.8"
+                            android:background="@android:color/transparent"
+                            android:text="Riwayat Setoran"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp16"
                             android:textStyle="bold" />

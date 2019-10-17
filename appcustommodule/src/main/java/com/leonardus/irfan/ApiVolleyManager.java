@@ -5,10 +5,13 @@ import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
 import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -77,7 +80,19 @@ public class ApiVolleyManager {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                callback.onError(error.toString());
+                String message;
+                if (error instanceof NoConnectionError) {
+                    message = "Tidak dapat tersambung. Periksa lagi koneksi anda.";
+                } else if (error instanceof NetworkError) {
+                    message = "Tidak dapat menyambungkan dalam batas waktu yang ditentukan";
+                } else if (error instanceof TimeoutError) {
+                    message = "Tidak dapat menyambungkan dalam batas waktu yang ditentukan";
+                } else{
+                    message = "Terjadi kesalahan koneksi";
+                }
+
+                callback.onError(message);
+                Log.e(LOG, error.toString());
             }
         }){
             @Override
@@ -129,7 +144,19 @@ public class ApiVolleyManager {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                callback.onError(error.toString());
+                String message;
+                if (error instanceof NoConnectionError) {
+                    message = "Tidak dapat tersambung. Periksa lagi koneksi anda.";
+                } else if (error instanceof NetworkError) {
+                    message = "Tidak dapat menyambungkan dalam batas waktu yang ditentukan";
+                } else if (error instanceof TimeoutError) {
+                    message = "Tidak dapat menyambungkan dalam batas waktu yang ditentukan";
+                } else{
+                    message = "Terjadi kesalahan koneksi";
+                }
+
+                callback.onError(message);
+                Log.e(LOG, error.toString());
             }
         }){
             @Override
@@ -191,7 +218,19 @@ public class ApiVolleyManager {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                callback.onError(error.toString());
+                String message;
+                if (error instanceof NoConnectionError) {
+                    message = "Tidak dapat tersambung. Periksa lagi koneksi anda.";
+                } else if (error instanceof NetworkError) {
+                    message = "Tidak dapat menyambungkan dalam batas waktu yang ditentukan";
+                } else if (error instanceof TimeoutError) {
+                    message = "Tidak dapat menyambungkan dalam batas waktu yang ditentukan";
+                } else{
+                    message = "Terjadi kesalahan koneksi";
+                }
+
+                callback.onError(message);
+                Log.e(LOG, error.toString());
             }
         }){
             @Override

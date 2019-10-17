@@ -51,6 +51,7 @@ import id.net.gmedia.pal.Activity.DaftarSO.DaftarSO;
 import id.net.gmedia.pal.Activity.PengajuanMutasi.PengajuanMutasiActivity;
 import id.net.gmedia.pal.Activity.ReturCanvas.ReturCanvas;
 import id.net.gmedia.pal.Activity.ReturKonfirmasi;
+import id.net.gmedia.pal.Activity.RiwayatSetoran;
 import id.net.gmedia.pal.Activity.SuratJalan;
 import id.net.gmedia.pal.Activity.PenjualanSoCanvas.Penjualan;
 import id.net.gmedia.pal.Activity.Piutang.Piutang;
@@ -336,9 +337,10 @@ public class MainActivity extends AppCompatActivity {
                         createDialog(MainActivity.this,
                                 R.layout.popup_main_history, 90);
 
-                View btn_so, btn_penjualan;
+                View btn_so, btn_penjualan, btn_setoran;
                 btn_so = sub_menu.findViewById(R.id.btn_so);
                 btn_penjualan = sub_menu.findViewById(R.id.btn_penjualan);
+                btn_setoran = sub_menu.findViewById(R.id.btn_setoran);
 
                 btn_so.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -352,6 +354,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(MainActivity.this, Riwayat.class));
+                        sub_menu.dismiss();
+                    }
+                });
+
+                btn_setoran.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, RiwayatSetoran.class));
                         sub_menu.dismiss();
                     }
                 });
