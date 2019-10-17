@@ -38,6 +38,8 @@
             android:textSize="@dimen/sp14"
             android:textStyle="bold"
             android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:background="@drawable/style_black_bordered_textview"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp10" />
 
@@ -61,6 +63,8 @@
             android:textSize="@dimen/sp14"
             android:textStyle="bold"
             android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:background="@drawable/style_black_bordered_textview"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp10"/>
 
