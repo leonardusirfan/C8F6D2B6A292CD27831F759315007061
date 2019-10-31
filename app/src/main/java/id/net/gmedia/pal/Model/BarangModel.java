@@ -52,6 +52,17 @@ public class BarangModel {
         this.subtotal = subtotal;
     }
 
+    public BarangModel(String id, String nama, double harga, int jumlah, String satuan, double diskon, double subtotal, String no_batch){
+        this.id = id;
+        this.nama = nama;
+        this.harga = harga;
+        this.jumlah = jumlah;
+        this.satuan = satuan;
+        this.diskon = diskon;
+        this.subtotal = subtotal;
+        this.no_batch = no_batch;
+    }
+
     public BarangModel(String id, String kode, String nama, double harga, int jumlah, String satuan, double diskon, double subtotal){
         this.id = id;
         this.kode = kode;
@@ -61,6 +72,19 @@ public class BarangModel {
         this.satuan = satuan;
         this.diskon = diskon;
         this.subtotal = subtotal;
+    }
+
+    public BarangModel(String id, String kode, String nama, double harga, int jumlah, String satuan,
+                       double diskon, double subtotal, String no_batch){
+        this.id = id;
+        this.kode = kode;
+        this.nama = nama;
+        this.harga = harga;
+        this.jumlah = jumlah;
+        this.satuan = satuan;
+        this.diskon = diskon;
+        this.subtotal = subtotal;
+        this.no_batch = no_batch;
     }
 
     public BarangModel(String id, String kode, String nama){

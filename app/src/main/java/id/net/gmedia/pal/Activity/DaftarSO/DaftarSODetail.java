@@ -42,6 +42,7 @@ import id.net.gmedia.pal.Model.SatuanModel;
 import id.net.gmedia.pal.R;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
+import id.net.gmedia.pal.Util.PalPrinter;
 
 public class DaftarSODetail extends AppCompatActivity {
 
@@ -61,7 +62,7 @@ public class DaftarSODetail extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
 
     //Variabel bluetooth printer
-    private NotaPrinter printerManager;
+    private PalPrinter printerManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +136,8 @@ public class DaftarSODetail extends AppCompatActivity {
                         try{
                             //Inisialisasi Header
                             JSONObject obj = new JSONObject(result).getJSONObject("nota");
-                            customer = new CustomerModel(obj.getString("kode_pelanggan"), obj.getString("nama_pelanggan"));
+                            customer = new CustomerModel(obj.getString("kode_pelanggan"),
+                                    obj.getString("nama_pelanggan"));
                             txt_nama.setText(customer.getNama());
                             txt_piutang.setText(Converter.doubleToRupiah(obj.getDouble("total")));
                             txt_nota.setText(nota.getId());
@@ -157,8 +159,8 @@ public class DaftarSODetail extends AppCompatActivity {
 
                                 BarangModel barang = new BarangModel(item.getString("id"), item.getString("kode_barang"),
                                         item.getString("nama_barang"), item.getDouble("harga_satuan"),
-                                        item.getInt("jumlah"), item.getString("satuan"),
-                                        item.getDouble("diskon_rupiah"), item.getDouble("harga_total"));
+                                        item.getInt("jumlah"), item.getString("satuan"), item.getDouble("diskon_rupiah"),
+                                        item.getDouble("harga_total"), item.getString("no_batch"));
                                 barang.setListSatuan(satuan);
 
                                 listBarang.add(barang);
@@ -201,7 +203,7 @@ public class DaftarSODetail extends AppCompatActivity {
                 break;
             case R.id.action_print:
                 Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.logo_pal_nota);
-                printerManager = new NotaPrinter(this, Bitmap.createScaledBitmap(
+                printerManager = new PalPrinter(this, Bitmap.createScaledBitmap(
                         logo, 170, 170, false));
                 printerManager.startService();
                 printerManager.setListener(new BluetoothPrinter.BluetoothListener() {
@@ -211,7 +213,9 @@ public class DaftarSODetail extends AppCompatActivity {
                         double total_diskon = 0;
 
                         for(BarangModel b : listBarang){
-                            listItem.add(new Item(b.getNama(), b.getJumlah(), b.getHarga()));
+                            String nama = b.getNama();
+                            nama += b.getNo_batch().isEmpty()?" (-)" : " (" + b.getNo_batch() + "}";
+                            listItem.add(new Item(nama, b.getJumlah(), b.getHarga()));
                             total_diskon += b.getDiskon();
                         }
 
@@ -221,7 +225,7 @@ public class DaftarSODetail extends AppCompatActivity {
                         transaksi.setTunai(nota.getTotal());
                         transaksi.setDiskon(total_diskon);
 
-                        printerManager.print(transaksi);
+                        printerManager.printNota(transaksi);
                     }
 
                     @Override

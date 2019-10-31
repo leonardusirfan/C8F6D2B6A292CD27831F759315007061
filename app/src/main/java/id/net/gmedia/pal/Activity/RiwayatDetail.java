@@ -40,6 +40,7 @@ import id.net.gmedia.pal.Model.NotaPenjualanModel;
 import id.net.gmedia.pal.R;
 import id.net.gmedia.pal.Util.AppSharedPreferences;
 import id.net.gmedia.pal.Util.Constant;
+import id.net.gmedia.pal.Util.PalPrinter;
 
 public class RiwayatDetail extends AppCompatActivity {
 
@@ -47,7 +48,7 @@ public class RiwayatDetail extends AppCompatActivity {
     private NotaPenjualanModel nota;
 
     //Variabel global printer
-    private NotaPrinter printerManager;
+    private PalPrinter printerManager;
 
     //Variabel filter & loadmore
     private String search = "";
@@ -142,7 +143,7 @@ public class RiwayatDetail extends AppCompatActivity {
                                 JSONObject item = array.getJSONObject(i);
                                 BarangModel barang = new BarangModel(item.getString("id"), item.getString("nama_barang"),
                                         item.getDouble("harga_satuan"), item.getInt("jumlah"), item.getString("satuan"),
-                                        item.getDouble("diskon_rupiah"), item.getDouble("harga_total"));
+                                        item.getDouble("diskon_rupiah"), item.getDouble("harga_total"), item.getString("no_batch"));
 
                                 listBarang.add(barang);
                             }
@@ -185,7 +186,7 @@ public class RiwayatDetail extends AppCompatActivity {
             case R.id.action_print:
                 //print nota
                 Bitmap logo = BitmapFactory.decodeResource(getResources(), R.drawable.logo_pal_nota);
-                printerManager = new NotaPrinter(this, Bitmap.createScaledBitmap(
+                printerManager = new PalPrinter(this, Bitmap.createScaledBitmap(
                         logo, 170, 170, false));
                 printerManager.startService();
                 printerManager.setListener(new BluetoothPrinter.BluetoothListener() {
@@ -195,7 +196,9 @@ public class RiwayatDetail extends AppCompatActivity {
                         double total_diskon = 0;
 
                         for(BarangModel b : listBarang){
-                            listItem.add(new Item(b.getNama(), b.getJumlah(), b.getHarga()));
+                            String nama = b.getNama();
+                            nama += b.getNo_batch().isEmpty()?" (-)" : " (" + b.getNo_batch() + "}";
+                            listItem.add(new Item(nama, b.getJumlah(), b.getHarga()));
                             total_diskon += b.getDiskon();
                         }
 
@@ -205,7 +208,7 @@ public class RiwayatDetail extends AppCompatActivity {
                         transaksi.setTunai(nota.getTotal());
                         transaksi.setDiskon(total_diskon);
 
-                        printerManager.print(transaksi);
+                        printerManager.printNota(transaksi);
                     }
 
                     @Override

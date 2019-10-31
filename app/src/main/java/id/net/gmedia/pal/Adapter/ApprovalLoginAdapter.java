@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.leonardus.irfan.SimpleObjectModel;
-
 import java.util.List;
 
 import id.net.gmedia.pal.Activity.Approval.ApprovalLoginPengganti;

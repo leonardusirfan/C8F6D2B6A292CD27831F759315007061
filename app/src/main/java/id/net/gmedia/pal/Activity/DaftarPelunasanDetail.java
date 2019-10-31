@@ -78,6 +78,7 @@ public class DaftarPelunasanDetail extends AppCompatActivity {
     private void loadDetail(){
         AppLoading.getInstance().showLoading(this);
         String parameter = String.format(Locale.getDefault(), "/%s?search=%s",no_nota, "");
+        //Log.d(Constant.TAG, Constant.URL_DAFTAR_PELUNASAN_NOTA_DETAIL + parameter);
         ApiVolleyManager.getInstance().addRequest(this, Constant.URL_DAFTAR_PELUNASAN_NOTA_DETAIL + parameter,
                 ApiVolleyManager.METHOD_GET, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
                 new AppRequestCallback(new AppRequestCallback.RequestListener() {

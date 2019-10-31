@@ -65,7 +65,7 @@ public class DaftarPelunasan extends AppCompatActivity {
         AppLoading.getInstance().showLoading(this);
 
         JSONBuilder body = new JSONBuilder();
-        body.add("kode_pelangaan", customer.getId());
+        body.add("kode_pelanggan", customer.getId());
 
         ApiVolleyManager.getInstance().addRequest(this, Constant.URL_DAFTAR_PELUNASAN_NOTA,
                 ApiVolleyManager.METHOD_POST, Constant.getTokenHeader(AppSharedPreferences.getId(this)),
