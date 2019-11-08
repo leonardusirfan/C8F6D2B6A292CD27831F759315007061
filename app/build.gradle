@@ -18,8 +18,8 @@ android {
         targetSdkVersion 28
         // Jika aplikasi memiliki lebih dari 65k (65.536) method
         multiDexEnabled true
-        versionCode 6
-        versionName "1.3.0"
+        versionCode 7
+        versionName "1.3.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -68,8 +68,8 @@ dependencies {
     // Jika aplikasi memiliki lebih dari 65k (65.536) method
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(path: ':locationmanager')
-    implementation project(path: ':thermalbluetoothprinter')
     implementation project(path: ':appcustommodule')
+    implementation project(path: ':thermalbluetoothprinter')
 }
 
 apply plugin: 'com.google.gms.google-services'
